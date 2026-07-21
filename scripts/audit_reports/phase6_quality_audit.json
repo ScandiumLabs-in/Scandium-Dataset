@@ -1,0 +1,113 @@
+{
+  "phase": "Phase 6: Quality Audit",
+  "timestamp": "2026-07-21 23:12:16",
+  "score_distribution": {
+    "mean": 77.44848012237001,
+    "median": 78.0,
+    "std": 7.596226967988087,
+    "min": 48.0,
+    "max": 88.0
+  },
+  "calibration": [
+    {
+      "bin": "50-60",
+      "n": 4807,
+      "valid_pct": 0.0,
+      "sg_pct": 99.8,
+      "complete_pct": 99.8
+    },
+    {
+      "bin": "60-70",
+      "n": 32273,
+      "valid_pct": 26.4,
+      "sg_pct": 100.0,
+      "complete_pct": 100.0
+    },
+    {
+      "bin": "70-80",
+      "n": 146001,
+      "valid_pct": 99.0,
+      "sg_pct": 100.0,
+      "complete_pct": 100.0
+    },
+    {
+      "bin": "80-90",
+      "n": 83649,
+      "valid_pct": 99.9,
+      "sg_pct": 100.0,
+      "complete_pct": 100.0
+    }
+  ],
+  "monotonic_valid_pct": true,
+  "monotonic_sg_pct": true,
+  "per_source_scores": {
+    "mp": {
+      "mean": 87.44164898454078
+    },
+    "oqmd": {
+      "mean": 73.36850622889743
+    },
+    "jarvis": {
+      "mean": 77.78117087991275
+    }
+  },
+  "sub_scores": {
+    "geometry": {
+      "mean": 16.74465755889807,
+      "max": 23
+    },
+    "dft": {
+      "mean": 19.696942998965252,
+      "max": 20
+    },
+    "metadata": {
+      "mean": 11.82321581212603,
+      "max": 15
+    },
+    "novelty": {
+      "mean": 14.207444176176837,
+      "max": 15
+    },
+    "chemical": {
+      "mean": 14.97621957620383,
+      "max": 15
+    }
+  },
+  "findings": [
+    {
+      "severity": "PASS",
+      "phase": "calibration",
+      "check": "monotonic_valid_pct",
+      "status": "valid% increases with score",
+      "detail": ""
+    },
+    {
+      "severity": "PASS",
+      "phase": "calibration",
+      "check": "monotonic_sg_pct",
+      "status": "SG% increases with score",
+      "detail": ""
+    },
+    {
+      "severity": "HIGH",
+      "phase": "source_bias",
+      "check": "mp_oqmd_score_diff",
+      "status": "p=0.0000, diff=14.1",
+      "detail": ""
+    },
+    {
+      "severity": "MEDIUM",
+      "phase": "score_range",
+      "check": "no_scores_ge90",
+      "status": "0 entries \u2265 90 \u2014 scoring is conservative",
+      "detail": ""
+    }
+  ],
+  "summary": {
+    "CRITICAL": 0,
+    "HIGH": 1,
+    "MEDIUM": 1,
+    "LOW": 0,
+    "PASS": 2
+  }
+}

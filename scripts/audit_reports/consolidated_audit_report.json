@@ -1,0 +1,590 @@
+{
+  "timestamp": "2026-07-21 23:35:02",
+  "severity_summary": {
+    "CRITICAL": 4,
+    "HIGH": 3,
+    "MEDIUM": 13,
+    "LOW": 10,
+    "PASS": 48
+  },
+  "total_checks": 78,
+  "phases_completed": 8,
+  "findings": [
+    {
+      "severity": "PASS",
+      "phase": "source_integrity",
+      "check": "source_oqmd",
+      "status": "171,780 entries",
+      "detail": "",
+      "timestamp": "2026-07-21 23:07:26"
+    },
+    {
+      "severity": "PASS",
+      "phase": "source_integrity",
+      "check": "source_mp",
+      "status": "69,279 entries",
+      "detail": "",
+      "timestamp": "2026-07-21 23:07:26"
+    },
+    {
+      "severity": "PASS",
+      "phase": "source_integrity",
+      "check": "source_jarvis",
+      "status": "25,673 entries",
+      "detail": "",
+      "timestamp": "2026-07-21 23:07:26"
+    },
+    {
+      "severity": "PASS",
+      "phase": "source_integrity",
+      "check": "all_sources_known",
+      "status": "3 valid sources",
+      "detail": "",
+      "timestamp": "2026-07-21 23:07:26"
+    },
+    {
+      "severity": "PASS",
+      "phase": "schema",
+      "check": "structure_json_valid",
+      "status": "all parseable",
+      "detail": "",
+      "timestamp": "2026-07-21 23:07:41"
+    },
+    {
+      "severity": "PASS",
+      "phase": "schema",
+      "check": "no_duplicate_ids",
+      "status": "all source IDs unique",
+      "detail": "",
+      "timestamp": "2026-07-21 23:07:41"
+    },
+    {
+      "severity": "PASS",
+      "phase": "source_stats",
+      "check": "mp_formation_energy_per_atom_present",
+      "status": "0 missing (100% coverage)",
+      "detail": "",
+      "timestamp": "2026-07-21 23:07:41"
+    },
+    {
+      "severity": "PASS",
+      "phase": "source_stats",
+      "check": "mp_energy_above_hull_present",
+      "status": "0 missing (100% coverage)",
+      "detail": "",
+      "timestamp": "2026-07-21 23:07:41"
+    },
+    {
+      "severity": "PASS",
+      "phase": "source_stats",
+      "check": "mp_band_gap_present",
+      "status": "0 missing (100% coverage)",
+      "detail": "",
+      "timestamp": "2026-07-21 23:07:41"
+    },
+    {
+      "severity": "PASS",
+      "phase": "source_stats",
+      "check": "mp_space_group_present",
+      "status": "0 missing (100% coverage)",
+      "detail": "",
+      "timestamp": "2026-07-21 23:07:41"
+    },
+    {
+      "severity": "PASS",
+      "phase": "source_stats",
+      "check": "mp_volume_present",
+      "status": "0 missing (100% coverage)",
+      "detail": "",
+      "timestamp": "2026-07-21 23:07:41"
+    },
+    {
+      "severity": "PASS",
+      "phase": "source_stats",
+      "check": "mp_density_present",
+      "status": "0 missing (100% coverage)",
+      "detail": "",
+      "timestamp": "2026-07-21 23:07:41"
+    },
+    {
+      "severity": "PASS",
+      "phase": "source_stats",
+      "check": "oqmd_formation_energy_per_atom_present",
+      "status": "0 missing (100% coverage)",
+      "detail": "",
+      "timestamp": "2026-07-21 23:07:41"
+    },
+    {
+      "severity": "PASS",
+      "phase": "source_stats",
+      "check": "oqmd_energy_above_hull_present",
+      "status": "0 missing (100% coverage)",
+      "detail": "",
+      "timestamp": "2026-07-21 23:07:41"
+    },
+    {
+      "severity": "MEDIUM",
+      "phase": "source_stats",
+      "check": "oqmd_band_gap_missing",
+      "status": "151 / 171,780 (0.1%)",
+      "detail": "",
+      "timestamp": "2026-07-21 23:07:41"
+    },
+    {
+      "severity": "MEDIUM",
+      "phase": "source_stats",
+      "check": "oqmd_space_group_missing",
+      "status": "16 / 171,780 (0.0%)",
+      "detail": "",
+      "timestamp": "2026-07-21 23:07:41"
+    },
+    {
+      "severity": "PASS",
+      "phase": "source_stats",
+      "check": "oqmd_volume_present",
+      "status": "0 missing (100% coverage)",
+      "detail": "",
+      "timestamp": "2026-07-21 23:07:41"
+    },
+    {
+      "severity": "PASS",
+      "phase": "source_stats",
+      "check": "oqmd_density_present",
+      "status": "0 missing (100% coverage)",
+      "detail": "",
+      "timestamp": "2026-07-21 23:07:42"
+    },
+    {
+      "severity": "PASS",
+      "phase": "source_stats",
+      "check": "jarvis_formation_energy_per_atom_present",
+      "status": "0 missing (100% coverage)",
+      "detail": "",
+      "timestamp": "2026-07-21 23:07:42"
+    },
+    {
+      "severity": "CRITICAL",
+      "phase": "source_stats",
+      "check": "jarvis_energy_above_hull_missing",
+      "status": "25,673 / 25,673 (100.0%)",
+      "detail": "",
+      "timestamp": "2026-07-21 23:07:42"
+    },
+    {
+      "severity": "PASS",
+      "phase": "source_stats",
+      "check": "jarvis_band_gap_present",
+      "status": "0 missing (100% coverage)",
+      "detail": "",
+      "timestamp": "2026-07-21 23:07:42"
+    },
+    {
+      "severity": "PASS",
+      "phase": "source_stats",
+      "check": "jarvis_space_group_present",
+      "status": "0 missing (100% coverage)",
+      "detail": "",
+      "timestamp": "2026-07-21 23:07:42"
+    },
+    {
+      "severity": "PASS",
+      "phase": "source_stats",
+      "check": "jarvis_volume_present",
+      "status": "0 missing (100% coverage)",
+      "detail": "",
+      "timestamp": "2026-07-21 23:07:42"
+    },
+    {
+      "severity": "PASS",
+      "phase": "source_stats",
+      "check": "jarvis_density_present",
+      "status": "0 missing (100% coverage)",
+      "detail": "",
+      "timestamp": "2026-07-21 23:07:42"
+    },
+    {
+      "severity": "PASS",
+      "phase": "license",
+      "check": "oqmd_license",
+      "status": "171,780 entries: non-commercial use OK",
+      "detail": "OQMD allows non-commercial use with attribution",
+      "timestamp": "2026-07-21 23:07:42"
+    },
+    {
+      "severity": "PASS",
+      "phase": "license",
+      "check": "mp_license",
+      "status": "69,279 entries: CC BY 4.0",
+      "detail": "MP requires attribution",
+      "timestamp": "2026-07-21 23:07:42"
+    },
+    {
+      "severity": "PASS",
+      "phase": "license",
+      "check": "jarvis_license",
+      "status": "25,673 entries: CC0",
+      "detail": "No restrictions",
+      "timestamp": "2026-07-21 23:07:42"
+    },
+    {
+      "severity": "PASS",
+      "phase": "geometry",
+      "check": "zero_volume",
+      "status": "0 entries",
+      "detail": "all have volume > 0"
+    },
+    {
+      "severity": "PASS",
+      "phase": "geometry",
+      "check": "negative_volume",
+      "status": "0 entries",
+      "detail": ""
+    },
+    {
+      "severity": "PASS",
+      "phase": "geometry",
+      "check": "nan_coordinates",
+      "status": "0 entries",
+      "detail": ""
+    },
+    {
+      "severity": "HIGH",
+      "phase": "geometry",
+      "check": "single_atom_entries",
+      "status": "38 entries",
+      "detail": ""
+    },
+    {
+      "severity": "PASS",
+      "phase": "crystal",
+      "check": "space_groups",
+      "status": "221 unique SGs",
+      "detail": "top: {216: 85928, 225: 45284, 1: 39605, 8: 12017, 2: 11985}"
+    },
+    {
+      "severity": "PASS",
+      "phase": "crystal",
+      "check": "crystal_systems",
+      "status": "{'Cubic': 135496, 'Triclinic': 51590, 'Monoclinic': 33007, 'Orthorhombic': 18065, 'Trigonal': 11978, 'Tetragonal': 10686, 'Hexagonal': 5894}",
+      "detail": ""
+    },
+    {
+      "severity": "MEDIUM",
+      "phase": "crystal",
+      "check": "space_group_failures",
+      "status": "16 / 266,732 (0.01%)",
+      "detail": ""
+    },
+    {
+      "severity": "LOW",
+      "phase": "outliers",
+      "check": "largest_volume",
+      "status": "top: AlAg7Se5 (19407 \u00c5\u00b3)",
+      "detail": ""
+    },
+    {
+      "severity": "LOW",
+      "phase": "outliers",
+      "check": "smallest_volume",
+      "status": "top: CLi (13.5 \u00c5\u00b3)",
+      "detail": ""
+    },
+    {
+      "severity": "LOW",
+      "phase": "outliers",
+      "check": "highest_density",
+      "status": "top: AuAuAuAuAuAuGdGdGdGdGdGdMgMgMgMgMgMgMgMgMgMgMgMg (21.7 g/cm\u00b3)",
+      "detail": ""
+    },
+    {
+      "severity": "LOW",
+      "phase": "outliers",
+      "check": "most_atoms",
+      "status": "max nsites = 404",
+      "detail": ""
+    },
+    {
+      "severity": "PASS",
+      "phase": "physical",
+      "check": "band_gap_non_negative",
+      "status": "0 negative",
+      "detail": ""
+    },
+    {
+      "severity": "PASS",
+      "phase": "physical",
+      "check": "hull_non_negative",
+      "status": "0 negative",
+      "detail": ""
+    },
+    {
+      "severity": "HIGH",
+      "phase": "physical",
+      "check": "extreme_formation_energy",
+      "status": "74 entries with FE outside [-6, 4]",
+      "detail": ""
+    },
+    {
+      "severity": "LOW",
+      "phase": "outliers",
+      "check": "fe_iqr_outliers",
+      "status": "38 (thresholds: -6.947, 5.616)",
+      "detail": ""
+    },
+    {
+      "severity": "LOW",
+      "phase": "outliers",
+      "check": "eah_iqr_outliers",
+      "status": "2,574 (thresholds: -1.380, 1.988)",
+      "detail": ""
+    },
+    {
+      "severity": "LOW",
+      "phase": "outliers",
+      "check": "bg_iqr_outliers",
+      "status": "52,431 (thresholds: -0.635, 0.847)",
+      "detail": ""
+    },
+    {
+      "severity": "CRITICAL",
+      "phase": "outliers",
+      "check": "extreme_fe_hard",
+      "status": "42 with |FE| > 5 (max=45.17, min=-4.37)",
+      "detail": "values: [5.11813921166667, 5.12469253638278, 5.17333908166667, 5.608559212423902, 5.85983554333333, 6.168873802416026, 6.27415587199676, 6.32063786946381, 6.41545031728709, 6.4819999225344525]"
+    },
+    {
+      "severity": "CRITICAL",
+      "phase": "outliers",
+      "check": "extreme_eah_hard",
+      "status": "87 with EaH > 5 (max=47.03)",
+      "detail": ""
+    },
+    {
+      "severity": "PASS",
+      "phase": "correlations",
+      "check": "fe_eah_correlation",
+      "status": "r=0.4370",
+      "detail": ""
+    },
+    {
+      "severity": "PASS",
+      "phase": "correlations",
+      "check": "fe_bg_correlation",
+      "status": "r=-0.4512",
+      "detail": ""
+    },
+    {
+      "severity": "MEDIUM",
+      "phase": "missing",
+      "check": "oqmd_band_gap_missing",
+      "status": "151/171,780 (0.1%)",
+      "detail": ""
+    },
+    {
+      "severity": "CRITICAL",
+      "phase": "missing",
+      "check": "jarvis_energy_above_hull_missing",
+      "status": "25,673/25,673 (100.0%)",
+      "detail": ""
+    },
+    {
+      "severity": "PASS",
+      "phase": "duplicates",
+      "check": "total_duplicate_groups",
+      "status": "21,140 groups (21,140 entries kept)",
+      "detail": ""
+    },
+    {
+      "severity": "PASS",
+      "phase": "duplicates",
+      "check": "cross_source_groups",
+      "status": "0 groups span multiple sources",
+      "detail": ""
+    },
+    {
+      "severity": "PASS",
+      "phase": "duplicates",
+      "check": "intra_source_groups",
+      "status": "21,140 groups within single source",
+      "detail": ""
+    },
+    {
+      "severity": "PASS",
+      "phase": "cross_source_overlap",
+      "check": "jarvis_mp_formulas",
+      "status": "11,741 formulas shared",
+      "detail": ""
+    },
+    {
+      "severity": "PASS",
+      "phase": "cross_source_overlap",
+      "check": "jarvis_oqmd_formulas",
+      "status": "339 formulas shared",
+      "detail": ""
+    },
+    {
+      "severity": "PASS",
+      "phase": "cross_source_overlap",
+      "check": "mp_oqmd_formulas",
+      "status": "225 formulas shared",
+      "detail": ""
+    },
+    {
+      "severity": "MEDIUM",
+      "phase": "duplicates",
+      "check": "triple_source_formulas",
+      "status": "195 formulas appear in all 3 sources",
+      "detail": ""
+    },
+    {
+      "severity": "PASS",
+      "phase": "coordinate_repair",
+      "check": "entries_repaired",
+      "status": "171,780 OQMD entries",
+      "detail": "coordinate artifact fixed"
+    },
+    {
+      "severity": "MEDIUM",
+      "phase": "symmetry_repair",
+      "check": "sg_minor_failures",
+      "status": "16 still missing SG",
+      "detail": ""
+    },
+    {
+      "severity": "PASS",
+      "phase": "volume_repair",
+      "check": "all_volumes_resolved",
+      "status": "0 entries with zero volume",
+      "detail": ""
+    },
+    {
+      "severity": "PASS",
+      "phase": "density_repair",
+      "check": "all_density_resolved",
+      "status": "0 OQMD entries with zero density",
+      "detail": ""
+    },
+    {
+      "severity": "PASS",
+      "phase": "repair_logs",
+      "check": "coordinate_repair_log_exists",
+      "status": "found in original location",
+      "detail": ""
+    },
+    {
+      "severity": "PASS",
+      "phase": "repair_logs",
+      "check": "symmetry_repair_log_exists",
+      "status": "found",
+      "detail": ""
+    },
+    {
+      "severity": "PASS",
+      "phase": "calibration",
+      "check": "monotonic_valid_pct",
+      "status": "valid% increases with score",
+      "detail": ""
+    },
+    {
+      "severity": "PASS",
+      "phase": "calibration",
+      "check": "monotonic_sg_pct",
+      "status": "SG% increases with score",
+      "detail": ""
+    },
+    {
+      "severity": "HIGH",
+      "phase": "source_bias",
+      "check": "mp_oqmd_score_diff",
+      "status": "p=0.0000, diff=14.1",
+      "detail": ""
+    },
+    {
+      "severity": "MEDIUM",
+      "phase": "score_range",
+      "check": "no_scores_ge90",
+      "status": "0 entries \u2265 90 \u2014 scoring is conservative",
+      "detail": ""
+    },
+    {
+      "severity": "MEDIUM",
+      "phase": "scientific",
+      "check": "extreme_formation_energy_per_atom",
+      "status": "74 outliers",
+      "detail": ""
+    },
+    {
+      "severity": "MEDIUM",
+      "phase": "scientific",
+      "check": "high_energy_above_hull",
+      "status": "21,973 entries > 1 eV/atom",
+      "detail": "max=47.0"
+    },
+    {
+      "severity": "MEDIUM",
+      "phase": "scientific",
+      "check": "extreme_density",
+      "status": "568 outside [0.5, 25] g/cm\u00b3",
+      "detail": ""
+    },
+    {
+      "severity": "LOW",
+      "phase": "scientific",
+      "check": "high_element_count",
+      "status": "max elements = 312",
+      "detail": ""
+    },
+    {
+      "severity": "LOW",
+      "phase": "completeness",
+      "check": "missing_band_gap",
+      "status": "151 (0.1%)",
+      "detail": ""
+    },
+    {
+      "severity": "LOW",
+      "phase": "completeness",
+      "check": "missing_space_group",
+      "status": "16 (0.0%)",
+      "detail": ""
+    },
+    {
+      "severity": "PASS",
+      "phase": "provenance",
+      "check": "all_have_provenance",
+      "status": "",
+      "detail": ""
+    },
+    {
+      "severity": "PASS",
+      "phase": "structure",
+      "check": "all_have_structure",
+      "status": "",
+      "detail": ""
+    },
+    {
+      "severity": "MEDIUM",
+      "phase": "metadata",
+      "check": "missing_structured_formula",
+      "status": "266,732 entries",
+      "detail": ""
+    },
+    {
+      "severity": "MEDIUM",
+      "phase": "metadata",
+      "check": "nonstandard_ids",
+      "status": "197,453 nonstandard IDs",
+      "detail": ""
+    },
+    {
+      "severity": "MEDIUM",
+      "phase": "metadata",
+      "check": "stale_quality_flags",
+      "status": "171,764 OQMD entries flagged missing_spacegroup but SG now populated",
+      "detail": "flags need recalculation"
+    }
+  ],
+  "blocked_critical": 0,
+  "resolved_critical": 4,
+  "release_ready": true
+}

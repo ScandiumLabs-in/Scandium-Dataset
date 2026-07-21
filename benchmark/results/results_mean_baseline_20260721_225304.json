@@ -1,0 +1,396 @@
+{
+  "random_80_10_10": {
+    "model": "mean_baseline",
+    "split": "random_80_10_10",
+    "overall": {
+      "FE": {
+        "r2": -0.0,
+        "mae": 1.0169,
+        "rmse": 1.2493,
+        "mape": 1477.03,
+        "max_error": 38.7905,
+        "n": 39940,
+        "spearman_r": NaN
+      },
+      "EaH": {
+        "r2": -0.0,
+        "mae": 0.3284,
+        "rmse": 0.5033,
+        "mape": 4110.87,
+        "max_error": 38.3035,
+        "n": 35984,
+        "spearman_r": NaN
+      },
+      "BG": {
+        "r2": -0.0,
+        "mae": 0.8827,
+        "rmse": 1.2873,
+        "mape": 11922.29,
+        "max_error": 11.7508,
+        "n": 39916,
+        "spearman_r": NaN
+      }
+    },
+    "per_family": {
+      "layered_oxide": {
+        "FE": {
+          "r2": -5.7044,
+          "mae": 1.6336,
+          "rmse": 1.7425,
+          "mape": 75.42,
+          "max_error": 5.5239,
+          "n": 6240,
+          "spearman_r": NaN
+        },
+        "EaH": {
+          "r2": -0.4408,
+          "mae": 0.3122,
+          "rmse": 0.4027,
+          "mape": 2265.35,
+          "max_error": 7.2219,
+          "n": 5426,
+          "spearman_r": NaN
+        },
+        "BG": {
+          "r2": -0.1732,
+          "mae": 1.0649,
+          "rmse": 1.4519,
+          "mape": 1091.69,
+          "max_error": 6.1318,
+          "n": 6238,
+          "spearman_r": NaN
+        }
+      },
+      "halide_sse": {
+        "FE": {
+          "r2": -2.905,
+          "mae": 1.6086,
+          "rmse": 1.8231,
+          "mape": 192.29,
+          "max_error": 4.9879,
+          "n": 2678,
+          "spearman_r": NaN
+        },
+        "EaH": {
+          "r2": -0.5783,
+          "mae": 0.3242,
+          "rmse": 0.401,
+          "mape": 11228.12,
+          "max_error": 6.5448,
+          "n": 2121,
+          "spearman_r": NaN
+        },
+        "BG": {
+          "r2": -0.568,
+          "mae": 2.011,
+          "rmse": 2.7601,
+          "mape": 13571.56,
+          "max_error": 8.5218,
+          "n": 2675,
+          "spearman_r": NaN
+        }
+      },
+      "sulfide_sse": {
+        "FE": {
+          "r2": -1.0961,
+          "mae": 0.8732,
+          "rmse": 1.1033,
+          "mape": 84.4,
+          "max_error": 3.5218,
+          "n": 2353,
+          "spearman_r": NaN
+        },
+        "EaH": {
+          "r2": -0.7254,
+          "mae": 0.2907,
+          "rmse": 0.3438,
+          "mape": 8046.08,
+          "max_error": 4.6974,
+          "n": 2035,
+          "spearman_r": NaN
+        },
+        "BG": {
+          "r2": -0.3034,
+          "mae": 1.2157,
+          "rmse": 1.6011,
+          "mape": 15259.41,
+          "max_error": 5.9748,
+          "n": 2345,
+          "spearman_r": NaN
+        }
+      },
+      "borohydride": {
+        "FE": {
+          "r2": -0.3308,
+          "mae": 0.9907,
+          "rmse": 1.2351,
+          "mape": 131.75,
+          "max_error": 2.3519,
+          "n": 97,
+          "spearman_r": NaN
+        },
+        "EaH": {
+          "r2": -0.9172,
+          "mae": 0.3438,
+          "rmse": 0.3662,
+          "mape": 4126.76,
+          "max_error": 1.17,
+          "n": 82,
+          "spearman_r": NaN
+        },
+        "BG": {
+          "r2": -3.3092,
+          "mae": 3.7743,
+          "rmse": 4.1112,
+          "mape": 127.8,
+          "max_error": 5.5768,
+          "n": 97,
+          "spearman_r": NaN
+        }
+      },
+      "unknown": {
+        "FE": {
+          "r2": -0.9698,
+          "mae": 0.7061,
+          "rmse": 0.9108,
+          "mape": 5425.48,
+          "max_error": 3.7361,
+          "n": 711,
+          "spearman_r": NaN
+        },
+        "EaH": {
+          "r2": -0.0,
+          "mae": 0.3379,
+          "rmse": 0.5072,
+          "mape": 2591.6,
+          "max_error": 3.0699,
+          "n": 573,
+          "spearman_r": NaN
+        },
+        "BG": {
+          "r2": -0.0072,
+          "mae": 0.9698,
+          "rmse": 1.3851,
+          "mape": 121.12,
+          "max_error": 6.0208,
+          "n": 709,
+          "spearman_r": NaN
+        }
+      },
+      "intermetallic": {
+        "FE": {
+          "r2": -1.5379,
+          "mae": 0.7867,
+          "rmse": 0.9818,
+          "mape": 2120.73,
+          "max_error": 38.7905,
+          "n": 25309,
+          "spearman_r": NaN
+        },
+        "EaH": {
+          "r2": -0.0362,
+          "mae": 0.3344,
+          "rmse": 0.537,
+          "mape": 3676.25,
+          "max_error": 38.3035,
+          "n": 23522,
+          "spearman_r": NaN
+        },
+        "BG": {
+          "r2": -2.9219,
+          "mae": 0.5876,
+          "rmse": 0.6232,
+          "mape": 13932.14,
+          "max_error": 11.7508,
+          "n": 25302,
+          "spearman_r": NaN
+        }
+      },
+      "oxide": {
+        "FE": {
+          "r2": -2.0014,
+          "mae": 1.1949,
+          "rmse": 1.3717,
+          "mape": 105.03,
+          "max_error": 3.2033,
+          "n": 1700,
+          "spearman_r": NaN
+        },
+        "EaH": {
+          "r2": -0.0707,
+          "mae": 0.3179,
+          "rmse": 0.3987,
+          "mape": 5054.49,
+          "max_error": 3.5413,
+          "n": 1461,
+          "spearman_r": NaN
+        },
+        "BG": {
+          "r2": -0.2121,
+          "mae": 1.3621,
+          "rmse": 1.8608,
+          "mape": 59746.9,
+          "max_error": 5.9128,
+          "n": 1699,
+          "spearman_r": NaN
+        }
+      },
+      "polyanion": {
+        "FE": {
+          "r2": -2.3865,
+          "mae": 1.7436,
+          "rmse": 1.9424,
+          "mape": 123.47,
+          "max_error": 12.4074,
+          "n": 771,
+          "spearman_r": NaN
+        },
+        "EaH": {
+          "r2": -0.0137,
+          "mae": 0.3896,
+          "rmse": 0.8246,
+          "mape": 4216.94,
+          "max_error": 13.4924,
+          "n": 683,
+          "spearman_r": NaN
+        },
+        "BG": {
+          "r2": -0.9832,
+          "mae": 2.5533,
+          "rmse": 3.1181,
+          "mape": 571.05,
+          "max_error": 5.8778,
+          "n": 770,
+          "spearman_r": NaN
+        }
+      },
+      "nasicon": {
+        "FE": {
+          "r2": -27.8239,
+          "mae": 2.1412,
+          "rmse": 2.1603,
+          "mape": 83.49,
+          "max_error": 2.6132,
+          "n": 79,
+          "spearman_r": NaN
+        },
+        "EaH": {
+          "r2": -0.5425,
+          "mae": 0.3472,
+          "rmse": 0.4569,
+          "mape": 1506.92,
+          "max_error": 2.907,
+          "n": 79,
+          "spearman_r": NaN
+        },
+        "BG": {
+          "r2": -2.372,
+          "mae": 1.9979,
+          "rmse": 2.246,
+          "mape": 140.9,
+          "max_error": 3.9543,
+          "n": 79,
+          "spearman_r": NaN
+        }
+      },
+      "garnet": {
+        "FE": {
+          "n": 2,
+          "error": "insufficient data"
+        },
+        "EaH": {
+          "n": 2,
+          "error": "insufficient data"
+        },
+        "BG": {
+          "n": 2,
+          "error": "insufficient data"
+        }
+      }
+    },
+    "per_source": {
+      "mp": {
+        "FE": {
+          "r2": -0.943,
+          "mae": 1.3831,
+          "rmse": 1.6013,
+          "mape": 544.14,
+          "max_error": 5.5239,
+          "n": 10381,
+          "spearman_r": NaN
+        },
+        "EaH": {
+          "r2": -0.3437,
+          "mae": 0.3351,
+          "rmse": 0.443,
+          "mape": 4436.86,
+          "max_error": 7.2219,
+          "n": 10381,
+          "spearman_r": NaN
+        },
+        "BG": {
+          "r2": -0.1934,
+          "mae": 1.2363,
+          "rmse": 1.7401,
+          "mape": 19781.86,
+          "max_error": 7.9247,
+          "n": 10381,
+          "spearman_r": NaN
+        }
+      },
+      "jarvis": {
+        "FE": {
+          "r2": -0.1683,
+          "mae": 0.9112,
+          "rmse": 1.1706,
+          "mape": 427.66,
+          "max_error": 3.6569,
+          "n": 3956,
+          "spearman_r": NaN
+        },
+        "EaH": {
+          "n": 0,
+          "error": "insufficient data"
+        },
+        "BG": {
+          "r2": -0.0201,
+          "mae": 1.0138,
+          "rmse": 1.5277,
+          "mape": 390.02,
+          "max_error": 8.5218,
+          "n": 3956,
+          "spearman_r": NaN
+        }
+      },
+      "oqmd": {
+        "FE": {
+          "r2": -0.3145,
+          "mae": 0.8848,
+          "rmse": 1.0878,
+          "mape": 2017.27,
+          "max_error": 38.7905,
+          "n": 25603,
+          "spearman_r": NaN
+        },
+        "EaH": {
+          "r2": -0.0288,
+          "mae": 0.3257,
+          "rmse": 0.5258,
+          "mape": 3992.91,
+          "max_error": 38.3035,
+          "n": 25603,
+          "spearman_r": NaN
+        },
+        "BG": {
+          "r2": -0.1214,
+          "mae": 0.719,
+          "rmse": 0.9981,
+          "mape": 66.89,
+          "max_error": 11.7508,
+          "n": 25579,
+          "spearman_r": NaN
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,156 @@
+{
+  "phase": "Battery Subset Extraction",
+  "timestamp": "2026-07-21 21:27:47",
+  "subsets": {
+    "general": {
+      "n": 266732,
+      "path": "dataset_v3/exports/entries_final.json"
+    },
+    "battery": {
+      "n": 82925,
+      "path": "dataset_v3/exports/battery_subset.json",
+      "families": {
+        "layered_oxide": 42015,
+        "halide_sse": 18803,
+        "sulfide_sse": 16359,
+        "polyanion": 4519,
+        "borohydride": 646,
+        "nasicon": 560,
+        "garnet": 23
+      },
+      "sources": {
+        "mp": 49129,
+        "oqmd": 21553,
+        "jarvis": 12243
+      }
+    },
+    "electrolyte": {
+      "n": 42548,
+      "path": "dataset_v3/exports/electrolyte_subset.json",
+      "families": {
+        "layered_oxide": 23376,
+        "halide_sse": 9109,
+        "sulfide_sse": 6907,
+        "polyanion": 2276,
+        "nasicon": 488,
+        "borohydride": 373,
+        "garnet": 19
+      },
+      "sources": {
+        "mp": 31677,
+        "jarvis": 10871
+      }
+    }
+  },
+  "battery_family_details": {
+    "borohydride": {
+      "count": 646,
+      "quality_mean": 81.8,
+      "volume_median": 650.1,
+      "tiers": {
+        "gold": 373,
+        "validated": 103,
+        "raw": 170
+      },
+      "sources": {
+        "mp": 406,
+        "oqmd": 150,
+        "jarvis": 90
+      },
+      "has_eah_pct": 86.1
+    },
+    "garnet": {
+      "count": 23,
+      "quality_mean": 87.3,
+      "volume_median": 1067.9,
+      "tiers": {
+        "gold": 19,
+        "validated": 4
+      },
+      "sources": {
+        "mp": 21,
+        "jarvis": 2
+      },
+      "has_eah_pct": 91.3
+    },
+    "halide_sse": {
+      "count": 18803,
+      "quality_mean": 80.5,
+      "volume_median": 300.3,
+      "tiers": {
+        "validated": 4411,
+        "gold": 9109,
+        "raw": 5283
+      },
+      "sources": {
+        "mp": 9082,
+        "oqmd": 5834,
+        "jarvis": 3887
+      },
+      "has_eah_pct": 79.3
+    },
+    "layered_oxide": {
+      "count": 42015,
+      "quality_mean": 83.0,
+      "volume_median": 320.7,
+      "tiers": {
+        "gold": 23376,
+        "validated": 10714,
+        "raw": 7925
+      },
+      "sources": {
+        "mp": 28727,
+        "oqmd": 7754,
+        "jarvis": 5534
+      },
+      "has_eah_pct": 86.8
+    },
+    "nasicon": {
+      "count": 560,
+      "quality_mean": 86.4,
+      "volume_median": 1599.9,
+      "tiers": {
+        "gold": 488,
+        "validated": 70,
+        "raw": 2
+      },
+      "sources": {
+        "mp": 558,
+        "jarvis": 2
+      },
+      "has_eah_pct": 99.6
+    },
+    "polyanion": {
+      "count": 4519,
+      "quality_mean": 80.8,
+      "volume_median": 590.6,
+      "tiers": {
+        "gold": 2276,
+        "validated": 868,
+        "raw": 1375
+      },
+      "sources": {
+        "mp": 2669,
+        "oqmd": 1373,
+        "jarvis": 477
+      },
+      "has_eah_pct": 89.4
+    },
+    "sulfide_sse": {
+      "count": 16359,
+      "quality_mean": 78.8,
+      "volume_median": 663.4,
+      "tiers": {
+        "gold": 6907,
+        "validated": 3086,
+        "raw": 6366
+      },
+      "sources": {
+        "mp": 7666,
+        "oqmd": 6442,
+        "jarvis": 2251
+      },
+      "has_eah_pct": 86.2
+    }
+  }
+}

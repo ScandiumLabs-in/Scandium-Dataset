@@ -1,0 +1,294 @@
+{
+  "timestamp": "2026-07-21 21:27:07",
+  "bins": {
+    "80-90": {
+      "n": 83649,
+      "structural_validity": {
+        "valid": 71298,
+        "has_volume": 71308,
+        "has_nsites": 83639,
+        "valid_pct": 85.23
+      },
+      "metadata": {
+        "has_space_group": 81478,
+        "has_density": 83649,
+        "space_group_pct": 97.4,
+        "density_pct": 100.0
+      },
+      "outliers": {
+        "fe_outliers": 0,
+        "eah_outliers": 43,
+        "fe_outlier_pct": 0.0,
+        "eah_outlier_pct": 0.0514
+      },
+      "completeness": {
+        "all_present": 69137,
+        "pct": 82.65
+      },
+      "cross_source_agreement": {
+        "mp_oqmd": {
+          "fe_diffs": {
+            "n": 0
+          },
+          "bg_diffs": {
+            "n": 0
+          },
+          "eah_diffs": {
+            "n": 0
+          }
+        },
+        "mp_jarvis": {
+          "fe_diffs": {
+            "n": 6658,
+            "mae": 0.1825,
+            "rmse": 0.3093,
+            "median": 0.1531
+          },
+          "bg_diffs": {
+            "n": 6658,
+            "mae": 0.4358,
+            "rmse": 0.8596,
+            "median": 0.1309
+          },
+          "eah_diffs": {
+            "n": 0
+          }
+        },
+        "oqmd_jarvis": {
+          "fe_diffs": {
+            "n": 0
+          },
+          "bg_diffs": {
+            "n": 0
+          },
+          "eah_diffs": {
+            "n": 0
+          }
+        }
+      }
+    },
+    "60-70": {
+      "n": 32273,
+      "structural_validity": {
+        "valid": 8990,
+        "has_volume": 8991,
+        "has_nsites": 32265,
+        "valid_pct": 27.86
+      },
+      "metadata": {
+        "has_space_group": 645,
+        "has_density": 9627,
+        "space_group_pct": 2.0,
+        "density_pct": 29.83
+      },
+      "outliers": {
+        "fe_outliers": 2,
+        "eah_outliers": 11,
+        "fe_outlier_pct": 0.0062,
+        "eah_outlier_pct": 0.0341
+      },
+      "completeness": {
+        "all_present": 9,
+        "pct": 0.03
+      },
+      "cross_source_agreement": {
+        "mp_oqmd": {
+          "fe_diffs": {
+            "n": 3,
+            "mae": 0.7994,
+            "rmse": 1.1999,
+            "median": 0.3114
+          },
+          "bg_diffs": {
+            "n": 3,
+            "mae": 0.4517,
+            "rmse": 0.7824,
+            "median": 0.0
+          },
+          "eah_diffs": {
+            "n": 3,
+            "mae": 0.8301,
+            "rmse": 1.209,
+            "median": 0.4034
+          }
+        },
+        "mp_jarvis": {
+          "fe_diffs": {
+            "n": 4,
+            "mae": 0.252,
+            "rmse": 0.3677,
+            "median": 0.1106
+          },
+          "bg_diffs": {
+            "n": 4,
+            "mae": 0.7708,
+            "rmse": 1.4404,
+            "median": 0.105
+          },
+          "eah_diffs": {
+            "n": 0
+          }
+        },
+        "oqmd_jarvis": {
+          "fe_diffs": {
+            "n": 53,
+            "mae": 0.1858,
+            "rmse": 0.352,
+            "median": 0.0962
+          },
+          "bg_diffs": {
+            "n": 53,
+            "mae": 0.084,
+            "rmse": 0.3317,
+            "median": 0.0
+          },
+          "eah_diffs": {
+            "n": 0
+          }
+        }
+      }
+    },
+    "70-80": {
+      "n": 146001,
+      "structural_validity": {
+        "valid": 112941,
+        "has_volume": 112947,
+        "has_nsites": 145993,
+        "valid_pct": 77.36
+      },
+      "metadata": {
+        "has_space_group": 12824,
+        "has_density": 125638,
+        "space_group_pct": 8.78,
+        "density_pct": 86.05
+      },
+      "outliers": {
+        "fe_outliers": 0,
+        "eah_outliers": 0,
+        "fe_outlier_pct": 0.0,
+        "eah_outlier_pct": 0.0
+      },
+      "completeness": {
+        "all_present": 133,
+        "pct": 0.09
+      },
+      "cross_source_agreement": {
+        "mp_oqmd": {
+          "fe_diffs": {
+            "n": 23,
+            "mae": 0.226,
+            "rmse": 0.2604,
+            "median": 0.2239
+          },
+          "bg_diffs": {
+            "n": 23,
+            "mae": 0.3885,
+            "rmse": 0.5221,
+            "median": 0.3626
+          },
+          "eah_diffs": {
+            "n": 23,
+            "mae": 0.2048,
+            "rmse": 0.2447,
+            "median": 0.1944
+          }
+        },
+        "mp_jarvis": {
+          "fe_diffs": {
+            "n": 75,
+            "mae": 1.5103,
+            "rmse": 1.8866,
+            "median": 2.1353
+          },
+          "bg_diffs": {
+            "n": 75,
+            "mae": 0.226,
+            "rmse": 0.521,
+            "median": 0.0
+          },
+          "eah_diffs": {
+            "n": 0
+          }
+        },
+        "oqmd_jarvis": {
+          "fe_diffs": {
+            "n": 267,
+            "mae": 0.5568,
+            "rmse": 0.7144,
+            "median": 0.4009
+          },
+          "bg_diffs": {
+            "n": 267,
+            "mae": 0.1568,
+            "rmse": 0.5677,
+            "median": 0.0
+          },
+          "eah_diffs": {
+            "n": 0
+          }
+        }
+      }
+    },
+    "50-60": {
+      "n": 4807,
+      "structural_validity": {
+        "valid": 6,
+        "has_volume": 6,
+        "has_nsites": 4795,
+        "valid_pct": 0.12
+      },
+      "metadata": {
+        "has_space_group": 5,
+        "has_density": 11,
+        "space_group_pct": 0.1,
+        "density_pct": 0.23
+      },
+      "outliers": {
+        "fe_outliers": 15,
+        "eah_outliers": 33,
+        "fe_outlier_pct": 0.312,
+        "eah_outlier_pct": 0.6865
+      },
+      "completeness": {
+        "all_present": 0,
+        "pct": 0.0
+      },
+      "cross_source_agreement": {
+        "mp_oqmd": {
+          "fe_diffs": {
+            "n": 0
+          },
+          "bg_diffs": {
+            "n": 0
+          },
+          "eah_diffs": {
+            "n": 0
+          }
+        },
+        "mp_jarvis": {
+          "fe_diffs": {
+            "n": 0
+          },
+          "bg_diffs": {
+            "n": 0
+          },
+          "eah_diffs": {
+            "n": 0
+          }
+        },
+        "oqmd_jarvis": {
+          "fe_diffs": {
+            "n": 0
+          },
+          "bg_diffs": {
+            "n": 0
+          },
+          "eah_diffs": {
+            "n": 0
+          }
+        }
+      }
+    }
+  },
+  "elapsed_seconds": 1.0
+}

@@ -1,0 +1,13 @@
+{
+  "phase": "OQMD Symmetry Pass (parallel)",
+  "timestamp": "2026-07-21 22:31:15",
+  "oqmd_entries_processed": 171780,
+  "space_group_found": 171764,
+  "space_group_failed": 16,
+  "tier_reclassifications": {
+    "validated\u2192gold": 20571,
+    "raw\u2192gold": 8497
+  },
+  "workers": 11,
+  "elapsed_seconds": 373.6
+}

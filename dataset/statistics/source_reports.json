@@ -1,0 +1,471 @@
+{
+  "phase": "Per-Source Reports",
+  "timestamp": "2026-07-21 21:38:01",
+  "total_entries": 266732,
+  "sources": {
+    "mp": {
+      "source": "mp",
+      "full_name": "Materials Project",
+      "count": 69279,
+      "pct_of_total": 25.97,
+      "tiers": {
+        "gold": {
+          "count": 43607,
+          "pct": 62.94
+        },
+        "validated": {
+          "count": 25606,
+          "pct": 36.96
+        },
+        "raw": {
+          "count": 66,
+          "pct": 0.1
+        }
+      },
+      "families": {
+        "layered_oxide": {
+          "count": 28727,
+          "pct": 41.47
+        },
+        "intermetallic": {
+          "count": 14148,
+          "pct": 20.42
+        },
+        "halide_sse": {
+          "count": 9082,
+          "pct": 13.11
+        },
+        "sulfide_sse": {
+          "count": 7666,
+          "pct": 11.07
+        },
+        "oxide": {
+          "count": 4338,
+          "pct": 6.26
+        },
+        "polyanion": {
+          "count": 2669,
+          "pct": 3.85
+        },
+        "unknown": {
+          "count": 1664,
+          "pct": 2.4
+        },
+        "nasicon": {
+          "count": 558,
+          "pct": 0.81
+        },
+        "borohydride": {
+          "count": 406,
+          "pct": 0.59
+        },
+        "garnet": {
+          "count": 21,
+          "pct": 0.03
+        }
+      },
+      "formation_energy_per_atom": {
+        "n": 69279,
+        "missing": 0,
+        "missing_pct": 0.0,
+        "mean": -1.7015,
+        "median": -2.0059,
+        "std": 1.1343,
+        "min": -4.3739,
+        "max": 4.9432
+      },
+      "energy_above_hull": {
+        "n": 69279,
+        "missing": 0,
+        "missing_pct": 0.0,
+        "mean": 0.1657,
+        "median": 0.0671,
+        "std": 0.3879,
+        "min": 0.0,
+        "max": 7.6076
+      },
+      "band_gap": {
+        "n": 69279,
+        "missing": 0,
+        "missing_pct": 0.0,
+        "mean": 1.2743,
+        "median": 0.5252,
+        "std": 1.5821,
+        "min": 0.0,
+        "max": 8.7581
+      },
+      "quality_scores": {
+        "mean": 87.44,
+        "median": 88.0,
+        "histogram": {
+          "0.0-10.0": 0,
+          "10.0-20.0": 0,
+          "20.0-30.0": 0,
+          "30.0-40.0": 0,
+          "40.0-50.0": 0,
+          "50.0-60.0": 0,
+          "60.0-70.0": 9,
+          "70.0-80.0": 133,
+          "80.0-90.0": 69137,
+          "90.0-100.0": 0
+        }
+      },
+      "structure": {
+        "volume_median": 336.87,
+        "volume_missing": 0,
+        "density_median": 3.67,
+        "space_group_n_unique": 221,
+        "space_group_missing": 0
+      },
+      "top_elements": {
+        "O": 44805,
+        "Li": 19806,
+        "Mg": 17807,
+        "Na": 12356,
+        "P": 10211,
+        "Ca": 8115,
+        "Mn": 7712,
+        "K": 7515,
+        "Si": 7348,
+        "Al": 7318
+      },
+      "cross_source_overlap": {
+        "jarvis": {
+          "formulas_in_common": 11741
+        },
+        "oqmd": {
+          "formulas_in_common": 225
+        }
+      },
+      "metadata": {
+        "known_biases": [
+          "Overrepresents known stable phases",
+          "Underrepresents metastable phases relevant to battery cycling",
+          "Li/Na compounds well-represented but not comprehensive for solid electrolytes"
+        ],
+        "strengths": [
+          "Highest metadata completeness (100% for all fields)",
+          "Consistent DFT protocol across all entries",
+          "Space group verified for every entry",
+          "Actively maintained and corrected",
+          "Widely cited and trusted"
+        ],
+        "weaknesses": [
+          "Only contains thermodynamically stable/metastable compounds",
+          "Limited battery-specific properties (no conductivity, migration barriers)",
+          "Some computed properties may differ from experiment (band gap underestimation)",
+          "Inorganic only \u2014 no polymer/organic electrolytes"
+        ]
+      }
+    },
+    "oqmd": {
+      "source": "oqmd",
+      "full_name": "Open Quantum Materials Database",
+      "count": 171780,
+      "pct_of_total": 64.4,
+      "tiers": {
+        "validated": {
+          "count": 114984,
+          "pct": 66.94
+        },
+        "raw": {
+          "count": 56796,
+          "pct": 33.06
+        }
+      },
+      "families": {
+        "intermetallic": {
+          "count": 141903,
+          "pct": 82.61
+        },
+        "layered_oxide": {
+          "count": 7754,
+          "pct": 4.51
+        },
+        "sulfide_sse": {
+          "count": 6442,
+          "pct": 3.75
+        },
+        "oxide": {
+          "count": 5929,
+          "pct": 3.45
+        },
+        "halide_sse": {
+          "count": 5834,
+          "pct": 3.4
+        },
+        "unknown": {
+          "count": 2395,
+          "pct": 1.39
+        },
+        "polyanion": {
+          "count": 1373,
+          "pct": 0.8
+        },
+        "borohydride": {
+          "count": 150,
+          "pct": 0.09
+        }
+      },
+      "formation_energy_per_atom": {
+        "n": 171780,
+        "missing": 0,
+        "missing_pct": 0.0,
+        "mean": -0.053,
+        "median": 0.0599,
+        "std": 0.9551,
+        "min": -4.2702,
+        "max": 45.1713
+      },
+      "energy_above_hull": {
+        "n": 171780,
+        "missing": 0,
+        "missing_pct": 0.0,
+        "mean": 0.4744,
+        "median": 0.3537,
+        "std": 0.518,
+        "min": 0.0,
+        "max": 47.0331
+      },
+      "band_gap": {
+        "n": 171629,
+        "missing": 151,
+        "missing_pct": 0.09,
+        "mean": 0.2687,
+        "median": 0.0,
+        "std": 0.9616,
+        "min": 0.0,
+        "max": 12.433
+      },
+      "quality_scores": {
+        "mean": 73.37,
+        "median": 73.0,
+        "histogram": {
+          "0.0-10.0": 0,
+          "10.0-20.0": 0,
+          "20.0-30.0": 0,
+          "30.0-40.0": 0,
+          "40.0-50.0": 2,
+          "50.0-60.0": 4802,
+          "60.0-70.0": 31628,
+          "70.0-80.0": 133177,
+          "80.0-90.0": 2171,
+          "90.0-100.0": 0
+        }
+      },
+      "structure": {
+        "volume_median": 73.49,
+        "volume_missing": 47807,
+        "density_median": 6.59,
+        "space_group_n_unique": 0,
+        "space_group_missing": 171780
+      },
+      "top_elements": {
+        "Zn": 39124,
+        "Li": 39010,
+        "Mg": 37449,
+        "Na": 25666,
+        "Ca": 22938,
+        "K": 22246,
+        "O": 18529,
+        "Cu": 10704,
+        "Mn": 9946,
+        "Co": 9934
+      },
+      "cross_source_overlap": {
+        "jarvis": {
+          "formulas_in_common": 339
+        },
+        "mp": {
+          "formulas_in_common": 225
+        }
+      },
+      "metadata": {
+        "known_biases": [
+          "Coordinate artifact (\u221a3/4 min_dist) now repaired \u2014 68% of entries affected",
+          "Space group not computed during ingest \u2014 100% missing",
+          "Volume set to 0 in original ingest for ~28% of entries",
+          "Higher proportion of unstable/metastable phases than MP",
+          "Composition search over-represents certain alloy families"
+        ],
+        "strengths": [
+          "Largest open DFT database (817k raw entries)",
+          "Covers many metastable phases relevant to battery applications",
+          "Properties match MP within 0.21 eV/atom FE MAE for overlapping formulas",
+          "Band gap agreement with JARVIS is excellent (MAE 0.10 eV)",
+          "All 266k entries have complete FE, EaH, BG coverage"
+        ],
+        "weaknesses": [
+          "Space group cannot be trusted \u2014 100% missing, needs symmetry recomputation",
+          "Volume cannot be trusted for ~28% of entries (still show 0 from original ingest)",
+          "Coordinate repair was necessary for 68% of entries",
+          "No standard versioning or API",
+          "Some multi-element formulas are concatenated without separators (e.g., Mg12Ni6Pr6)"
+        ]
+      }
+    },
+    "jarvis": {
+      "source": "jarvis",
+      "full_name": "JARVIS-DFT (Joint Automated Repository for Various Integrated Simulations)",
+      "count": 25673,
+      "pct_of_total": 9.63,
+      "tiers": {
+        "gold": {
+          "count": 23567,
+          "pct": 91.8
+        },
+        "raw": {
+          "count": 2106,
+          "pct": 8.2
+        }
+      },
+      "families": {
+        "intermetallic": {
+          "count": 10879,
+          "pct": 42.38
+        },
+        "layered_oxide": {
+          "count": 5534,
+          "pct": 21.56
+        },
+        "halide_sse": {
+          "count": 3887,
+          "pct": 15.14
+        },
+        "sulfide_sse": {
+          "count": 2251,
+          "pct": 8.77
+        },
+        "oxide": {
+          "count": 1661,
+          "pct": 6.47
+        },
+        "unknown": {
+          "count": 890,
+          "pct": 3.47
+        },
+        "polyanion": {
+          "count": 477,
+          "pct": 1.86
+        },
+        "borohydride": {
+          "count": 90,
+          "pct": 0.35
+        },
+        "garnet": {
+          "count": 2,
+          "pct": 0.01
+        },
+        "nasicon": {
+          "count": 2,
+          "pct": 0.01
+        }
+      },
+      "formation_energy_per_atom": {
+        "n": 25673,
+        "missing": 0,
+        "missing_pct": 0.0,
+        "mean": -1.0553,
+        "median": -0.7941,
+        "std": 1.072,
+        "min": -4.3126,
+        "max": 4.2409
+      },
+      "band_gap": {
+        "n": 25673,
+        "missing": 0,
+        "missing_pct": 0.0,
+        "mean": 0.8138,
+        "median": 0.0,
+        "std": 1.5248,
+        "min": 0.0,
+        "max": 9.106
+      },
+      "quality_scores": {
+        "mean": 77.78,
+        "median": 78.0,
+        "histogram": {
+          "0.0-10.0": 0,
+          "10.0-20.0": 0,
+          "20.0-30.0": 0,
+          "30.0-40.0": 0,
+          "40.0-50.0": 0,
+          "50.0-60.0": 5,
+          "60.0-70.0": 636,
+          "70.0-80.0": 12691,
+          "80.0-90.0": 12341,
+          "90.0-100.0": 0
+        }
+      },
+      "structure": {
+        "volume_median": null,
+        "volume_missing": 25673,
+        "density_median": 4.18,
+        "space_group_n_unique": 187,
+        "space_group_missing": 0
+      },
+      "top_elements": {
+        "O": 8932,
+        "Li": 8033,
+        "Mg": 5074,
+        "Na": 4022,
+        "Zn": 3738,
+        "Ca": 3719,
+        "K": 3180,
+        "F": 2272,
+        "Mn": 1739,
+        "S": 1582
+      },
+      "cross_source_overlap": {
+        "mp": {
+          "formulas_in_common": 11741
+        },
+        "oqmd": {
+          "formulas_in_common": 339
+        }
+      },
+      "metadata": {
+        "known_biases": [
+          "EaH not computed \u2014 100% missing",
+          "Overlaps heavily with MP (11,741 formulas in common)",
+          "TBmBJ band gaps differ systematically from PBE (MAE 0.29 eV vs MP)",
+          "Smaller dataset (28k raw) limits family diversity"
+        ],
+        "strengths": [
+          "TBmBJ band gaps are more accurate than standard PBE",
+          "25,673 entries can serve as band gap correction dataset",
+          "High structural agreement with MP (78.6% space group match)",
+          "Complete metadata (space group, volume, density for every entry)",
+          "Public domain license (CC0) \u2014 no restrictions",
+          "78% of entries qualify for Gold tier"
+        ],
+        "weaknesses": [
+          "No energy above hull \u2014 cannot assess thermodynamic stability",
+          "Only 26k entries vs 69k (MP) and 172k (OQMD)",
+          "Overlaps 98% with MP \u2014 limited unique coverage",
+          "Some materials are not SSB-relevant"
+        ]
+      }
+    }
+  },
+  "overlap_matrix": {
+    "mp_oqmd": {
+      "pair": "mp\u2194oqmd",
+      "overlap": {
+        "formulas_in_common": 225
+      }
+    },
+    "jarvis_mp": {
+      "pair": "jarvis\u2194mp",
+      "overlap": {
+        "formulas_in_common": 11741
+      }
+    },
+    "jarvis_oqmd": {
+      "pair": "jarvis\u2194oqmd",
+      "overlap": {
+        "formulas_in_common": 339
+      }
+    }
+  }
+}

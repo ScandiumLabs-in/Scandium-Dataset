@@ -1,0 +1,93 @@
+{
+  "phase": "Phase 8: Metadata Audit",
+  "timestamp": "2026-07-21 23:14:20",
+  "field_completeness": {
+    "space_group": 16,
+    "band_gap": 151
+  },
+  "tier_distribution": {
+    "gold": 96242,
+    "validated": 140382,
+    "raw": 30108
+  },
+  "source_distribution": {
+    "mp": 69279,
+    "jarvis": 25673,
+    "oqmd": 171780
+  },
+  "family_distribution": {
+    "layered_oxide": 42015,
+    "unknown": 4949,
+    "halide_sse": 18803,
+    "sulfide_sse": 16359,
+    "borohydride": 646,
+    "intermetallic": 166930,
+    "oxide": 11928,
+    "polyanion": 4519,
+    "nasicon": 560,
+    "garnet": 23
+  },
+  "id_formats": {
+    "mp-": 69279,
+    "other": 197453
+  },
+  "stale_quality_flags": 171764,
+  "findings": [
+    {
+      "severity": "LOW",
+      "phase": "completeness",
+      "check": "missing_band_gap",
+      "status": "151 (0.1%)",
+      "detail": ""
+    },
+    {
+      "severity": "LOW",
+      "phase": "completeness",
+      "check": "missing_space_group",
+      "status": "16 (0.0%)",
+      "detail": ""
+    },
+    {
+      "severity": "PASS",
+      "phase": "provenance",
+      "check": "all_have_provenance",
+      "status": "",
+      "detail": ""
+    },
+    {
+      "severity": "PASS",
+      "phase": "structure",
+      "check": "all_have_structure",
+      "status": "",
+      "detail": ""
+    },
+    {
+      "severity": "MEDIUM",
+      "phase": "metadata",
+      "check": "missing_structured_formula",
+      "status": "266,732 entries",
+      "detail": ""
+    },
+    {
+      "severity": "MEDIUM",
+      "phase": "metadata",
+      "check": "nonstandard_ids",
+      "status": "197,453 nonstandard IDs",
+      "detail": ""
+    },
+    {
+      "severity": "MEDIUM",
+      "phase": "metadata",
+      "check": "stale_quality_flags",
+      "status": "171,764 OQMD entries flagged missing_spacegroup but SG now populated",
+      "detail": "flags need recalculation"
+    }
+  ],
+  "summary": {
+    "CRITICAL": 0,
+    "HIGH": 0,
+    "MEDIUM": 3,
+    "LOW": 2,
+    "PASS": 2
+  }
+}

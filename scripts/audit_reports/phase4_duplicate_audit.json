@@ -1,0 +1,77 @@
+{
+  "phase": "Phase 4: Duplicate Audit",
+  "timestamp": "2026-07-21 23:11:00",
+  "total_entries": 266732,
+  "duplicate_groups": 21140,
+  "duplicate_entries_kept": 21140,
+  "estimated_removed": 31997,
+  "cross_source_groups": 0,
+  "intra_source_groups": 21140,
+  "cross_source_formulas": 11915,
+  "overlap_pairs": {
+    "jarvis_mp": 11741,
+    "jarvis_oqmd": 339,
+    "mp_oqmd": 225
+  },
+  "group_size_distribution": {
+    "3-5": 21140
+  },
+  "findings": [
+    {
+      "severity": "PASS",
+      "phase": "duplicates",
+      "check": "total_duplicate_groups",
+      "status": "21,140 groups (21,140 entries kept)",
+      "detail": ""
+    },
+    {
+      "severity": "PASS",
+      "phase": "duplicates",
+      "check": "cross_source_groups",
+      "status": "0 groups span multiple sources",
+      "detail": ""
+    },
+    {
+      "severity": "PASS",
+      "phase": "duplicates",
+      "check": "intra_source_groups",
+      "status": "21,140 groups within single source",
+      "detail": ""
+    },
+    {
+      "severity": "PASS",
+      "phase": "cross_source_overlap",
+      "check": "jarvis_mp_formulas",
+      "status": "11,741 formulas shared",
+      "detail": ""
+    },
+    {
+      "severity": "PASS",
+      "phase": "cross_source_overlap",
+      "check": "jarvis_oqmd_formulas",
+      "status": "339 formulas shared",
+      "detail": ""
+    },
+    {
+      "severity": "PASS",
+      "phase": "cross_source_overlap",
+      "check": "mp_oqmd_formulas",
+      "status": "225 formulas shared",
+      "detail": ""
+    },
+    {
+      "severity": "MEDIUM",
+      "phase": "duplicates",
+      "check": "triple_source_formulas",
+      "status": "195 formulas appear in all 3 sources",
+      "detail": ""
+    }
+  ],
+  "summary": {
+    "CRITICAL": 0,
+    "HIGH": 0,
+    "MEDIUM": 1,
+    "LOW": 0,
+    "PASS": 6
+  }
+}

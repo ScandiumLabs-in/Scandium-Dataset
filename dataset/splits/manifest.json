@@ -1,0 +1,41 @@
+{
+  "version": "0.0.0",
+  "date": "2026-07-21",
+  "total_entries": 266732,
+  "n_splits": 4,
+  "splits": {
+    "random_80_10_10": {
+      "type": "random_80_10_10",
+      "seed": 42
+    },
+    "family_held_out": {
+      "type": "family_held_out",
+      "train_families": [
+        "halide_sse",
+        "intermetallic",
+        "layered_oxide",
+        "oxide",
+        "sulfide_sse",
+        "unknown"
+      ],
+      "val_families": [
+        "borohydride",
+        "polyanion"
+      ],
+      "test_families": [
+        "garnet",
+        "nasicon"
+      ],
+      "seed": 42
+    },
+    "chemistry_held_out": {
+      "type": "chemistry_held_out_halide",
+      "held_out_anion": "halide",
+      "seed": 42
+    },
+    "composition_held_out": {
+      "type": "random_80_10_10",
+      "seed": 42
+    }
+  }
+}

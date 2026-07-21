@@ -1,0 +1,235 @@
+{
+  "phase": "Phase 1: Raw Data Audit",
+  "timestamp": "2026-07-21 23:07:42",
+  "total_entries": 266732,
+  "sources": {
+    "oqmd": 171780,
+    "mp": 69279,
+    "jarvis": 25673
+  },
+  "findings": [
+    {
+      "severity": "PASS",
+      "phase": "source_integrity",
+      "check": "source_oqmd",
+      "status": "171,780 entries",
+      "detail": "",
+      "timestamp": "2026-07-21 23:07:26"
+    },
+    {
+      "severity": "PASS",
+      "phase": "source_integrity",
+      "check": "source_mp",
+      "status": "69,279 entries",
+      "detail": "",
+      "timestamp": "2026-07-21 23:07:26"
+    },
+    {
+      "severity": "PASS",
+      "phase": "source_integrity",
+      "check": "source_jarvis",
+      "status": "25,673 entries",
+      "detail": "",
+      "timestamp": "2026-07-21 23:07:26"
+    },
+    {
+      "severity": "PASS",
+      "phase": "source_integrity",
+      "check": "all_sources_known",
+      "status": "3 valid sources",
+      "detail": "",
+      "timestamp": "2026-07-21 23:07:26"
+    },
+    {
+      "severity": "PASS",
+      "phase": "schema",
+      "check": "structure_json_valid",
+      "status": "all parseable",
+      "detail": "",
+      "timestamp": "2026-07-21 23:07:41"
+    },
+    {
+      "severity": "PASS",
+      "phase": "schema",
+      "check": "no_duplicate_ids",
+      "status": "all source IDs unique",
+      "detail": "",
+      "timestamp": "2026-07-21 23:07:41"
+    },
+    {
+      "severity": "PASS",
+      "phase": "source_stats",
+      "check": "mp_formation_energy_per_atom_present",
+      "status": "0 missing (100% coverage)",
+      "detail": "",
+      "timestamp": "2026-07-21 23:07:41"
+    },
+    {
+      "severity": "PASS",
+      "phase": "source_stats",
+      "check": "mp_energy_above_hull_present",
+      "status": "0 missing (100% coverage)",
+      "detail": "",
+      "timestamp": "2026-07-21 23:07:41"
+    },
+    {
+      "severity": "PASS",
+      "phase": "source_stats",
+      "check": "mp_band_gap_present",
+      "status": "0 missing (100% coverage)",
+      "detail": "",
+      "timestamp": "2026-07-21 23:07:41"
+    },
+    {
+      "severity": "PASS",
+      "phase": "source_stats",
+      "check": "mp_space_group_present",
+      "status": "0 missing (100% coverage)",
+      "detail": "",
+      "timestamp": "2026-07-21 23:07:41"
+    },
+    {
+      "severity": "PASS",
+      "phase": "source_stats",
+      "check": "mp_volume_present",
+      "status": "0 missing (100% coverage)",
+      "detail": "",
+      "timestamp": "2026-07-21 23:07:41"
+    },
+    {
+      "severity": "PASS",
+      "phase": "source_stats",
+      "check": "mp_density_present",
+      "status": "0 missing (100% coverage)",
+      "detail": "",
+      "timestamp": "2026-07-21 23:07:41"
+    },
+    {
+      "severity": "PASS",
+      "phase": "source_stats",
+      "check": "oqmd_formation_energy_per_atom_present",
+      "status": "0 missing (100% coverage)",
+      "detail": "",
+      "timestamp": "2026-07-21 23:07:41"
+    },
+    {
+      "severity": "PASS",
+      "phase": "source_stats",
+      "check": "oqmd_energy_above_hull_present",
+      "status": "0 missing (100% coverage)",
+      "detail": "",
+      "timestamp": "2026-07-21 23:07:41"
+    },
+    {
+      "severity": "MEDIUM",
+      "phase": "source_stats",
+      "check": "oqmd_band_gap_missing",
+      "status": "151 / 171,780 (0.1%)",
+      "detail": "",
+      "timestamp": "2026-07-21 23:07:41"
+    },
+    {
+      "severity": "MEDIUM",
+      "phase": "source_stats",
+      "check": "oqmd_space_group_missing",
+      "status": "16 / 171,780 (0.0%)",
+      "detail": "",
+      "timestamp": "2026-07-21 23:07:41"
+    },
+    {
+      "severity": "PASS",
+      "phase": "source_stats",
+      "check": "oqmd_volume_present",
+      "status": "0 missing (100% coverage)",
+      "detail": "",
+      "timestamp": "2026-07-21 23:07:41"
+    },
+    {
+      "severity": "PASS",
+      "phase": "source_stats",
+      "check": "oqmd_density_present",
+      "status": "0 missing (100% coverage)",
+      "detail": "",
+      "timestamp": "2026-07-21 23:07:42"
+    },
+    {
+      "severity": "PASS",
+      "phase": "source_stats",
+      "check": "jarvis_formation_energy_per_atom_present",
+      "status": "0 missing (100% coverage)",
+      "detail": "",
+      "timestamp": "2026-07-21 23:07:42"
+    },
+    {
+      "severity": "CRITICAL",
+      "phase": "source_stats",
+      "check": "jarvis_energy_above_hull_missing",
+      "status": "25,673 / 25,673 (100.0%)",
+      "detail": "",
+      "timestamp": "2026-07-21 23:07:42"
+    },
+    {
+      "severity": "PASS",
+      "phase": "source_stats",
+      "check": "jarvis_band_gap_present",
+      "status": "0 missing (100% coverage)",
+      "detail": "",
+      "timestamp": "2026-07-21 23:07:42"
+    },
+    {
+      "severity": "PASS",
+      "phase": "source_stats",
+      "check": "jarvis_space_group_present",
+      "status": "0 missing (100% coverage)",
+      "detail": "",
+      "timestamp": "2026-07-21 23:07:42"
+    },
+    {
+      "severity": "PASS",
+      "phase": "source_stats",
+      "check": "jarvis_volume_present",
+      "status": "0 missing (100% coverage)",
+      "detail": "",
+      "timestamp": "2026-07-21 23:07:42"
+    },
+    {
+      "severity": "PASS",
+      "phase": "source_stats",
+      "check": "jarvis_density_present",
+      "status": "0 missing (100% coverage)",
+      "detail": "",
+      "timestamp": "2026-07-21 23:07:42"
+    },
+    {
+      "severity": "PASS",
+      "phase": "license",
+      "check": "oqmd_license",
+      "status": "171,780 entries: non-commercial use OK",
+      "detail": "OQMD allows non-commercial use with attribution",
+      "timestamp": "2026-07-21 23:07:42"
+    },
+    {
+      "severity": "PASS",
+      "phase": "license",
+      "check": "mp_license",
+      "status": "69,279 entries: CC BY 4.0",
+      "detail": "MP requires attribution",
+      "timestamp": "2026-07-21 23:07:42"
+    },
+    {
+      "severity": "PASS",
+      "phase": "license",
+      "check": "jarvis_license",
+      "status": "25,673 entries: CC0",
+      "detail": "No restrictions",
+      "timestamp": "2026-07-21 23:07:42"
+    }
+  ],
+  "summary": {
+    "CRITICAL": 1,
+    "HIGH": 0,
+    "MEDIUM": 2,
+    "LOW": 0,
+    "PASS": 24
+  }
+}

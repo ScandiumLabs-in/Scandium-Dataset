@@ -1,0 +1,596 @@
+{
+  "timestamp": "2026-07-21 21:09:26",
+  "total_entries": 266732,
+  "sources": {
+    "oqmd": {
+      "count": 171780,
+      "pct": 64.4
+    },
+    "mp": {
+      "count": 69279,
+      "pct": 25.97
+    },
+    "jarvis": {
+      "count": 25673,
+      "pct": 9.63
+    }
+  },
+  "tiers": {
+    "gold": {
+      "count": 67174,
+      "pct": 25.18
+    },
+    "validated": {
+      "count": 140590,
+      "pct": 52.71
+    },
+    "raw": {
+      "count": 58968,
+      "pct": 22.11
+    }
+  },
+  "tier_per_source": {
+    "gold": {
+      "mp": 43607,
+      "jarvis": 23567
+    },
+    "validated": {
+      "mp": 25606,
+      "oqmd": 114984
+    },
+    "raw": {
+      "mp": 66,
+      "jarvis": 2106,
+      "oqmd": 56796
+    }
+  },
+  "families": {
+    "intermetallic": {
+      "count": 166930,
+      "pct": 62.58
+    },
+    "layered_oxide": {
+      "count": 42015,
+      "pct": 15.75
+    },
+    "halide_sse": {
+      "count": 18803,
+      "pct": 7.05
+    },
+    "sulfide_sse": {
+      "count": 16359,
+      "pct": 6.13
+    },
+    "oxide": {
+      "count": 11928,
+      "pct": 4.47
+    },
+    "unknown": {
+      "count": 4949,
+      "pct": 1.86
+    },
+    "polyanion": {
+      "count": 4519,
+      "pct": 1.69
+    },
+    "borohydride": {
+      "count": 646,
+      "pct": 0.24
+    },
+    "nasicon": {
+      "count": 560,
+      "pct": 0.21
+    },
+    "garnet": {
+      "count": 23,
+      "pct": 0.01
+    }
+  },
+  "properties": {
+    "formation_energy_per_atom": {
+      "n": 266732,
+      "missing": 0,
+      "missing_pct": 0.0,
+      "mean": -0.5777,
+      "std": 1.2488,
+      "median": -0.1956,
+      "min": -4.3739,
+      "max": 45.1713,
+      "p25": -1.5626,
+      "p75": 0.2322,
+      "p95": 1.0637,
+      "skewness": 0.1632,
+      "n_outliers": 17,
+      "outlier_threshold": 10,
+      "zero_count": null,
+      "zero_pct": null
+    },
+    "energy_above_hull": {
+      "n": 241059,
+      "missing": 25673,
+      "missing_pct": 9.63,
+      "mean": 0.3857,
+      "std": 0.5039,
+      "median": 0.2369,
+      "min": 0.0,
+      "max": 47.0331,
+      "p25": 0.0636,
+      "p75": 0.5448,
+      "p95": 1.2715,
+      "skewness": 12.8563,
+      "n_outliers": 87,
+      "outlier_threshold": 5,
+      "zero_count": null,
+      "zero_pct": null
+    },
+    "band_gap": {
+      "n": 266581,
+      "missing": 151,
+      "missing_pct": 0.06,
+      "mean": 0.5825,
+      "std": 1.2894,
+      "median": 0.0,
+      "min": 0.0,
+      "max": 12.433,
+      "p25": 0.0,
+      "p75": 0.2117,
+      "p95": 3.6799,
+      "skewness": 2.5688,
+      "n_outliers": 4680,
+      "outlier_threshold": 5,
+      "zero_count": 194267,
+      "zero_pct": 72.87
+    }
+  },
+  "structure": {
+    "volume": {
+      "n": 193252,
+      "mean": 249.62,
+      "median": 93.92,
+      "std": 425.11,
+      "min": 15.17,
+      "max": 19406.77,
+      "missing": 73480
+    },
+    "density": {
+      "n": 218925,
+      "mean": 5.71,
+      "median": 5.17,
+      "min": 0.01,
+      "max": 19.21,
+      "missing": 47807
+    },
+    "nsites": {
+      "n": 266732,
+      "mean": 15.0,
+      "median": 4.0,
+      "min": 1,
+      "max": 404
+    },
+    "space_groups": {
+      "n_unique": 221,
+      "top_10": {
+        "1": 12060,
+        "225": 7358,
+        "2": 5465,
+        "14": 4680,
+        "12": 3508,
+        "38": 2774,
+        "123": 2748,
+        "15": 2734,
+        "8": 2718,
+        "216": 2654
+      }
+    }
+  },
+  "elements": {
+    "n_unique": 83,
+    "top_20": {
+      "O": {
+        "count": 72266,
+        "pct": 27.09
+      },
+      "Li": {
+        "count": 66849,
+        "pct": 25.06
+      },
+      "Mg": {
+        "count": 60330,
+        "pct": 22.62
+      },
+      "Zn": {
+        "count": 49509,
+        "pct": 18.56
+      },
+      "Na": {
+        "count": 42044,
+        "pct": 15.76
+      },
+      "Ca": {
+        "count": 34772,
+        "pct": 13.04
+      },
+      "K": {
+        "count": 32941,
+        "pct": 12.35
+      },
+      "Mn": {
+        "count": 19397,
+        "pct": 7.27
+      },
+      "Fe": {
+        "count": 17299,
+        "pct": 6.49
+      },
+      "Co": {
+        "count": 16180,
+        "pct": 6.07
+      },
+      "Cu": {
+        "count": 15546,
+        "pct": 5.83
+      },
+      "Si": {
+        "count": 15288,
+        "pct": 5.73
+      },
+      "Al": {
+        "count": 14889,
+        "pct": 5.58
+      },
+      "P": {
+        "count": 14789,
+        "pct": 5.54
+      },
+      "Ni": {
+        "count": 13913,
+        "pct": 5.22
+      },
+      "V": {
+        "count": 13802,
+        "pct": 5.17
+      },
+      "Cr": {
+        "count": 13176,
+        "pct": 4.94
+      },
+      "Ti": {
+        "count": 12078,
+        "pct": 4.53
+      },
+      "S": {
+        "count": 12028,
+        "pct": 4.51
+      },
+      "F": {
+        "count": 10962,
+        "pct": 4.11
+      }
+    }
+  },
+  "carriers": {
+    "Li": {
+      "count": 120644,
+      "pct": 45.23
+    },
+    "Mg": {
+      "count": 110943,
+      "pct": 41.59
+    },
+    "Zn": {
+      "count": 80337,
+      "pct": 30.12
+    },
+    "Na": {
+      "count": 71483,
+      "pct": 26.8
+    },
+    "K": {
+      "count": 60450,
+      "pct": 22.66
+    },
+    "Ca": {
+      "count": 57981,
+      "pct": 21.74
+    },
+    "Al": {
+      "count": 7318,
+      "pct": 2.74
+    }
+  },
+  "quality_scores": {
+    "mean": 77.45,
+    "median": 78.0,
+    "std": 7.6,
+    "min": 48.0,
+    "max": 88.0,
+    "histogram": {
+      "0.0-10.0": 0,
+      "10.0-20.0": 0,
+      "20.0-30.0": 0,
+      "30.0-40.0": 0,
+      "40.0-50.0": 2,
+      "50.0-60.0": 4807,
+      "60.0-70.0": 32273,
+      "70.0-80.0": 146001,
+      "80.0-90.0": 83649,
+      "90.0-100.0": 0
+    }
+  },
+  "quality_sub_scores": {
+    "geometry": {
+      "mean": 16.74,
+      "n": 266732
+    },
+    "dft": {
+      "mean": 19.7,
+      "n": 266732
+    },
+    "metadata": {
+      "mean": 11.82,
+      "n": 266732
+    },
+    "novelty": {
+      "mean": 14.21,
+      "n": 266732
+    },
+    "chemical": {
+      "mean": 14.98,
+      "n": 266732
+    }
+  },
+  "duplicates": {
+    "total_groups": 21140,
+    "entries_in_groups": 21140,
+    "entries_with_merged_sources": 21140
+  },
+  "missing_labels": {
+    "mp": {
+      "n_entries": 69279,
+      "missing": {
+        "formation_energy_per_atom": {
+          "n": 0,
+          "pct": 0.0
+        },
+        "energy_above_hull": {
+          "n": 0,
+          "pct": 0.0
+        },
+        "band_gap": {
+          "n": 0,
+          "pct": 0.0
+        },
+        "volume": {
+          "n": 0,
+          "pct": 0.0
+        },
+        "density": {
+          "n": 0,
+          "pct": 0.0
+        },
+        "space_group": {
+          "n": 0,
+          "pct": 0.0
+        }
+      }
+    },
+    "oqmd": {
+      "n_entries": 171780,
+      "missing": {
+        "formation_energy_per_atom": {
+          "n": 0,
+          "pct": 0.0
+        },
+        "energy_above_hull": {
+          "n": 0,
+          "pct": 0.0
+        },
+        "band_gap": {
+          "n": 151,
+          "pct": 0.09
+        },
+        "volume": {
+          "n": 0,
+          "pct": 0.0
+        },
+        "density": {
+          "n": 0,
+          "pct": 0.0
+        },
+        "space_group": {
+          "n": 171780,
+          "pct": 100.0
+        }
+      }
+    },
+    "jarvis": {
+      "n_entries": 25673,
+      "missing": {
+        "formation_energy_per_atom": {
+          "n": 0,
+          "pct": 0.0
+        },
+        "energy_above_hull": {
+          "n": 25673,
+          "pct": 100.0
+        },
+        "band_gap": {
+          "n": 0,
+          "pct": 0.0
+        },
+        "volume": {
+          "n": 0,
+          "pct": 0.0
+        },
+        "density": {
+          "n": 0,
+          "pct": 0.0
+        },
+        "space_group": {
+          "n": 0,
+          "pct": 0.0
+        }
+      }
+    }
+  },
+  "outliers": {
+    "formation_energy_per_atom": {
+      "n": 17,
+      "threshold": 10,
+      "samples": [
+        {
+          "source_id": "748239",
+          "source": "oqmd",
+          "formula": "LaLaNiZn",
+          "value": 11.04749457,
+          "tier": "raw"
+        },
+        {
+          "source_id": "748415",
+          "source": "oqmd",
+          "formula": "LaLaVZn",
+          "value": 10.09007536,
+          "tier": "raw"
+        },
+        {
+          "source_id": "748250",
+          "source": "oqmd",
+          "formula": "LaLaNiZn",
+          "value": 10.5009362425,
+          "tier": "raw"
+        },
+        {
+          "source_id": "748246",
+          "source": "oqmd",
+          "formula": "LaLaNiZn",
+          "value": 10.1591277175,
+          "tier": "raw"
+        },
+        {
+          "source_id": "1364427",
+          "source": "oqmd",
+          "formula": "MgMgMgMgMgMgMgMgMgMgMgMgNiNiNiNiNiNiPrPrPrPrPrPr",
+          "value": 16.7402547852083,
+          "tier": "raw"
+        },
+        {
+          "source_id": "1374821",
+          "source": "oqmd",
+          "formula": "FeFeFeFeFeFeFeFeZnZrZr",
+          "value": 16.5961534354545,
+          "tier": "raw"
+        },
+        {
+          "source_id": "1365917",
+          "source": "oqmd",
+          "formula": "AuAuAuAuAuAuGdGdGdGdGdGdMgMgMgMgMgMgMgMgMgMgMgMg",
+          "value": 31.5863277152083,
+          "tier": "raw"
+        },
+        {
+          "source_id": "1365606",
+          "source": "oqmd",
+          "formula": "BaBaBaBaBaBaMgMgMgMgMgMgMgMgMgMgMgMgPtPtPtPtPtPt",
+          "value": 39.5862380429167,
+          "tier": "raw"
+        },
+        {
+          "source_id": "1427474",
+          "source": "oqmd",
+          "formula": "AuAuAuAuMgMgMgMgSnSnSnSn",
+          "value": 38.2097640413274,
+          "tier": "raw"
+        },
+        {
+          "source_id": "1385042",
+          "source": "oqmd",
+          "formula": "LiLiLiLiLiLiOOOORbRb",
+          "value": 19.8964165472071,
+          "tier": "raw"
+        }
+      ]
+    },
+    "energy_above_hull": {
+      "n": 87,
+      "threshold": 5,
+      "samples": [
+        {
+          "source_id": "mp-554674",
+          "source": "mp",
+          "formula": "ZnGa3N3O",
+          "value": 5.5363082703124995,
+          "tier": "raw"
+        },
+        {
+          "source_id": "mp-555777",
+          "source": "mp",
+          "formula": "ZnGa3N3O",
+          "value": 5.385082198437499,
+          "tier": "raw"
+        },
+        {
+          "source_id": "mp-1337071",
+          "source": "mp",
+          "formula": "AlSi3AgO8",
+          "value": 7.322514059615384,
+          "tier": "raw"
+        },
+        {
+          "source_id": "mp-1344662",
+          "source": "mp",
+          "formula": "AlSi3O8",
+          "value": 5.003385855243058,
+          "tier": "raw"
+        },
+        {
+          "source_id": "mp-1404938",
+          "source": "mp",
+          "formula": "AlCoO3",
+          "value": 5.074607378499999,
+          "tier": "raw"
+        },
+        {
+          "source_id": "mp-729544",
+          "source": "mp",
+          "formula": "Ca4Al2H22CO20",
+          "value": 5.0824566897108845,
+          "tier": "raw"
+        },
+        {
+          "source_id": "mp-1386257",
+          "source": "mp",
+          "formula": "Ca2SnWO6",
+          "value": 5.839161002333336,
+          "tier": "raw"
+        },
+        {
+          "source_id": "mp-807730",
+          "source": "mp",
+          "formula": "LiV2P4(HO8)2",
+          "value": 6.511506530466669,
+          "tier": "raw"
+        },
+        {
+          "source_id": "mp-807825",
+          "source": "mp",
+          "formula": "LiV2P4(HO8)2",
+          "value": 6.485278555866669,
+          "tier": "raw"
+        },
+        {
+          "source_id": "mp-729481",
+          "source": "mp",
+          "formula": "LiBi2(PO4)3",
+          "value": 5.785839452453702,
+          "tier": "raw"
+        }
+      ]
+    }
+  },
+  "cross_source": {
+    "note": "See cross_source_agreement.json for full study",
+    "mp_oqmd_overlap": null,
+    "mp_jarvis_overlap": null,
+    "oqmd_jarvis_overlap": null
+  }
+}

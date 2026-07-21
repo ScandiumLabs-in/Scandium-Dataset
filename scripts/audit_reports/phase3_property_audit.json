@@ -1,0 +1,132 @@
+{
+  "phase": "Phase 3: Property Audit",
+  "timestamp": "2026-07-21 23:09:42",
+  "total_entries": 266732,
+  "properties": {
+    "formation_energy": {
+      "n": 266732,
+      "missing": 0,
+      "mean": -0.5776515989277631,
+      "median": -0.1956329507053925,
+      "std": 1.2488001125953512,
+      "min": -4.373888270238096,
+      "max": 45.171279419576265,
+      "skewness": 0.16319010602936357,
+      "kurtosis": 17.801695455523532,
+      "outliers_iqr": 38
+    },
+    "energy_above_hull": {
+      "n": 241059,
+      "missing": 25673,
+      "mean": 0.3856898069649797,
+      "median": 0.236943277241666,
+      "std": 0.5039236734149457,
+      "min": 0.0,
+      "max": 47.03310117822222,
+      "outliers_iqr": 2574
+    },
+    "band_gap": {
+      "n": 266581,
+      "missing": 151,
+      "mean": 0.5825359616551982,
+      "median": 0.0,
+      "std": 1.2894178499617113,
+      "min": 0.0,
+      "max": 12.433,
+      "outliers_iqr": 52431
+    }
+  },
+  "findings": [
+    {
+      "severity": "PASS",
+      "phase": "physical",
+      "check": "band_gap_non_negative",
+      "status": "0 negative",
+      "detail": ""
+    },
+    {
+      "severity": "PASS",
+      "phase": "physical",
+      "check": "hull_non_negative",
+      "status": "0 negative",
+      "detail": ""
+    },
+    {
+      "severity": "HIGH",
+      "phase": "physical",
+      "check": "extreme_formation_energy",
+      "status": "74 entries with FE outside [-6, 4]",
+      "detail": ""
+    },
+    {
+      "severity": "LOW",
+      "phase": "outliers",
+      "check": "fe_iqr_outliers",
+      "status": "38 (thresholds: -6.947, 5.616)",
+      "detail": ""
+    },
+    {
+      "severity": "LOW",
+      "phase": "outliers",
+      "check": "eah_iqr_outliers",
+      "status": "2,574 (thresholds: -1.380, 1.988)",
+      "detail": ""
+    },
+    {
+      "severity": "LOW",
+      "phase": "outliers",
+      "check": "bg_iqr_outliers",
+      "status": "52,431 (thresholds: -0.635, 0.847)",
+      "detail": ""
+    },
+    {
+      "severity": "CRITICAL",
+      "phase": "outliers",
+      "check": "extreme_fe_hard",
+      "status": "42 with |FE| > 5 (max=45.17, min=-4.37)",
+      "detail": "values: [5.11813921166667, 5.12469253638278, 5.17333908166667, 5.608559212423902, 5.85983554333333, 6.168873802416026, 6.27415587199676, 6.32063786946381, 6.41545031728709, 6.4819999225344525]"
+    },
+    {
+      "severity": "CRITICAL",
+      "phase": "outliers",
+      "check": "extreme_eah_hard",
+      "status": "87 with EaH > 5 (max=47.03)",
+      "detail": ""
+    },
+    {
+      "severity": "PASS",
+      "phase": "correlations",
+      "check": "fe_eah_correlation",
+      "status": "r=0.4370",
+      "detail": ""
+    },
+    {
+      "severity": "PASS",
+      "phase": "correlations",
+      "check": "fe_bg_correlation",
+      "status": "r=-0.4512",
+      "detail": ""
+    },
+    {
+      "severity": "MEDIUM",
+      "phase": "missing",
+      "check": "oqmd_band_gap_missing",
+      "status": "151/171,780 (0.1%)",
+      "detail": ""
+    },
+    {
+      "severity": "CRITICAL",
+      "phase": "missing",
+      "check": "jarvis_energy_above_hull_missing",
+      "status": "25,673/25,673 (100.0%)",
+      "detail": ""
+    }
+  ],
+  "summary": {
+    "CRITICAL": 3,
+    "HIGH": 1,
+    "MEDIUM": 1,
+    "LOW": 3,
+    "PASS": 4
+  }
+}

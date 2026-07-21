@@ -1,0 +1,21 @@
+{
+  "phase": "Strict Gold + Provenance",
+  "timestamp": "2026-07-21 22:46:42",
+  "stats": {
+    "total": 266732,
+    "base_gold": 96242,
+    "strict_gold": 56966,
+    "strict_gold_pct": 21.36,
+    "strict_gold_slippage": 40.81
+  },
+  "gates": {
+    "G9": "Provenance complete (source_id traceable + checksum)",
+    "G10": "Quality score \u2265 80 (calibrated: 85.2% valid, 0.97 SG, 0.18 FE MAE)",
+    "G11": "No known defects (volume>0, density>0, space_group present)"
+  },
+  "calibration_evidence": {
+    "score_80_90_valid_pct": 85.2,
+    "score_80_90_sg_pct": 97.4,
+    "score_80_90_fe_mae": 0.18
+  }
+}

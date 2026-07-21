@@ -1,0 +1,37 @@
+[build-system]
+requires = ["setuptools>=68.0", "wheel"]
+build-backend = "setuptools.backends._legacy:_Backend"
+
+[project]
+name = "scandium-dataset"
+version = "0.0.0"
+description = "Curated computational materials dataset for solid-state battery discovery"
+readme = "README.md"
+requires-python = ">=3.10"
+license = {text = "Multiple (see LICENSE)"}
+authors = [{name = "Scandium Labs"}]
+keywords = ["materials-science", "solid-state-battery", "computational-materials", "dataset"]
+
+dependencies = [
+    "numpy>=1.24",
+    "scipy>=1.10",
+    "pymatgen>=2024.0",
+    "ase>=3.22",
+    "spglib>=2.0",
+]
+
+[project.optional-dependencies]
+benchmark = ["scikit-learn>=1.3", "matplotlib>=3.7"]
+dev = ["pytest>=7", "pytest-cov>=4"]
+docs = ["mkdocs>=1.5"]
+
+[project.urls]
+Homepage = "https://github.com/scandium-labs/Scandium-Dataset"
+Repository = "https://github.com/scandium-labs/Scandium-Dataset"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = ["test_*.py"]
+
+[tool.coverage.run]
+source = ["api", "scripts"]

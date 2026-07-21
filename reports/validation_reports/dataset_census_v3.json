@@ -1,0 +1,49 @@
+{
+  "version": "0.0.0",
+  "date": "2026-07-21",
+  "total_entries": 266732,
+  "unique_formulas": 148141,
+  "tiers": {
+    "gold": 96242,
+    "validated": 140382,
+    "raw": 30108
+  },
+  "strict_gold": 56966,
+  "sources": {
+    "mp": 69279,
+    "jarvis": 25673,
+    "oqmd": 171780
+  },
+  "families": {
+    "intermetallic": 166930,
+    "layered_oxide": 42015,
+    "halide_sse": 18803,
+    "sulfide_sse": 16359,
+    "oxide": 11928,
+    "unknown": 4949,
+    "polyanion": 4519,
+    "borohydride": 646,
+    "nasicon": 560,
+    "garnet": 23
+  },
+  "properties": {
+    "formation_energy_per_atom": {
+      "n": 266732,
+      "missing": 0,
+      "mean": -0.5777,
+      "median": -0.1956
+    },
+    "energy_above_hull": {
+      "n": 241059,
+      "missing": 25673,
+      "mean": 0.3857,
+      "median": 0.2369
+    },
+    "band_gap": {
+      "n": 266581,
+      "missing": 151,
+      "mean": 0.5825,
+      "median": 0.0
+    }
+  }
+}

@@ -1,0 +1,40 @@
+name: Validate Dataset Integrity
+
+on: [push, pull_request]
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Install dependencies
+        run: pip install numpy scipy
+      - name: Verify manifest checksums
+        run: |
+          python -c "
+import json, hashlib
+with open('dataset/manifests/MANIFEST_v3.json') as f:
+    manifest = json.load(f)
+for name, expected in manifest['files'].items():
+    if name.endswith('_release'):
+        continue
+    path = f'dataset/{name}.json' if '/' not in name else name
+    actual = hashlib.sha256(open(path.replace('_v3', '_v3'), 'rb').read()).hexdigest()
+    assert actual == expected, f'{name}: {actual} != {expected}'
+    print(f'✅ {name}: checksum OK')
+          "
+      - name: Verify splits
+        run: |
+          python -c "
+import json
+with open('dataset/entries_final_v3.json') as f:
+    entries = json.load(f)
+for split_name in ['random_80_10_10', 'composition_held_out', 'family_held_out', 'chemistry_held_out']:
+    with open(f'dataset/splits/{split_name}.json') as f:
+        split = json.load(f)
+    total = len(split['train']) + len(split['val']) + len(split['test'])
+    print(f'✅ {split_name}: {total:,} indices ({len(split[\"train\"]):,} train)')
+          "

@@ -1,0 +1,72 @@
+{
+  "phase": "Phase 5: Repair Audit",
+  "timestamp": "2026-07-21 23:11:12",
+  "repairs": {
+    "coordinate_artifact": {
+      "repaired": 171780
+    },
+    "symmetry": {
+      "found": 171764,
+      "missing": 16
+    },
+    "volume": {
+      "oqmd_zero": 0,
+      "jarvis_zero": 0,
+      "mp_zero": 0
+    },
+    "density": {
+      "oqmd_zero": 0
+    }
+  },
+  "findings": [
+    {
+      "severity": "PASS",
+      "phase": "coordinate_repair",
+      "check": "entries_repaired",
+      "status": "171,780 OQMD entries",
+      "detail": "coordinate artifact fixed"
+    },
+    {
+      "severity": "MEDIUM",
+      "phase": "symmetry_repair",
+      "check": "sg_minor_failures",
+      "status": "16 still missing SG",
+      "detail": ""
+    },
+    {
+      "severity": "PASS",
+      "phase": "volume_repair",
+      "check": "all_volumes_resolved",
+      "status": "0 entries with zero volume",
+      "detail": ""
+    },
+    {
+      "severity": "PASS",
+      "phase": "density_repair",
+      "check": "all_density_resolved",
+      "status": "0 OQMD entries with zero density",
+      "detail": ""
+    },
+    {
+      "severity": "PASS",
+      "phase": "repair_logs",
+      "check": "coordinate_repair_log_exists",
+      "status": "found in original location",
+      "detail": ""
+    },
+    {
+      "severity": "PASS",
+      "phase": "repair_logs",
+      "check": "symmetry_repair_log_exists",
+      "status": "found",
+      "detail": ""
+    }
+  ],
+  "summary": {
+    "CRITICAL": 0,
+    "HIGH": 0,
+    "MEDIUM": 1,
+    "LOW": 0,
+    "PASS": 5
+  }
+}

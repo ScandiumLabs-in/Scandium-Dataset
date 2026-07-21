@@ -1,0 +1,123 @@
+{
+  "phase": "Phase 2: Structure Audit",
+  "timestamp": "2026-07-21 23:09:45",
+  "total_entries": 266732,
+  "geometry": {
+    "volume_mean": 244.32081745594314,
+    "volume_median": 111.31585,
+    "volume_min": 13.451094237983916,
+    "volume_max": 19406.766761953655,
+    "density_mean": 5.578919458688234,
+    "density_median": 5.04,
+    "nsites_mean": 14.966453218961355,
+    "nsites_median": 4.0
+  },
+  "crystal_systems": {
+    "Cubic": 135496,
+    "Triclinic": 51590,
+    "Monoclinic": 33007,
+    "Orthorhombic": 18065,
+    "Trigonal": 11978,
+    "Tetragonal": 10686,
+    "Hexagonal": 5894
+  },
+  "unique_space_groups": 221,
+  "top_space_groups": {
+    "216": 85928,
+    "225": 45284,
+    "1": 39605,
+    "8": 12017,
+    "2": 11985,
+    "14": 4682,
+    "12": 3972,
+    "160": 3962,
+    "123": 2847,
+    "38": 2836
+  },
+  "findings": [
+    {
+      "severity": "PASS",
+      "phase": "geometry",
+      "check": "zero_volume",
+      "status": "0 entries",
+      "detail": "all have volume > 0"
+    },
+    {
+      "severity": "PASS",
+      "phase": "geometry",
+      "check": "negative_volume",
+      "status": "0 entries",
+      "detail": ""
+    },
+    {
+      "severity": "PASS",
+      "phase": "geometry",
+      "check": "nan_coordinates",
+      "status": "0 entries",
+      "detail": ""
+    },
+    {
+      "severity": "HIGH",
+      "phase": "geometry",
+      "check": "single_atom_entries",
+      "status": "38 entries",
+      "detail": ""
+    },
+    {
+      "severity": "PASS",
+      "phase": "crystal",
+      "check": "space_groups",
+      "status": "221 unique SGs",
+      "detail": "top: {216: 85928, 225: 45284, 1: 39605, 8: 12017, 2: 11985}"
+    },
+    {
+      "severity": "PASS",
+      "phase": "crystal",
+      "check": "crystal_systems",
+      "status": "{'Cubic': 135496, 'Triclinic': 51590, 'Monoclinic': 33007, 'Orthorhombic': 18065, 'Trigonal': 11978, 'Tetragonal': 10686, 'Hexagonal': 5894}",
+      "detail": ""
+    },
+    {
+      "severity": "MEDIUM",
+      "phase": "crystal",
+      "check": "space_group_failures",
+      "status": "16 / 266,732 (0.01%)",
+      "detail": ""
+    },
+    {
+      "severity": "LOW",
+      "phase": "outliers",
+      "check": "largest_volume",
+      "status": "top: AlAg7Se5 (19407 \u00c5\u00b3)",
+      "detail": ""
+    },
+    {
+      "severity": "LOW",
+      "phase": "outliers",
+      "check": "smallest_volume",
+      "status": "top: CLi (13.5 \u00c5\u00b3)",
+      "detail": ""
+    },
+    {
+      "severity": "LOW",
+      "phase": "outliers",
+      "check": "highest_density",
+      "status": "top: AuAuAuAuAuAuGdGdGdGdGdGdMgMgMgMgMgMgMgMgMgMgMgMg (21.7 g/cm\u00b3)",
+      "detail": ""
+    },
+    {
+      "severity": "LOW",
+      "phase": "outliers",
+      "check": "most_atoms",
+      "status": "max nsites = 404",
+      "detail": ""
+    }
+  ],
+  "summary": {
+    "CRITICAL": 0,
+    "HIGH": 1,
+    "MEDIUM": 1,
+    "LOW": 4,
+    "PASS": 5
+  }
+}

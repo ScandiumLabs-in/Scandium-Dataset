@@ -1,0 +1,22 @@
+# OS files
+.DS_Store
+Thumbs.db
+
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.eggs/
+
+# IDE
+.vscode/
+.idea/
+
+# Large data (tracked via Git LFS or as release assets)
+dataset/entries_final_v3.json
+dataset/battery_subset_v3.json
+dataset/electrolyte_subset_v3.json
+
+# Temp
+*.tmp
+*.bak

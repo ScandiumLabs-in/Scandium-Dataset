@@ -1,0 +1,39 @@
+{
+  "version": "v0.0.0",
+  "sources": {
+    "mp": {
+      "enabled": true,
+      "batch_size": 500,
+      "base_url": "https://api.materialsproject.org",
+    },
+    "oqmd": {
+      "enabled": true,
+      "batch_size": 1000,
+      "base_url": "https://oqmd.org",
+    },
+    "jarvis": {
+      "enabled": true,
+      "batch_size": 100,
+      "base_url": "https://jarvis.nist.gov",
+    }
+  },
+  "processing": {
+    "dedup_method": "structure_matcher",
+    "scoring_weights": {
+      "geometry": 23,
+      "dft": 20,
+      "metadata": 15,
+      "novelty": 15,
+      "chemical": 15
+    },
+    "tier_thresholds": {
+      "gold_score": 60,
+      "strict_gold_score": 80
+    }
+  },
+  "benchmark": {
+    "splits": ["random_80_10_10", "composition_held_out", "chemistry_held_out", "family_held_out"],
+    "seed": 42,
+    "metrics": ["mae", "rmse", "r2"]
+  }
+}

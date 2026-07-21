@@ -1,0 +1,669 @@
+{
+  "phase": "Per-Family Reports",
+  "timestamp": "2026-07-21 21:39:25",
+  "total_entries": 266732,
+  "n_families": 10,
+  "families": {
+    "borohydride": {
+      "family": "borohydride",
+      "battery_relevance": "medium",
+      "note": "Borohydride solid electrolytes \u2014 early stage research",
+      "count": 646,
+      "pct_of_total": 0.24,
+      "tiers": {
+        "gold": 57.74,
+        "raw": 26.32,
+        "validated": 15.94
+      },
+      "sources": {
+        "mp": {
+          "count": 406,
+          "pct": 62.85
+        },
+        "oqmd": {
+          "count": 150,
+          "pct": 23.22
+        },
+        "jarvis": {
+          "count": 90,
+          "pct": 13.93
+        }
+      },
+      "properties": {
+        "formation_energy_per_atom": {
+          "mean": -1.1947,
+          "median": -0.7808,
+          "std": 1.1818
+        },
+        "energy_above_hull": {
+          "mean": 0.1459,
+          "median": 0.0179,
+          "std": 0.7011
+        },
+        "band_gap": {
+          "mean": 4.1276,
+          "median": 4.9465,
+          "std": 2.1127
+        }
+      },
+      "quality": {
+        "mean": 81.77,
+        "median": 88.0,
+        "n_ge70": 571,
+        "pct_ge70": 88.39,
+        "n_ge80": 445,
+        "pct_ge80": 68.89
+      },
+      "structure": {
+        "volume_median": 650.13,
+        "density_median": 1.81
+      },
+      "elements": {
+        "n_unique": 41,
+        "top_5": {
+          "B": 646,
+          "H": 646,
+          "O": 348,
+          "Na": 155,
+          "Ca": 152
+        }
+      },
+      "cross_source_formulas": 32,
+      "n_carrier_containing": 646
+    },
+    "garnet": {
+      "family": "garnet",
+      "battery_relevance": "critical",
+      "note": "Garnet solid electrolytes (LLZO) \u2014 core SSB family \u2014 only 23 entries",
+      "count": 23,
+      "pct_of_total": 0.01,
+      "tiers": {
+        "gold": 82.61,
+        "validated": 17.39
+      },
+      "sources": {
+        "mp": {
+          "count": 21,
+          "pct": 91.3
+        },
+        "jarvis": {
+          "count": 2,
+          "pct": 8.7
+        }
+      },
+      "properties": {
+        "formation_energy_per_atom": {
+          "mean": -3.1057,
+          "median": -3.0903,
+          "std": 0.1795
+        },
+        "energy_above_hull": {
+          "mean": 0.0853,
+          "median": 0.0578,
+          "std": 0.0742
+        },
+        "band_gap": {
+          "mean": 1.5008,
+          "median": 0.0115,
+          "std": 1.7357
+        }
+      },
+      "quality": {
+        "mean": 87.3,
+        "median": 88.0,
+        "n_ge70": 23,
+        "pct_ge70": 100.0,
+        "n_ge80": 23,
+        "pct_ge80": 100.0
+      },
+      "structure": {
+        "volume_median": 1067.88,
+        "density_median": 5.11
+      },
+      "elements": {
+        "n_unique": 8,
+        "top_5": {
+          "O": 23,
+          "Li": 23,
+          "La": 22,
+          "Nb": 16,
+          "Ti": 6
+        }
+      },
+      "cross_source_formulas": 2,
+      "n_carrier_containing": 23
+    },
+    "halide_sse": {
+      "family": "halide_sse",
+      "battery_relevance": "critical",
+      "note": "Halide solid electrolytes (Li3YCl6, Li3InCl6) \u2014 emerging SSB family",
+      "count": 18803,
+      "pct_of_total": 7.05,
+      "tiers": {
+        "gold": 48.44,
+        "raw": 28.1,
+        "validated": 23.46
+      },
+      "sources": {
+        "mp": {
+          "count": 9082,
+          "pct": 48.3
+        },
+        "oqmd": {
+          "count": 5834,
+          "pct": 31.03
+        },
+        "jarvis": {
+          "count": 3887,
+          "pct": 20.67
+        }
+      },
+      "properties": {
+        "formation_energy_per_atom": {
+          "mean": -2.0968,
+          "median": -2.1755,
+          "std": 0.9393
+        },
+        "energy_above_hull": {
+          "mean": 0.1505,
+          "median": 0.0626,
+          "std": 0.4255
+        },
+        "band_gap": {
+          "mean": 2.1399,
+          "median": 1.5641,
+          "std": 2.2003
+        }
+      },
+      "quality": {
+        "mean": 80.54,
+        "median": 80.0,
+        "n_ge70": 18116,
+        "pct_ge70": 96.35,
+        "n_ge80": 13015,
+        "pct_ge80": 69.22
+      },
+      "structure": {
+        "volume_median": 300.27,
+        "density_median": 3.42
+      },
+      "elements": {
+        "n_unique": 78,
+        "top_5": {
+          "F": 10941,
+          "O": 5979,
+          "Li": 5509,
+          "K": 5028,
+          "Cl": 4311
+        }
+      },
+      "cross_source_formulas": 2126,
+      "n_carrier_containing": 18803
+    },
+    "intermetallic": {
+      "family": "intermetallic",
+      "battery_relevance": "low",
+      "note": "Alloy-type anode materials may be relevant, but most are structural alloys",
+      "count": 166930,
+      "pct_of_total": 62.58,
+      "tiers": {
+        "validated": 70.19,
+        "raw": 18.21,
+        "gold": 11.6
+      },
+      "sources": {
+        "oqmd": {
+          "count": 141903,
+          "pct": 85.01
+        },
+        "mp": {
+          "count": 14148,
+          "pct": 8.48
+        },
+        "jarvis": {
+          "count": 10879,
+          "pct": 6.52
+        }
+      },
+      "properties": {
+        "formation_energy_per_atom": {
+          "mean": 0.1891,
+          "median": 0.1051,
+          "std": 0.6023
+        },
+        "energy_above_hull": {
+          "mean": 0.4908,
+          "median": 0.3654,
+          "std": 0.5074
+        },
+        "band_gap": {
+          "mean": 0.0458,
+          "median": 0.0,
+          "std": 0.3019
+        }
+      },
+      "quality": {
+        "mean": 75.52,
+        "median": 78.0,
+        "n_ge70": 137396,
+        "pct_ge70": 82.31,
+        "n_ge80": 14866,
+        "pct_ge80": 8.91
+      },
+      "structure": {
+        "volume_median": 75.85,
+        "density_median": 6.41
+      },
+      "elements": {
+        "n_unique": 76,
+        "top_5": {
+          "Mg": 42365,
+          "Zn": 39769,
+          "Li": 36738,
+          "Ca": 22361,
+          "Na": 21786
+        }
+      },
+      "cross_source_formulas": 4992,
+      "n_carrier_containing": 166930
+    },
+    "layered_oxide": {
+      "family": "layered_oxide",
+      "battery_relevance": "high",
+      "note": "Cathode materials (NMC, NCA, LCO, LMO) \u2014 core SSB family",
+      "count": 42015,
+      "pct_of_total": 15.75,
+      "tiers": {
+        "gold": 55.64,
+        "validated": 25.5,
+        "raw": 18.86
+      },
+      "sources": {
+        "mp": {
+          "count": 28727,
+          "pct": 68.37
+        },
+        "oqmd": {
+          "count": 7754,
+          "pct": 18.46
+        },
+        "jarvis": {
+          "count": 5534,
+          "pct": 13.17
+        }
+      },
+      "properties": {
+        "formation_energy_per_atom": {
+          "mean": -2.1685,
+          "median": -2.2546,
+          "std": 0.7007
+        },
+        "energy_above_hull": {
+          "mean": 0.1673,
+          "median": 0.0753,
+          "std": 0.3748
+        },
+        "band_gap": {
+          "mean": 1.1462,
+          "median": 0.5868,
+          "std": 1.3437
+        }
+      },
+      "quality": {
+        "mean": 83.02,
+        "median": 88.0,
+        "n_ge70": 39891,
+        "pct_ge70": 94.94,
+        "n_ge80": 33878,
+        "pct_ge80": 80.63
+      },
+      "structure": {
+        "volume_median": 320.67,
+        "density_median": 4.02
+      },
+      "elements": {
+        "n_unique": 73,
+        "top_5": {
+          "O": 42015,
+          "Li": 17454,
+          "P": 8190,
+          "Mn": 7894,
+          "Mg": 7118
+        }
+      },
+      "cross_source_formulas": 2518,
+      "n_carrier_containing": 42015
+    },
+    "nasicon": {
+      "family": "nasicon",
+      "battery_relevance": "critical",
+      "note": "NASICON-type solid electrolytes (LATP, LAGP) \u2014 core SSB family",
+      "count": 560,
+      "pct_of_total": 0.21,
+      "tiers": {
+        "gold": 87.14,
+        "validated": 12.5,
+        "raw": 0.36
+      },
+      "sources": {
+        "mp": {
+          "count": 558,
+          "pct": 99.64
+        },
+        "jarvis": {
+          "count": 2,
+          "pct": 0.36
+        }
+      },
+      "properties": {
+        "formation_energy_per_atom": {
+          "mean": -2.7464,
+          "median": -2.8321,
+          "std": 0.525
+        },
+        "energy_above_hull": {
+          "mean": 0.1254,
+          "median": 0.0498,
+          "std": 0.5
+        },
+        "band_gap": {
+          "mean": 2.651,
+          "median": 2.8,
+          "std": 1.3241
+        }
+      },
+      "quality": {
+        "mean": 86.39,
+        "median": 88.0,
+        "n_ge70": 560,
+        "pct_ge70": 100.0,
+        "n_ge80": 560,
+        "pct_ge80": 100.0
+      },
+      "structure": {
+        "volume_median": 1599.88,
+        "density_median": 3.15
+      },
+      "elements": {
+        "n_unique": 31,
+        "top_5": {
+          "O": 560,
+          "Na": 482,
+          "Si": 416,
+          "S": 278,
+          "P": 277
+        }
+      },
+      "cross_source_formulas": 2,
+      "n_carrier_containing": 560
+    },
+    "oxide": {
+      "family": "oxide",
+      "battery_relevance": "medium",
+      "note": "Generic oxide \u2014 may include battery-relevant oxides mixed with structural ceramics",
+      "count": 11928,
+      "pct_of_total": 4.47,
+      "tiers": {
+        "raw": 46.81,
+        "gold": 32.33,
+        "validated": 20.86
+      },
+      "sources": {
+        "oqmd": {
+          "count": 5929,
+          "pct": 49.71
+        },
+        "mp": {
+          "count": 4338,
+          "pct": 36.37
+        },
+        "jarvis": {
+          "count": 1661,
+          "pct": 13.93
+        }
+      },
+      "properties": {
+        "formation_energy_per_atom": {
+          "mean": -1.7009,
+          "median": -1.7225,
+          "std": 0.8381
+        },
+        "energy_above_hull": {
+          "mean": 0.2829,
+          "median": 0.1349,
+          "std": 0.4364
+        },
+        "band_gap": {
+          "mean": 1.4121,
+          "median": 0.439,
+          "std": 1.7139
+        }
+      },
+      "quality": {
+        "mean": 76.63,
+        "median": 80.0,
+        "n_ge70": 10185,
+        "pct_ge70": 85.39,
+        "n_ge80": 6085,
+        "pct_ge80": 51.01
+      },
+      "structure": {
+        "volume_median": 278.57,
+        "density_median": 4.11
+      },
+      "elements": {
+        "n_unique": 48,
+        "top_5": {
+          "O": 11928,
+          "Li": 2813,
+          "Na": 2688,
+          "Mg": 2467,
+          "Ca": 2264
+        }
+      },
+      "cross_source_formulas": 735,
+      "n_carrier_containing": 11928
+    },
+    "polyanion": {
+      "family": "polyanion",
+      "battery_relevance": "high",
+      "note": "Polyanion cathodes (LiFePO4, LiMnPO4, Na3V2(PO4)3)",
+      "count": 4519,
+      "pct_of_total": 1.69,
+      "tiers": {
+        "gold": 50.37,
+        "raw": 30.43,
+        "validated": 19.21
+      },
+      "sources": {
+        "mp": {
+          "count": 2669,
+          "pct": 59.06
+        },
+        "oqmd": {
+          "count": 1373,
+          "pct": 30.38
+        },
+        "jarvis": {
+          "count": 477,
+          "pct": 10.56
+        }
+      },
+      "properties": {
+        "formation_energy_per_atom": {
+          "mean": -2.2937,
+          "median": -2.4999,
+          "std": 0.8752
+        },
+        "energy_above_hull": {
+          "mean": 0.2525,
+          "median": 0.0628,
+          "std": 0.5775
+        },
+        "band_gap": {
+          "mean": 2.8224,
+          "median": 3.422,
+          "std": 2.1849
+        }
+      },
+      "quality": {
+        "mean": 80.77,
+        "median": 88.0,
+        "n_ge70": 4135,
+        "pct_ge70": 91.5,
+        "n_ge80": 3127,
+        "pct_ge80": 69.2
+      },
+      "structure": {
+        "volume_median": 590.59,
+        "density_median": 2.97
+      },
+      "elements": {
+        "n_unique": 49,
+        "top_5": {
+          "O": 4519,
+          "P": 2634,
+          "Si": 1999,
+          "Na": 1237,
+          "Li": 1004
+        }
+      },
+      "cross_source_formulas": 233,
+      "n_carrier_containing": 4519
+    },
+    "sulfide_sse": {
+      "family": "sulfide_sse",
+      "battery_relevance": "critical",
+      "note": "Solid electrolytes (LGPS, argyrodites, thio-LISICONs) \u2014 core SSB family",
+      "count": 16359,
+      "pct_of_total": 6.13,
+      "tiers": {
+        "gold": 42.22,
+        "raw": 38.91,
+        "validated": 18.86
+      },
+      "sources": {
+        "mp": {
+          "count": 7666,
+          "pct": 46.86
+        },
+        "oqmd": {
+          "count": 6442,
+          "pct": 39.38
+        },
+        "jarvis": {
+          "count": 2251,
+          "pct": 13.76
+        }
+      },
+      "properties": {
+        "formation_energy_per_atom": {
+          "mean": -1.3724,
+          "median": -1.2324,
+          "std": 0.8322
+        },
+        "energy_above_hull": {
+          "mean": 0.1641,
+          "median": 0.0852,
+          "std": 0.4636
+        },
+        "band_gap": {
+          "mean": 1.3752,
+          "median": 1.106,
+          "std": 1.4417
+        }
+      },
+      "quality": {
+        "mean": 78.81,
+        "median": 80.0,
+        "n_ge70": 15170,
+        "pct_ge70": 92.73,
+        "n_ge80": 9677,
+        "pct_ge80": 59.15
+      },
+      "structure": {
+        "volume_median": 663.36,
+        "density_median": 3.28
+      },
+      "elements": {
+        "n_unique": 74,
+        "top_5": {
+          "S": 11286,
+          "O": 6894,
+          "Se": 5337,
+          "Na": 4841,
+          "Mg": 3289
+        }
+      },
+      "cross_source_formulas": 983,
+      "n_carrier_containing": 16359
+    },
+    "unknown": {
+      "family": "unknown",
+      "battery_relevance": "unknown",
+      "note": "Classification failed or ambiguous composition",
+      "count": 4949,
+      "pct_of_total": 1.86,
+      "tiers": {
+        "raw": 37.64,
+        "validated": 33.8,
+        "gold": 28.55
+      },
+      "sources": {
+        "oqmd": {
+          "count": 2395,
+          "pct": 48.39
+        },
+        "mp": {
+          "count": 1664,
+          "pct": 33.62
+        },
+        "jarvis": {
+          "count": 890,
+          "pct": 17.98
+        }
+      },
+      "properties": {
+        "formation_energy_per_atom": {
+          "mean": 0.0778,
+          "median": 0.0436,
+          "std": 0.6778
+        },
+        "energy_above_hull": {
+          "mean": 0.4031,
+          "median": 0.231,
+          "std": 0.5492
+        },
+        "band_gap": {
+          "mean": 0.6314,
+          "median": 0.0,
+          "std": 1.2846
+        }
+      },
+      "quality": {
+        "mean": 76.15,
+        "median": 78.0,
+        "n_ge70": 3603,
+        "pct_ge70": 72.8,
+        "n_ge80": 1973,
+        "pct_ge80": 39.87
+      },
+      "structure": {
+        "volume_median": 211.28,
+        "density_median": 2.41
+      },
+      "elements": {
+        "n_unique": 58,
+        "top_5": {
+          "Mg": 1541,
+          "Si": 1435,
+          "N": 1197,
+          "Li": 813,
+          "C": 745
+        }
+      },
+      "cross_source_formulas": 292,
+      "n_carrier_containing": 4949
+    }
+  }
+}
