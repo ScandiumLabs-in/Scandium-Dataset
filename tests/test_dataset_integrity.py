@@ -1,4 +1,4 @@
-"""Test basic dataset integrity: format, required fields, property ranges."""
+"""Test basic dataset integrity: format, required fields, property ranges, splits."""
 import json
 from pathlib import Path
 
@@ -106,3 +106,26 @@ class TestDatasetIntegrity:
         for src in ["mp", "oqmd", "jarvis"]:
             cnt = sum(1 for e in self.entries if e.get("source") == src)
             assert cnt > 0, f"Source {src} has 0 entries"
+
+    def test_splits_distinct(self):
+        import json
+        base = Path(__file__).parent.parent / "dataset/splits"
+        splits = {}
+        for name in ["random_80_10_10", "composition_held_out", "family_held_out", "chemistry_held_out"]:
+            with open(base / f"{name}.json") as f:
+                splits[name] = json.load(f)
+        assert splits["random_80_10_10"]["train"] != splits["composition_held_out"]["train"], \
+            "composition_held_out is identical to random_80_10_10 — split bug"
+
+    def test_splits_no_overlap(self):
+        import json
+        base = Path(__file__).parent.parent / "dataset/splits"
+        for name in ["random_80_10_10", "composition_held_out", "family_held_out", "chemistry_held_out"]:
+            with open(base / f"{name}.json") as f:
+                sp = json.load(f)
+            train_s = set(sp["train"])
+            val_s = set(sp["val"])
+            test_s = set(sp["test"])
+            assert len(train_s & val_s) == 0, f"{name}: train/val overlap"
+            assert len(train_s & test_s) == 0, f"{name}: train/test overlap"
+            assert len(val_s & test_s) == 0, f"{name}: val/test overlap"

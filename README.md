@@ -106,7 +106,7 @@ Frozen train/val/test splits are at [`dataset/splits/`](dataset/splits/). Four s
 | Split | Train | Val | Test | Purpose |
 |-------|-------|-----|------|---------|
 | Random 80/10/10 | 200,122 | 26,670 | 39,940 | Basic generalization |
-| Composition held-out | 200,122 | 26,670 | 39,940 | No formula overlap |
+| Composition held-out | 213,383 | 27,011 | 26,338 | No formula overlap |
 | Family held-out | 260,984 | 5,165 | 583 | Cross-family |
 | Chemistry held-out | 227,384 | 26,673 | 12,675 | OOD (halides) |
 

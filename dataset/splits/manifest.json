@@ -34,8 +34,11 @@
       "seed": 42
     },
     "composition_held_out": {
-      "type": "random_80_10_10",
-      "seed": 42
+      "type": "composition_held_out",
+      "seed": 42,
+      "n_train_formulas": 110312,
+      "n_val_formulas": 13789,
+      "n_test_formulas": 13790
     }
   }
 }
