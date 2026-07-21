@@ -13,7 +13,7 @@ Four split types, all formula-grouped (no same formula across splits), seed=42:
 | Split | Train | Val | Test | Tests |
 |-------|-------|-----|------|-------|
 | `random_80_10_10` | 200,122 | 26,670 | 39,940 | Basic generalization |
-| `composition_held_out` | 200,122 | 26,670 | 39,940 | No formula overlap |
+| `composition_held_out` | 213,383 | 27,011 | 26,338 | No formula overlap |
 | `family_held_out` | 260,984 | 5,165 | 583 | Cross-family generalization |
 | `chemistry_held_out` | 227,384 | 26,673 | 12,675 | OOD (all halides as test) |
 
