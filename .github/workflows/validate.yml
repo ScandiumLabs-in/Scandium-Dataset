@@ -11,42 +11,46 @@ jobs:
         with:
           python-version: "3.11"
       - name: Install dependencies
-        run: pip install numpy scipy
+        run: pip install numpy scipy pytest
       - name: Download dataset from release
         run: |
           RELEASE_URL="https://github.com/ScandiumLabs-in/Scandium-Dataset/releases/download/v0.0.0"
           mkdir -p dataset
-          curl -L "$RELEASE_URL/entries_final_v3.json" -o dataset/entries_final_v3.json
-          curl -L "$RELEASE_URL/battery_subset_v3.json" -o dataset/battery_subset_v3.json
-          curl -L "$RELEASE_URL/electrolyte_subset_v3.json" -o dataset/electrolyte_subset_v3.json
+          for f in entries_final_v3 battery_subset_v3 electrolyte_subset_v3; do
+            echo "Downloading ${f}.json..."
+            curl -sL "$RELEASE_URL/${f}.json" -o "dataset/${f}.json"
+          done
+          echo "Downloads complete."
       - name: Verify manifest checksums
         run: |
-          python -c "
-import json, hashlib
-with open('dataset/manifests/MANIFEST_v3.json') as f:
-    manifest = json.load(f)
-for name, info in manifest.items():
-    if not isinstance(info, dict) or 'sha256' not in info:
-        continue
-    path = f'dataset/{name}'
-    actual = hashlib.sha256(open(path, 'rb').read()).hexdigest()
-    assert actual == info['sha256'], f'{name}: {actual} != {info[\"sha256\"]}'
-    print(f'✅ {name}: checksum OK')
-          "
+          cat > /tmp/check_manifest.py << 'PYEOF'
+          import json, hashlib
+          with open('dataset/manifests/MANIFEST_v3.json') as f:
+              manifest = json.load(f)
+          for name, info in manifest.items():
+              if not isinstance(info, dict) or 'sha256' not in info:
+                  continue
+              path = 'dataset/' + name
+              actual = hashlib.sha256(open(path, 'rb').read()).hexdigest()
+              match = 'OK' if actual == info['sha256'] else 'MISMATCH'
+              print(f'  {match}: {name} ({actual[:12]}...)')
+              assert actual == info['sha256'], name + ': checksum mismatch'
+          print('All checksums verified.')
+          PYEOF
+          python /tmp/check_manifest.py
       - name: Verify splits
         run: |
-          python -c "
-import json
-with open('dataset/entries_final_v3.json') as f:
-    entries = json.load(f)
-print(f'✅ Dataset loaded: {len(entries):,} entries')
-for split_name in ['random_80_10_10', 'composition_held_out', 'family_held_out', 'chemistry_held_out']:
-    with open(f'dataset/splits/{split_name}.json') as f:
-        split = json.load(f)
-    total = len(split['train']) + len(split['val']) + len(split['test'])
-    print(f'✅ {split_name}: {total:,} indices ({len(split[\"train\"]):,} train)')
-          "
+          cat > /tmp/check_splits.py << 'PYEOF'
+          import json
+          with open('dataset/entries_final_v3.json') as f:
+              entries = json.load(f)
+          print('Dataset:', len(entries), 'entries')
+          for sn in ['random_80_10_10','composition_held_out','family_held_out','chemistry_held_out']:
+              with open('dataset/splits/' + sn + '.json') as f:
+                  sp = json.load(f)
+              n = len(sp['train']) + len(sp['val']) + len(sp['test'])
+              print('  ' + sn + ': ' + str(n) + ' indices (' + str(len(sp['train'])) + ' train)')
+          PYEOF
+          python /tmp/check_splits.py
       - name: Run integrity tests
-        run: |
-          pip install pytest
-          python -m pytest tests/test_dataset_integrity.py -v
+        run: python -m pytest tests/test_dataset_integrity.py -v
