@@ -1,16 +1,16 @@
 # Core
 numpy>=1.24.0
 scipy>=1.10.0
-
-# Visualization (examples)
-matplotlib>=3.7.0
+pymatgen>=2024.0.0
+ase>=3.22.0
+spglib>=2.5.0
 
 # ML (for training baselines)
 torch>=2.0.0
 scikit-learn>=1.2.0
 
-# Structure processing
-spglib>=2.5.0
+# Visualization (examples)
+matplotlib>=3.7.0
 
-# Evaluation
-scikit-learn>=1.2.0
+# Tests
+pytest>=7.0.0

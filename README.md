@@ -29,10 +29,26 @@ Cross-source validated · Quality scored · Versioned · Reproducible**
 
 ## Quick Start
 
+The dataset files are distributed as [GitHub Release assets](https://github.com/ScandiumLabs-in/Scandium-Dataset/releases/tag/v0.0.0) (not stored directly in git due to size).
+
+### Option 1: Download from GitHub Release
+
+```bash
+# Download the full dataset (1.7 GB)
+wget https://github.com/ScandiumLabs-in/Scandium-Dataset/releases/download/v0.0.0/entries_final_v3.json -P dataset/
+
+# Or the smaller subsets
+wget https://github.com/ScandiumLabs-in/Scandium-Dataset/releases/download/v0.0.0/battery_subset_v3.json -P dataset/
+wget https://github.com/ScandiumLabs-in/Scandium-Dataset/releases/download/v0.0.0/electrolyte_subset_v3.json -P dataset/
+```
+
+### Option 2: Git LFS (coming in v0.1)
+
+### Load the data
+
 ```python
 import json
 
-# Load the dataset
 with open("dataset/entries_final_v3.json") as f:
     entries = json.load(f)
 
@@ -54,9 +70,9 @@ See [`examples/`](examples/) for more.
 
 | Edition | Entries | Description | Download |
 |---------|---------|-------------|----------|
-| **General** | 266,732 | All sources, all tiers | [`entries_final_v3.json`](dataset/entries_final_v3.json) |
-| **Battery** | 82,925 | Battery-relevant families | [`battery_subset_v3.json`](dataset/battery_subset_v3.json) |
-| **Electrolyte** | 41,665 | Strict Gold electrolytes only | [`electrolyte_subset_v3.json`](dataset/electrolyte_subset_v3.json) |
+| **General** | 266,732 | All sources, all tiers | [⬇ Download](https://github.com/ScandiumLabs-in/Scandium-Dataset/releases/download/v0.0.0/entries_final_v3.json) (1.7 GB) |
+| **Battery** | 82,925 | Battery-relevant families | [⬇ Download](https://github.com/ScandiumLabs-in/Scandium-Dataset/releases/download/v0.0.0/battery_subset_v3.json) (828 MB) |
+| **Electrolyte** | 41,665 | Strict Gold electrolytes only | [⬇ Download](https://github.com/ScandiumLabs-in/Scandium-Dataset/releases/download/v0.0.0/electrolyte_subset_v3.json) (492 MB) |
 
 ## Tier System
 

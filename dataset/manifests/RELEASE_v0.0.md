@@ -76,12 +76,9 @@
 ## Checksums
 | File | SHA256 |
 |------|--------|
-| battery_subset_v3.json                                  | 4ef02c8e0000dca1dbad54b0e197222f564ccb7a16613bbd214f50b7ba2b8411 |
+| entries_final_v3.json                                   | f6148e63f9e1ccbb29f19c26be01ba6c60257ef4dc32e9c56baa4d305aaeb4c4 |
 | battery_subset_v3.json                                  | 4ef02c8e0000dca1dbad54b0e197222f564ccb7a16613bbd214f50b7ba2b8411 |
 | electrolyte_subset_v3.json                              | 788bf8048aaa4b98966a712cd2a5b6b7a7c2b1c7e77b0b7376e67d8a8c69a8a3 |
-| electrolyte_subset_v3.json                              | 788bf8048aaa4b98966a712cd2a5b6b7a7c2b1c7e77b0b7376e67d8a8c69a8a3 |
-| entries_final_v3.json                                   | f6148e63f9e1ccbb29f19c26be01ba6c60257ef4dc32e9c56baa4d305aaeb4c4 |
-| entries_final_v3.json                                   | f6148e63f9e1ccbb29f19c26be01ba6c60257ef4dc32e9c56baa4d305aaeb4c4 |
 
 ## Strict Gold Definition
 Strict Gold = base Gold (8 gates: entry exists, valid structure, targets present,

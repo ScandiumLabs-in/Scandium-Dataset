@@ -12,11 +12,7 @@ __pycache__/
 .vscode/
 .idea/
 
-# Large data (tracked via Git LFS or as release assets)
-dataset/entries_final_v3.json
-dataset/battery_subset_v3.json
-dataset/electrolyte_subset_v3.json
-
+# Large data tracked via Git LFS (see .gitattributes)
 # Temp
 *.tmp
 *.bak
