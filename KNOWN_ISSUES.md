@@ -98,11 +98,11 @@
 
 ## Future-Priority Issues
 
-- **No Docker container** — environment setup requires pip install
-- **No pyproject.toml** — package structure uses requirements.txt
 - **Raw source downloads not included** — due to source redistribution policies, raw download scripts must be run by the user
 - **Garnet family undercount** — only 23 garnet entries (many more exist but classified as other families)
 - **Experimental data not yet integrated** — current sources are purely computational
+- **No DOI assigned yet** — Zenodo archival in progress for v0.1.0
+- **License complexity** — the dataset has 3 different licenses; the `license` field per entry was added in v0.1.0 to enable programmatic filtering
 
 ---
 

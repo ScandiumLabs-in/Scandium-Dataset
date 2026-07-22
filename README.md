@@ -2,8 +2,8 @@
 
 **Open Battery Materials Dataset for AI-Driven Solid-State Battery Discovery**
 
-[![License: CC BY 4.0](https://img.shields.io/badge/License-CC%20BY%204.0-lightgrey.svg)](LICENSE)
-[![Dataset v0.0.0](https://img.shields.io/badge/version-0.0.0-blue)]()
+[![License: Multiple](https://img.shields.io/badge/License-MULTIPLE-lightgrey.svg)](LICENSE_BREAKDOWN.md)
+[![Dataset v0.1.0-rc.1](https://img.shields.io/badge/version-0.1.0--rc.1-blue)]()
 [![DOI](https://img.shields.io/badge/DOI-pending-blue)]()
 [![Entries](https://img.shields.io/badge/entries-266%2C732-green)]()
 [![Sources](https://img.shields.io/badge/sources-3-orange)]()
@@ -101,7 +101,7 @@ See [`examples/`](examples/) for more.
 
 ## Benchmark
 
-Frozen train/val/test splits are at [`dataset/splits/`](dataset/splits/). Four split types:
+Frozen train/val/test splits at [`dataset/splits/`](dataset/splits/). Four split types:
 
 | Split | Train | Val | Test | Purpose |
 |-------|-------|-----|------|---------|
@@ -110,7 +110,16 @@ Frozen train/val/test splits are at [`dataset/splits/`](dataset/splits/). Four s
 | Family held-out | 260,984 | 5,165 | 583 | Cross-family |
 | Chemistry held-out | 227,384 | 26,673 | 12,675 | OOD (halides) |
 
-See [`benchmark/`](benchmark/) and [`docs/benchmark.md`](docs/benchmark.md).
+### Baseline Results (RF + Ridge on composition features)
+
+| Config | Split | FE MAE | EaH MAE | BG MAE |
+|--------|-------|--------|---------|--------|
+| Full dataset | random | 0.392 | 0.224 | 0.494 |
+| **Gold only** | **random** | **0.298** | **0.024** | **0.762** |
+| Full dataset | chemistry OOD | 1.657 | 0.355 | 1.966 |
+| **Gold only** | **chemistry OOD** | **1.384** | **0.027** | **2.129** |
+
+**Gold-tier training consistently beats full-dataset** on FE and EaH despite ~3× less data — validating the tiering system. See [`benchmark/`](benchmark/) and [`MODEL_LEADERBOARD.md`](MODEL_LEADERBOARD.md).
 
 ## Repository Structure
 
@@ -142,6 +151,11 @@ Scandium-Dataset/
 | [Provenance](docs/provenance.md) | Per-entry history tracking |
 | [Repair](docs/repair.md) | OQMD coordinate fix, symmetry pass |
 | [Benchmark](docs/benchmark.md) | Splits, metrics, protocol |
+| [Battery Methodology](docs/battery_methodology.md) | Subset construction rationale |
+| [Related Work](docs/related_work.md) | Comparison with prior datasets |
+| [Paper Outline](docs/paper_outline.md) | Target venue structure |
+| [Source Snapshots](SOURCE_SNAPSHOTS.md) | Pinned extraction dates |
+| [License Breakdown](LICENSE_BREAKDOWN.md) | Per-source license terms |
 | [Limitations](docs/limitations.md) | Known issues, gaps |
 | [FAQ](docs/faq.md) | Common questions |
 | [Citation](docs/citation.md) | How to cite |
@@ -150,9 +164,9 @@ Scandium-Dataset/
 
 ```bibtex
 @software{scandium_dataset_v3,
-  title        = {Scandium Dataset v0.0},
-  version      = {0.0.0},
-  date         = {2026-07-21},
+  title        = {Scandium Dataset v0.1.0-rc.1},
+  version      = {0.1.0-rc.1},
+  date         = {2026-07-22},
   publisher    = {Scandium Labs},
   doi          = {pending},
   url          = {https://github.com/Scandium-Labs/Scandium-Dataset}
@@ -161,12 +175,15 @@ Scandium-Dataset/
 
 ## License
 
-- **MP entries**: CC BY 4.0 (attribution required)
-- **JARVIS entries**: CC0 (public domain)
-- **OQMD entries**: Free for non-commercial use
-- **Scandium processing and quality scoring**: CC BY 4.0
+This dataset is a multi-source compilation. **There is no single license.** Different entries have different terms.
 
-See [`LICENSE`](LICENSE) for details.
+- **MP entries** (26.0%): CC BY 4.0 — commercial safe
+- **JARVIS entries** (9.6%): CC0 1.0 (Public Domain) — commercial safe
+- **OQMD entries** (64.4%): Non-commercial only — **NOT commercial safe**
+
+Each entry has a `license` field for programmatic filtering.
+
+👉 **See [`LICENSE_BREAKDOWN.md`](LICENSE_BREAKDOWN.md) for the full breakdown.**
 
 ---
 

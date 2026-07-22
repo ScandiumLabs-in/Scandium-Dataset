@@ -2,6 +2,32 @@
 
 All notable changes to the Scandium Dataset will be documented in this file.
 
+## [0.1.0-rc.1] — 2026-07-22
+
+### Added
+- Per-entry `license` field (CC-BY-4.0 / CC0-1.0 / OQMD-noncommercial) for programmatic filtering
+- `LICENSE_BREAKDOWN.md` documenting multi-source license terms and commercial-safe subset
+- Baseline benchmark results: RF+Ridge ensemble across 4 splits × 2 tier configurations (8 experiments)
+- `src/evaluation/metrics.py` module with standardized compute_metrics()
+- `MODEL_LEADERBOARD.md` with full results table and tiering validation analysis
+- Battery methodology doc (`docs/battery_methodology.md`) with family relevance justification
+- Related work analysis (`docs/related_work.md`) positioning against LeMat-Traj, Matbench, JARVIS
+- Paper outline (`docs/paper_outline.md`) for NeurIPS D&B / Scientific Data submission
+
+### Changed
+- Version: 0.0.0 → 0.1.0-rc.1
+- README.md license badge: "CC BY 4.0" → "MULTIPLE" (links to LICENSE_BREAKDOWN.md)
+- LICENSE file: shortened to redirect to LICENSE_BREAKDOWN.md for per-source terms
+- DATASET_CARD.md: added license warning section, `license` field documentation
+- CITATION.cff: version bumped, license explanation added
+- pyproject.toml: version bumped to 0.1.0-rc.1
+- KNOWN_ISSUES.md: removed resolved items (Docker, pyproject.toml), added license complexity note
+- benchmark/evaluate.py: fixed import paths, DATASET_PATH, SPLITS_DIR resolution
+
+### Fixed
+- Missing `src/evaluation/metrics.py` module (evaluate.py was importing from non-existent path)
+- License conflict: blanket "cc-by-4.0" tag on HF page while 64.4% of entries are OQMD non-commercial
+
 ## [0.0.0] — 2026-07-21
 
 ### Added

@@ -13,19 +13,18 @@ import json, os, sys, time, argparse
 from pathlib import Path
 from collections import Counter, defaultdict
 
-sys.path.insert(0, os.path.join(os.path.dirname(__file__), "..", ".."))
+sys.path.insert(0, os.path.join(os.path.dirname(__file__), ".."))
 
 import numpy as np
 
-sys.path.insert(0, os.path.join(os.path.dirname(__file__), "..", ".."))
 from src.evaluation.metrics import compute_metrics
 
-BENCHMARK_DIR = Path("dataset_v3/benchmark")
+BENCHMARK_DIR = Path(__file__).resolve().parent
 SPLITS_DIR = BENCHMARK_DIR / "splits"
 RESULTS_DIR = BENCHMARK_DIR / "results"
 RESULTS_DIR.mkdir(parents=True, exist_ok=True)
 
-DATASET_PATH = "dataset_v3/exports/entries_final_v3.json"
+DATASET_PATH = os.path.join(os.path.dirname(__file__), "..", "dataset", "entries_final_v3.json")
 TARGETS = ["formation_energy_per_atom", "energy_above_hull", "band_gap"]
 TARGET_LABELS = dict(zip(TARGETS, ["FE", "EaH", "BG"]))
 

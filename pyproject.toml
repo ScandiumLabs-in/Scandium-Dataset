@@ -4,11 +4,11 @@ build-backend = "setuptools.backends._legacy:_Backend"
 
 [project]
 name = "scandium-dataset"
-version = "0.0.0"
+version = "0.1.0-rc.1"
 description = "Curated computational materials dataset for solid-state battery discovery"
 readme = "README.md"
 requires-python = ">=3.10"
-license = {text = "Multiple (see LICENSE)"}
+license = {text = "Multiple (see LICENSE_BREAKDOWN.md)"}
 authors = [{name = "Scandium Labs"}]
 keywords = ["materials-science", "solid-state-battery", "computational-materials", "dataset"]
 

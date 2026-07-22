@@ -1,9 +1,9 @@
-# Dataset Card — Scandium-Dataset v0.0.0
+# Dataset Card — Scandium-Dataset v0.1.0-rc.1
 
 ## Dataset Description
 
 - **Name:** Scandium-Dataset
-- **Version:** v0.0.0
+- **Version:** v0.1.0-rc.1
 - **Description:** Curated computational materials dataset for solid-state battery discovery, aggregated from Materials Project, OQMD, and JARVIS-DFT.
 - **Total entries:** 266,732 (Gold: 96,242 | Validated: 140,382 | Raw: 30,108)
 - **Battery subset:** 82,925 entries | **Electrolyte subset:** 41,665 entries (strict Gold)
@@ -16,10 +16,20 @@
 | OQMD | 171,780 | Non-commercial + attribution | 2026-07-20 |
 | JARVIS-DFT | 25,673 | CC0 | 2026-07-20 |
 
+## License Warning
+
+⚠️ **This dataset is NOT uniformly licensed.** Each entry carries its own license.
+- `license: "CC-BY-4.0"` → MP entries (commercial safe)
+- `license: "CC0-1.0"` → JARVIS entries (commercial safe)
+- `license: "OQMD-noncommercial"` → OQMD entries (non-commercial only, 64.4%)
+
+Filter by the `license` field for programmatic usage. See [`LICENSE_BREAKDOWN.md`](LICENSE_BREAKDOWN.md).
+
 ## Fields
 
 | Field | Type | Description | Coverage |
 |-------|------|-------------|----------|
+| `license` | str | Per-entry license tag | 100% |
 | `source_id` | str | Original source ID | 100% |
 | `formula` | str | Raw formula string | 100% |
 | `structured_formula` | str | Reduced formula | 100% |
@@ -60,7 +70,7 @@
 
 ## Maintenance
 
-- Version: v0.0.0
-- Release candidate — see RELEASES.md for stability guarantees
+- Version: v0.1.0-rc.1
+- DOI: pending (Zenodo archival in progress)
 - Issue tracking: GitHub Issues
 - Contact: Scandium Labs

@@ -1,21 +1,14 @@
-Creative Commons Attribution 4.0 International License (CC BY 4.0)
+The Scandium Dataset is a multi-source compilation. Different
+licenses apply to different entries. See LICENSE_BREAKDOWN.md
+for the full breakdown.
 
-The Scandium Dataset is a multi-source compilation. License terms vary by source:
+Quick summary:
+- Materials Project entries: CC BY 4.0
+- JARVIS-DFT entries:      CC0 1.0 (Public Domain)
+- OQMD entries:            Non-commercial only
 
-Materials Project entries:
-  CC BY 4.0 — https://creativecommons.org/licenses/by/4.0/
-  Attribution required to: "Materials Project", Jain et al., APL Materials (2013)
+Scandium processing, quality scoring, validation, and documentation:
+CC BY 4.0
 
-JARVIS-DFT entries:
-  CC0 1.0 Universal — https://creativecommons.org/publicdomain/zero/1.0/
-  NIST Public Domain
-
-OQMD entries:
-  Free for non-commercial use. See https://oqmd.org/about
-  Attribution required to: "OQMD", Saal et al., JOM (2013); Kirklin et al., npj Comp. Mater. (2015)
-
-Scandium Dataset processing, quality scoring, validation, and documentation:
-  CC BY 4.0 — https://creativecommons.org/licenses/by/4.0/
-  Attribution required to: "Scandium Labs" and the relevant Scandium Dataset release citation.
-
-THE DATA IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED.
+THE DATA IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+EXPRESS OR IMPLIED.

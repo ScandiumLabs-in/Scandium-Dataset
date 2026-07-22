@@ -2,15 +2,19 @@ cff-version: 1.2.0
 message: >-
   If you use the Scandium Dataset in your research, please cite it using
   these metadata.
-title: Scandium Dataset v0.0
-version: 0.0.0
+title: Scandium Dataset v0.1.0-rc.1
+version: 0.1.0-rc.1
 doi: pending
-date-released: 2026-07-21
+date-released: 2026-07-22
 authors:
   - name: Scandium Labs
     website: https://github.com/Scandium-Labs
 repository-code: "https://github.com/Scandium-Labs/Scandium-Dataset"
 license: "CC-BY-4.0 AND CC0-1.0 AND OQMD-noncommercial"
+license-explanation: >
+  This is a multi-source compilation. Each entry has its own license.
+  See LICENSE_BREAKDOWN.md. MP entries: CC-BY-4.0, JARVIS: CC0-1.0,
+  OQMD: non-commercial.
 keywords:
   - battery-materials
   - solid-state-electrolytes

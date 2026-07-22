@@ -12,7 +12,14 @@ __pycache__/
 .vscode/
 .idea/
 
-# Large data tracked via Git LFS (see .gitattributes)
-# Temp
-*.tmp
+# Large data — distributed via GitHub Releases, not stored in git
+dataset/entries_final_v3.json
+dataset/battery_subset_v3.json
+dataset/electrolyte_subset_v3.json
 *.bak
+
+# Generated benchmark results
+benchmark/results/*.json
+
+# Internal docs
+docs/hf_dataset_card_fix.md
