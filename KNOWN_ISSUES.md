@@ -99,7 +99,8 @@
 ## Future-Priority Issues
 
 - **Raw source downloads not included** — due to source redistribution policies, raw download scripts must be run by the user
-- **Garnet family undercount** — only 23 garnet entries (many more exist but classified as other families)
+- **Garnet undercount** — 41 entries (improved from 23 via broader composition heuristic, but still far below the ~1,000+ needed for ML training on LLZO and variants)
+- **SSE family tags are composition-based** — `sse_family` is classified by elemental heuristic, not crystal structure. A compound with Li+S+P but no percolating channels will still be tagged as argyrodite/LGPS. Cross-check with CAVD dimensionality when available.
 - **Experimental data not yet integrated** — current sources are purely computational
 - **No DOI assigned yet** — Zenodo archival in progress for v0.1.0
 - **License complexity** — the dataset has 3 different licenses; the `license` field per entry was added in v0.1.0 to enable programmatic filtering

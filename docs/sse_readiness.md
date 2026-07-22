@@ -172,3 +172,17 @@ materials, just not sufficient).
    Conductivity of the Li₁₀±₁MP₂X₁₂ (M = Ge, Si, Sn, Al or P, and X = O, S
    or Se) Family of Superionic Conductors.* Energy Environ. Sci. (2013).
    — The standard methodology for computing electrochemical stability windows.
+
+---
+
+## Strategic Update (July 2026)
+
+See **[SSB Strategic Roadmap](../docs/ssb_strategic_roadmap.md)** for the comprehensive
+literature-backed plan to evolve this dataset from a general aggregation into a
+purpose-built SSB discovery resource. Key additions since v0.1.0-rc.2:
+
+- **SSE family classification** now present on all 266,732 entries (composition-based
+  tagging as garnet/NASICON/argyrodite/LGPS-type/LISICON/anti-perovskite/perovskite/
+  halide/borohydride/sulfide/oxide)
+- **Mobile ion field** (Li/Na/Mg carrier) standardized across all entries
+- Phase 1 plan (CAVD → BVSE → MLIP-NEB → DFT-NEB pipeline) documented and prioritized

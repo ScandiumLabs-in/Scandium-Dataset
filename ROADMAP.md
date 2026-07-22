@@ -1,12 +1,14 @@
 # Scandium-Dataset Roadmap
 
-> **Vision:** The world's most trusted open dataset and benchmarking platform for AI-driven solid-state battery discovery.
+> **Vision:** The field's reference open dataset for AI-driven solid-state battery materials discovery — combining scale (266k+ entries) with purpose-built SSE screening properties that no existing open dataset provides.
+
+> **Strategic plan:** See [docs/ssb_strategic_roadmap.md](docs/ssb_strategic_roadmap.md) for the full literature-backed strategy document with ~20 references.
 
 ---
 
-## v0.0.0 — Foundation Release (Current)
+## v0.1.0 — Foundation Release (Done)
 
-**Focus:** Clean, validated, audited foundation dataset
+**Focus:** Clean, validated, audited general inorganic materials aggregation
 
 - [x] Aggregate MP, OQMD, JARVIS-DFT (266,732 entries)
 - [x] Coordinate repair (171,780 OQMD entries)
@@ -16,61 +18,75 @@
 - [x] Multi-source deduplication
 - [x] Quality scoring with 5 sub-scores
 - [x] Three-tier system (Gold / Validated / Raw)
-- [x] Battery and electrolyte subsets
+- [x] Battery (82,925) and electrolyte (41,665) subsets
 - [x] Benchmark splits (4 types)
 - [x] Complete 8-phase audit
 - [x] Reproducibility scripts
 - [x] Full documentation (12 audit reports, trust report, dataset card, known issues)
 - [x] Docker support
 - [x] Test infrastructure
+- [x] Licensing resolved (per-entry `license` field, `LICENSE_BREAKDOWN.md`)
+- [x] SSE proxy features (carrier_fraction, volume_per_carrier, fe_per_carrier, electronic_insulation)
+- [x] SSE family classification on all entries (garnet/NASICON/argyrodite/LGPS-type/etc.)
+- [x] Electrochemical window computation script
+- [x] Baseline benchmarks (RF+Ridge, 8 experiments)
+- [x] Related work analysis, paper outline, SSE readiness assessment
+- [x] v0.1.0-rc.2 release to GitHub + HuggingFace
 
 ---
 
-## v3.1.0 — Scientific Enhancement (Next)
+## Phase 1 — Cheap, High-Leverage, No New DFT (Next)
 
-**Focus:** Expand battery coverage, add computed properties
+**Focus:** Add structural descriptors, stability windows, SSE screening schema → milestone v0.2.0
 
-- [ ] Compute energy_above_hull for JARVIS entries via internal convex hull
-- [ ] Add oxidation state prediction for all entries
-- [ ] Expand garnet family classification (currently undercounted)
-- [ ] Add ionic conductivity proxy features
-- [ ] Cross-reference with experimental ICSD entries
-- [ ] Add formation energy corrections for OQMD entries
-- [ ] Family-balanced subsampling for model training
+- [ ] Run CAVD channel-dimensionality analysis on mobile-ion-containing subset (~190k entries)
+- [ ] Build electrochemical stability windows from existing MP phase diagram data
+- [ ] Compute free-volume, packing fraction, coordination descriptors
+- [x] Create `ssb_screening` schema block across all entries (populated with available fields; nulls for CAVD/BVSE/NEB/elastic/window data)
+- [ ] Expand garnet family enrichment (currently only 41 entries)
+- [ ] Publish `sse_candidate_score` based on gates 1–2 (thermo + electronic)
+- [ ] Energy_above_hull for JARVIS entries via internal convex hull
+- [ ] Oxidation state prediction for all entries
+- [ ] Formation energy corrections for OQMD entries
 
 ---
 
-## v3.2.0 — Benchmark Platform
+## Phase 2 — MLIP-Driven Scale-Up
 
-**Focus:** Standardized model evaluation
+**Focus:** BVSE + MLIP-NEB migration barriers + elastic tensors → milestone v0.3.0
 
+- [ ] Set up CHGNet/MACE-MP-0 infrastructure in repo
+- [ ] Run BVSE across mobile-ion-containing subset (~50–100k entries)
+- [ ] Run MLIP-NEB migration barriers on CAVD+BVSE-filtered subset
+- [ ] Run MLIP-based elastic tensor estimation
+- [ ] Publish first full `sse_candidate_score` (all 5 gates)
+- [ ] Extend frozen splits to conductivity/stability tasks
 - [ ] Leaderboard with baseline model results
-- [ ] Pre-computed train/val/test splits for battery tasks
-- [ ] Task-specific subsets (formation energy, band gap, classification)
-- [ ] Evaluation protocol with statistical significance testing
-- [ ] Model cards for published baselines
-- [ ] Community submission workflow
 
 ---
 
-## v4.0.0 — Expanded Coverage
+## Phase 3 — Gold-Standard Validation Layer
 
-**Focus:** Add new sources and material types
+**Focus:** DFT verification + experimental ground truth → milestone v0.4.0
 
-- [ ] Integrate NOMAD dataset
-- [ ] Integrate AFLOW data
-- [ ] Add computational phonon properties
-- [ ] Add elastic tensor data
-- [ ] Add experimental conductivity database
-- [ ] Time-series tracking of source updates
+- [ ] Stratified DFT-NEB/AIMD verification sample (50–100 entries)
+- [ ] Full DFT elastic tensor calculations for Strict-Gold validation subset
+- [ ] Ingest OBELiX as experimental gold subset (with attribution)
+- [ ] Publish per-family, per-method accuracy tables
+- [ ] Cross-reference with experimental ICSD entries
+- [ ] Compute phonon properties for stability validation
 
 ---
 
-## Long-term
+## Phase 4 — Community & Publishing
 
-- [ ] Automated monthly source updates
-- [ ] Active learning for targeted property prediction
+**Focus:** DOIs, challenge, community adoption → milestone v1.0.0
+
+- [ ] Dataset DOI with versioned releases (Zenodo)
+- [ ] Publish composite `sse_candidate_score` formula openly
+- [ ] Community submission workflow for new entries/properties
 - [ ] Web API for dataset querying
+- [ ] Automated monthly source update pipeline
 - [ ] Integration with materials discovery workflows
 - [ ] Community governance model
-- [ ] Dataset DOI with versioned releases
+- [ ] Target journal submission (Scientific Data or NeurIPS D&B)

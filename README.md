@@ -3,7 +3,7 @@
 **Multi-Source DFT Dataset for Thermodynamic Screening and Benchmarking of Battery-Relevant Inorganic Materials**
 
 [![License: Multiple](https://img.shields.io/badge/License-MULTIPLE-lightgrey.svg)](LICENSE_BREAKDOWN.md)
-[![Dataset v0.1.0-rc.1](https://img.shields.io/badge/version-0.1.0--rc.1-blue)]()
+[![Dataset v0.1.0-rc.2](https://img.shields.io/badge/version-0.1.0--rc.2-blue)]()
 [![DOI](https://img.shields.io/badge/DOI-pending-blue)]()
 [![Entries](https://img.shields.io/badge/entries-266%2C732-green)]()
 [![Sources](https://img.shields.io/badge/sources-3-orange)]()
@@ -14,7 +14,7 @@
 31,997 duplicates removed · 137,405 repaired structures  
 Cross-source validated · Quality scored · Versioned · Reproducible  
 
-⚠️ **SSE disclaimer:** This dataset contains formation energy, band gap, and hull distance — NOT ionic conductivity, migration barriers, or electrochemical stability windows. See [`docs/sse_readiness.md`](docs/sse_readiness.md) for what it can and cannot do for solid-state electrolyte discovery.**
+⚠️ **SSE disclaimer:** This dataset contains formation energy, band gap, hull distance, SSE family classification, and mobile ion fields — NOT ionic conductivity, migration barriers, or electrochemical stability windows. See [`docs/sse_readiness.md`](docs/sse_readiness.md) and [`docs/ssb_strategic_roadmap.md`](docs/ssb_strategic_roadmap.md) for what it can and cannot do for solid-state electrolyte discovery.**
 
 ---
 
@@ -64,6 +64,14 @@ print(f"Gold entries: {len(gold):,}")
 # Filter by family
 battery = [e for e in entries if "layered_oxide" in e.get("families", [])]
 print(f"Layered oxides: {len(battery):,}")
+
+# Filter by SSE family
+sses = [e for e in entries if e.get("sse_family") not in ("none", "oxide")]
+print(f"Likely SSE materials: {len(sses):,}")
+
+# Filter by mobile ion
+li_ion = [e for e in entries if e.get("mobile_ion") == "Li"]
+print(f"Li-containing entries: {len(li_ion):,}")
 ```
 
 See [`examples/`](examples/) for more.
@@ -92,6 +100,8 @@ See [`examples/`](examples/) for more.
 | Formation Energy (FE) | eV/atom | 100% | −0.58 | −0.20 |
 | Energy Above Hull (EaH) | eV/atom | 90.4% | 0.39 | 0.24 |
 | Band Gap (BG) | eV | 99.9% | 0.58 | 0.00 |
+| SSE Family | — | 100% | — | — |
+| Mobile Ion | — | 100% | — | — |
 
 ## Sources
 
@@ -154,6 +164,7 @@ Scandium-Dataset/
 | [Repair](docs/repair.md) | OQMD coordinate fix, symmetry pass |
 | [Benchmark](docs/benchmark.md) | Splits, metrics, protocol |
 | [SSE Readiness](docs/sse_readiness.md) | What this dataset can/cannot do for SSE discovery |
+| [SSB Strategic Roadmap](docs/ssb_strategic_roadmap.md) | Literature-backed plan to build SSB-specific properties |
 | [Battery Methodology](docs/battery_methodology.md) | Subset construction rationale |
 | [Related Work](docs/related_work.md) | Comparison with prior datasets |
 | [Paper Outline](docs/paper_outline.md) | Target venue structure |
@@ -167,8 +178,8 @@ Scandium-Dataset/
 
 ```bibtex
 @software{scandium_dataset_v3,
-  title        = {Scandium Dataset v0.1.0-rc.1},
-  version      = {0.1.0-rc.1},
+  title        = {Scandium Dataset v0.1.0-rc.2},
+  version      = {0.1.0-rc.2},
   date         = {2026-07-22},
   publisher    = {Scandium Labs},
   doi          = {pending},

@@ -2,6 +2,25 @@
 
 All notable changes to the Scandium Dataset will be documented in this file.
 
+## [0.1.0-rc.2] — 2026-07-22
+
+### Added
+- SSE structural family classification (`sse_family`) on all 266,732 entries: 12 classes (garnet, NASICON, argyrodite, LGPS_type, LISICON, anti_perovskite, perovskite, halide, borohydride, sulfide, oxide, none)
+- `mobile_ion` field standardized across all entries (Li/Na/Mg presence-based, fixing prior logic that picked up Al/Ca/K as carriers)
+- `ssb_screening` schema block on all 266,732 entries with currently-computable fields: sse_candidate_score, gates_passed, electronic_insulation_flag, thermo_stable_flag; null placeholders for CAVD/BVSE/NEB/elastic/electrochemical window data
+- `sse_candidate_score`: composite score (10 base for known SSE family + 1 per gate passed), ranges 10–12 in current release
+- `docs/ssb_strategic_roadmap.md`: comprehensive literature-backed strategic plan (~20 references) covering CAVD → BVSE → MLIP-NEB → DFT-NEB pipeline, schema additions, tier expansion, and phased implementation schedule
+- `docs/sse_readiness.md`: strategic update section referencing roadmap
+
+### Fixed
+- `mobile_ion` was picking up arbitrary high-fraction elements (Al, Ca, K, Zn) instead of Li/Na/Mg — 115,876 entries corrected to proper Li/Na/Mg/None logic
+
+### Changed
+- Version: 0.1.0-rc.1 → 0.1.0-rc.2
+- ROADMAP.md: restructured around 4-phase SSB-specific plan superseding generic enhancements
+- README.md: updated SSE disclaimer, Properties table (SSE Family, Mobile Ion), Quick Start examples for new fields, version badges, documentation list
+- KNOWN_ISSUES.md: garnet count updated 23→41, composition-heuristic caveat added
+
 ## [0.1.0-rc.1] — 2026-07-22
 
 ### Added
