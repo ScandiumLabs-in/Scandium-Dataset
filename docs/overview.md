@@ -6,7 +6,13 @@ The Scandium Dataset is a **curated, validated, versioned compilation** of
 DFT-calculated material properties from three major open databases —
 Materials Project (MP), Open Quantum Materials Database (OQMD), and JARVIS-DFT —
 unified under a single schema, deduplicated, repaired, quality-scored, and
-organized specifically for **AI-driven solid-state battery discovery**.
+organized for **thermodynamic screening and benchmarking of battery-relevant
+inorganic materials**.
+
+⚠️ **Important:** The dataset contains formation energy, band gap, and energy
+above hull — not ionic conductivity, migration barriers, or electrochemical
+stability windows. See [`sse_readiness.md`](sse_readiness.md) for a detailed
+assessment of what it can and cannot do for solid-state electrolyte discovery.
 
 ## Why does it exist?
 

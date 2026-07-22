@@ -1,6 +1,6 @@
 # Scandium Dataset
 
-**Open Battery Materials Dataset for AI-Driven Solid-State Battery Discovery**
+**Multi-Source DFT Dataset for Thermodynamic Screening and Benchmarking of Battery-Relevant Inorganic Materials**
 
 [![License: Multiple](https://img.shields.io/badge/License-MULTIPLE-lightgrey.svg)](LICENSE_BREAKDOWN.md)
 [![Dataset v0.1.0-rc.1](https://img.shields.io/badge/version-0.1.0--rc.1-blue)]()
@@ -10,9 +10,11 @@
 
 ---
 
-**266,732 validated materials · 3 integrated databases · 10 material families  
+**266,732 validated materials · 3 integrated databases (MP, OQMD, JARVIS-DFT) · 10 material families  
 31,997 duplicates removed · 137,405 repaired structures  
-Cross-source validated · Quality scored · Versioned · Reproducible**
+Cross-source validated · Quality scored · Versioned · Reproducible  
+
+⚠️ **SSE disclaimer:** This dataset contains formation energy, band gap, and hull distance — NOT ionic conductivity, migration barriers, or electrochemical stability windows. See [`docs/sse_readiness.md`](docs/sse_readiness.md) for what it can and cannot do for solid-state electrolyte discovery.**
 
 ---
 
@@ -151,6 +153,7 @@ Scandium-Dataset/
 | [Provenance](docs/provenance.md) | Per-entry history tracking |
 | [Repair](docs/repair.md) | OQMD coordinate fix, symmetry pass |
 | [Benchmark](docs/benchmark.md) | Splits, metrics, protocol |
+| [SSE Readiness](docs/sse_readiness.md) | What this dataset can/cannot do for SSE discovery |
 | [Battery Methodology](docs/battery_methodology.md) | Subset construction rationale |
 | [Related Work](docs/related_work.md) | Comparison with prior datasets |
 | [Paper Outline](docs/paper_outline.md) | Target venue structure |

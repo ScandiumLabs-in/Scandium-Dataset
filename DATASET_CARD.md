@@ -4,9 +4,10 @@
 
 - **Name:** Scandium-Dataset
 - **Version:** v0.1.0-rc.1
-- **Description:** Curated computational materials dataset for solid-state battery discovery, aggregated from Materials Project, OQMD, and JARVIS-DFT.
+- **Description:** Curated multi-source DFT dataset for thermodynamic screening and benchmarking of battery-relevant inorganic materials, aggregated from Materials Project, OQMD, and JARVIS-DFT.
 - **Total entries:** 266,732 (Gold: 96,242 | Validated: 140,382 | Raw: 30,108)
 - **Battery subset:** 82,925 entries | **Electrolyte subset:** 41,665 entries (strict Gold)
+- **⚠️ Important limitation:** Contains formation energy, band gap, and hull distance only. Does NOT contain ionic conductivity, migration barriers, electrochemical stability windows, or elastic moduli — the properties most relevant to solid-state electrolyte screening. See [`docs/sse_readiness.md`](docs/sse_readiness.md) for details.
 
 ## Sources
 

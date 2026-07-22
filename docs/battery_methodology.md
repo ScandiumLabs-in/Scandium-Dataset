@@ -1,8 +1,10 @@
 # Battery and Electrolyte Subset Methodology
 
-This document explains the methodology behind the Battery and Electrolyte subsets,
-justifying their naming and providing a clear rationale for each material family
-inclusion.
+This document explains the methodology behind the Battery and Electrolyte subsets.
+These subsets are **chemically filtered from general DFT data** — they are NOT
+purpose-built SSE discovery resources. For a complete assessment of what this
+dataset can and cannot do for SSE research, see
+[SSE Readiness Assessment](sse_readiness.md).
 
 ---
 
