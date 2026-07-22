@@ -7,13 +7,15 @@ All notable changes to the Scandium Dataset will be documented in this file.
 ### Added
 - SSE structural family classification (`sse_family`) on all 266,732 entries: 12 classes (garnet, NASICON, argyrodite, LGPS_type, LISICON, anti_perovskite, perovskite, halide, borohydride, sulfide, oxide, none)
 - `mobile_ion` field standardized across all entries (Li/Na/Mg presence-based, fixing prior logic that picked up Al/Ca/K as carriers)
-- `ssb_screening` schema block on all 266,732 entries with currently-computable fields: sse_candidate_score, gates_passed, electronic_insulation_flag, thermo_stable_flag; null placeholders for CAVD/BVSE/NEB/elastic/electrochemical window data
+- `ssb_screening` schema block on all 266,732 entries including computed electrochemical stability windows: `stability_window_low_V`, `stability_window_high_V`, `window_width_V`, `interfacial_reaction_energy_vs_Li_eV_atom`, `passivating_interphase` (39,706 entries with windows computed via grand potential scan, 1,814 with ≥0.5V width)
 - `sse_candidate_score`: composite score (10 base for known SSE family + 1 per gate passed), ranges 10–12 in current release
 - `docs/ssb_strategic_roadmap.md`: comprehensive literature-backed strategic plan (~20 references) covering CAVD → BVSE → MLIP-NEB → DFT-NEB pipeline, schema additions, tier expansion, and phased implementation schedule
 - `docs/sse_readiness.md`: strategic update section referencing roadmap
+- `scripts/compute_electrochemical_windows.py`: self-contained convex-hull-based stability window computation from dataset's own formation energies (no MP API dependency), with safety guards (`--dry-run`, `--output`)
 
 ### Fixed
 - `mobile_ion` was picking up arbitrary high-fraction elements (Al, Ca, K, Zn) instead of Li/Na/Mg — 115,876 entries corrected to proper Li/Na/Mg/None logic
+- PhaseDiagram construction: added `make_terminal_entries()` with standard PBE reference energies for gas corrections (O₂, N₂, F₂, Cl₂, H₂), enabling hull building for all 31,025 chemical systems (was silently failing with "Missing terminal entries")
 
 ### Changed
 - Version: 0.1.0-rc.1 → 0.1.0-rc.2
