@@ -91,10 +91,19 @@ def main():
 
     print("\nBuilding formula index from Parquet store...")
     t1 = time.time()
-    table = pq.read_table(PARQUET_PATH, columns=[
-        "source_id", "formula", "structured_formula",
-        "ssb_screening", "provenance", "is_experimental"
-    ])
+    table = pq.read_table(PARQUET_PATH)
+
+    # Cast null-type columns to string so concat_tables works later
+    from pyarrow import types
+    null_cols = [f.name for f in table.schema if types.is_null(f.type)]
+    if null_cols:
+        new_fields = []
+        for f in table.schema:
+            if f.name in null_cols:
+                new_fields.append(pa.field(f.name, pa.string()))
+            else:
+                new_fields.append(f)
+        table = table.cast(pa.schema(new_fields))
     print(f"  {table.num_rows:,} rows loaded ({time.time()-t1:.1f}s)")
 
     # Build formula -> row index map
@@ -224,27 +233,31 @@ def main():
 
     # Import the standardized extraction from dataset_store
     ALL_FIELDS = SCALAR_COLUMNS + JSON_STRING_FIELDS
+    ALL_FIELDS_SET = set(ALL_FIELDS)
 
     new_entry_dicts = []
     for i, row in enumerate(unmatched_df_rows):
         entry = format_obelix_entry(row, i)
         encoded = {}
         for f in ALL_FIELDS:
-            encoded[f] = _encode_value(entry.get(f))
+            val = _encode_value(entry.get(f))
+            encoded[f] = val if val is not None else ""
         new_entry_dicts.append(encoded)
 
     new_batch = pa.Table.from_pylist(new_entry_dicts)
 
-    # Drop fields that would conflict with existing schema
-    for f in ["license"]:
-        if f in new_batch.schema.names:
-            col_idx = new_batch.schema.get_field_index(f)
-            new_batch = new_batch.remove_column(col_idx)
+    # Add any columns from existing table schema that are missing in new_batch
+    missing_from_new = [f for f in table.schema.names if f not in new_batch.schema.names]
+    for f in missing_from_new:
+        # Need string type to match existing schema — insert empty strings
+        arr = pa.array([""] * new_batch.num_rows, type=pa.string())
+        new_batch = new_batch.append_column(pa.field(f, pa.string()), arr)
 
-    # Ensure new_batch has all columns that table has, in the same order
-    missing_cols = [f for f in table.schema.names if f not in new_batch.schema.names]
-    for f in missing_cols:
-        new_batch = new_batch.append_column(pa.field(f, pa.null()), pa.nulls(new_batch.num_rows))
+    # Remove columns from new_batch not in existing schema
+    cols_to_drop = [f for f in new_batch.schema.names if f not in table.schema.names]
+    for f in cols_to_drop:
+        col_idx = new_batch.schema.get_field_index(f)
+        new_batch = new_batch.remove_column(col_idx)
 
     # Reorder columns to match
     new_batch = new_batch.select(table.schema.names)
@@ -268,8 +281,16 @@ def main():
     print(f"  Parquet + index written ({time.time()-t4:.1f}s)")
 
     # Summary
-    exp_count = sum(1 for s in ssb_col if isinstance(s, str) and '"experimental_confirmed"' in s)
-    with_cond = sum(1 for s in ssb_col if isinstance(s, str) and 'estimated_ionic_conductivity' in s)
+    with_cond = sum(
+        1 for i in range(table.num_rows)
+        if table.column("ssb_screening")[i].as_py()
+        and "estimated_ionic_conductivity" in str(table.column("ssb_screening")[i].as_py())
+    )
+    exp_new = sum(
+        1 for i in range(table.num_rows)
+        if table.column("tier")[i].as_py()
+        and "experimental" in str(table.column("tier")[i].as_py())
+    )
 
     print(f"\n{'─' * WIDTH}")
     print("  MERGE COMPLETE")
