@@ -48,7 +48,7 @@ def parse_structure_json(struct_str):
     return Structure.from_dict(_json.loads(struct_str))
 
 
-def compute_bvse_barrier(structure, mobile_element="Li", resolution=0.3):
+def compute_bvse_barrier(structure, mobile_element="Li", resolution=0.3, n_jobs=1):
     """Compute BVSE migration barrier using bvlain.
 
     Returns:
@@ -82,7 +82,7 @@ def compute_bvse_barrier(structure, mobile_element="Li", resolution=0.3):
         return _null_result(f"bvse_distribution: {err[:60]}")
 
     try:
-        barriers = lain.percolation_barriers(encut=10.0)
+        barriers = lain.percolation_barriers(encut=10.0, n_jobs=n_jobs)
     except Exception as exc:
         err = str(exc)
         if "min() iterable argument is empty" in err:
@@ -134,6 +134,12 @@ def main():
                         help="Entries per batch before checkpoint (default: 500)")
     parser.add_argument("--dry-run", action="store_true")
     parser.add_argument("--output", type=str, default=None)
+    parser.add_argument("--resolution", type=float, default=0.5,
+                        help="BVSE grid resolution in Å (default: 0.5, range 0.3-0.6)")
+    parser.add_argument("--jobs", type=int, default=1,
+                        help="Number of parallel workers for percolation search (default: 1)")
+    parser.add_argument("--max-sites", type=int, default=100,
+                        help="Skip structures with more than this many sites (default: 100)")
     args = parser.parse_args()
 
     if args.limit and not args.dry_run and args.output is None:
@@ -154,11 +160,16 @@ def main():
     store = DatasetStore.open()
     print(f"  {store.num_entries:,} entries ({time.time()-t0:.1f}s)")
 
-    # Filter to Li/Na entries with structures
+    # Filter to Li/Na entries with structures (and not too large)
     entries = list(store.scan(
-        filter_fn=lambda e: e.get("mobile_ion") in ("Li", "Na") and e.get("structure_json") is not None
+        filter_fn=lambda e: (
+            e.get("mobile_ion") in ("Li", "Na")
+            and e.get("structure_json") is not None
+            and isinstance(e.get("nsites"), (int, float))
+            and e.get("nsites", 0) <= args.max_sites
+        )
     ))
-    print(f"  Li/Na entries with structures: {len(entries):,}")
+    print(f"  Li/Na entries with structures (≤{args.max_sites} sites): {len(entries):,}")
 
     if args.limit:
         entries = entries[:args.limit]
@@ -187,7 +198,8 @@ def main():
 
         try:
             structure = parse_structure_json(e["structure_json"])
-            result = compute_bvse_barrier(structure, mobile_element=mobile_ion)
+            result = compute_bvse_barrier(structure, mobile_element=mobile_ion,
+                                          resolution=args.resolution, n_jobs=args.jobs)
 
             updates = {
                 "bvse_migration_barrier_eV": result["migration_barrier_eV"],
