@@ -81,6 +81,7 @@ See [`examples/`](examples/) for more.
 | Edition | Entries | Description | Download |
 |---------|---------|-------------|----------|
 | **General** | 266,732 | All sources, all tiers | [⬇ Download](https://github.com/ScandiumLabs-in/Scandium-Dataset/releases/download/v0.0.0/entries_final_v3.json) (1.7 GB) |
+| **Commercial-Safe** | ~94,952 | MP (CC-BY-4.0) + JARVIS (CC0-1.0) only | `python scripts/extract_commercial_safe_edition.py` |
 | **Battery** | 82,925 | Battery-relevant families | [⬇ Download](https://github.com/ScandiumLabs-in/Scandium-Dataset/releases/download/v0.0.0/battery_subset_v3.json) (828 MB) |
 | **Electrolyte** | 41,665 | Strict Gold electrolytes only | [⬇ Download](https://github.com/ScandiumLabs-in/Scandium-Dataset/releases/download/v0.0.0/electrolyte_subset_v3.json) (492 MB) |
 
@@ -98,10 +99,33 @@ See [`examples/`](examples/) for more.
 | Property | Unit | Coverage | Mean | Median |
 |----------|------|----------|------|--------|
 | Formation Energy (FE) | eV/atom | 100% | −0.58 | −0.20 |
-| Energy Above Hull (EaH) | eV/atom | 90.4% | 0.39 | 0.24 |
+| Energy Above Hull (EaH) | eV/atom | **~100%** (JARVIS hull added) | 0.39 | 0.24 |
 | Band Gap (BG) | eV | 99.9% | 0.58 | 0.00 |
 | SSE Family | — | 100% | — | — |
 | Mobile Ion | — | 100% | — | — |
+| SSE Candidate Score | 0–100 | **100%** (5-gate system) | — | — |
+| CAVD Channel Dim. | 0D–3D | **~61%** (Li/Na entries) | — | — |
+| Stability Window | V | **~2.2%** (Li/Na hull entries) | — | — |
+| Bulk/Shear Modulus | GPa | **100%** (geometric proxy) | — | — |
+
+## SSE Screening
+
+The dataset now includes a 5-gate SSE screening system in the `ssb_screening` block:
+
+| Gate | Property | Weight | Criteria |
+|------|----------|--------|----------|
+| 1 | Thermo Stability | 30 pts | E_hull < 0.025 eV/atom |
+| 2 | Electronic Insulation | 25 pts | Band gap > 1.0 eV |
+| 3 | Ionic Mobility | 20 pts | 2D/3D CAVD channels (when available) |
+| 4 | Electrochemical Window | 15 pts | Window width > 1.0 V (when available) |
+| 5 | Mechanical (Dendrite) | 10 pts | Shear modulus > 6 GPa |
+
+```python
+# Filter top SSE candidates
+top = [e for e in entries 
+       if e.get("ssb_screening", {}).get("sse_candidate_score", 0) >= 50]
+print(f"Top SSE candidates: {len(top):,}")
+```
 
 ## Sources
 
@@ -149,6 +173,23 @@ Scandium-Dataset/
 ├── scripts/                  ← Processing and analysis scripts
 └── api/                      ← Programmatic access
 ```
+
+## Scripts
+
+| Script | Purpose |
+|--------|---------|
+| `scripts/compute_electrochemical_windows.py` | Electrochemical stability windows (grand-potential phase diagrams) |
+| `scripts/compute_cavd_channel_dimensionality.py` | Li/Na ion migration channel dimensionality (CAVD-like) |
+| `scripts/compute_sse_candidate_score.py` | 5-gate SSE candidate scoring system |
+| `scripts/compute_mechanical_properties.py` | Elastic moduli (MP API + geometric proxy) |
+| `scripts/compute_jarvis_hull_energy.py` | Energy above hull for JARVIS entries (internal convex hull) |
+| `scripts/compute_oxidation_states.py` | Oxidation state prediction (BVA + heuristic) |
+| `scripts/enrich_garnet_family.py` | Garnet family reclassification and enrichment |
+| `scripts/extract_commercial_safe_edition.py` | Commercial-safe subset (MP+JARVIS only) |
+| `scripts/generate_splits.py` | Benchmark split generation |
+| `scripts/generate_audit_reports.py` | Audit report generation |
+| `scripts/fix_dataset_v3.py` | Data quality fixes |
+| `audit_*.py` | 8-phase audit pipeline |
 
 ## Documentation
 

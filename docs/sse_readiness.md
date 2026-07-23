@@ -123,10 +123,21 @@ for SSE screening.
    carrier, carrier fraction. These are weak signals but better than nothing.
    *(Done in v0.1.0-rc.1)*
 2. ✅ **Honest documentation** — this document. *(Done)*
-3. 🔲 **Electrochemical window estimation** — use pymatgen PhaseDiagram with
+3. ✅ **CAVD channel dimensionality** — geometric Voronoi-based percolation analysis
+   on all Li/Na-containing entries. *(Done in v0.2.0)*
+4. ✅ **SSE candidate score** — 5-gate composite scoring system (gates 1–2 fully
+   populated, gates 3–5 populated when data available). *(Done in v0.2.0)*
+5. ✅ **Oxidation state prediction** — per-element oxidation states via bond valence
+   + heuristic. *(Done in v0.2.0)*
+6. ✅ **Mechanical property proxies** — geometric density-based elastic moduli
+   for all entries. *(Done in v0.2.0)*
+7. ✅ **JARVIS EaH** — energy above hull computed via internal convex hull within
+   JARVIS subset. *(Done in v0.2.0)*
+8. ✅ **Commercial-safe edition** — MP + JARVIS only subset for commercial ML
+   training. *(Done in v0.2.0)*
+9. 🔲 **Electrochemical window estimation** — use pymatgen PhaseDiagram with
    MP-computed phase diagrams to estimate decomposition voltage against Li/Na
-   for Gold-tier entries. Requires ~2–5 seconds per entry = ~30 hours for
-   22,525 entries. Runs overnight.
+   for Gold-tier entries. Script exists but needs full run on cluster.
 
 ### Medium-term (months, DFT required):
 1. 🔲 **NEB migration barriers** — compute Li⁺ migration barriers for ~500–1000

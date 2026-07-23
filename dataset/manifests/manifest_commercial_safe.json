@@ -1,0 +1,13 @@
+{
+  "edition": "commercial_safe",
+  "description": "MP (CC-BY-4.0) + JARVIS (CC0-1.0) entries only. No OQMD.",
+  "total_entries": 94952,
+  "file": "commercial_safe_subset_v3.json",
+  "sha256": "a02ae157b25d5faf3f4ef72e4dd5aaa6836523be7380342b56399ff9f12f7689",
+  "size_bytes": 916917338,
+  "sources": {
+    "mp": 69279,
+    "jarvis": 25673
+  },
+  "created": "2026-07-23T19:31:13Z"
+}

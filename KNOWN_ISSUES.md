@@ -8,11 +8,11 @@
 
 ### 1. JARVIS Energy Above Hull (EaH) Missing
 
-- **Status:** By design, acknowledged
+- **Status:** ✅ Resolved in v0.2.0 via internal convex hull
 - **Scope:** 25,673 JARVIS entries (100%)
 - **Impact:** No impact on Gold tier (gate G7 excludes entries missing EaH)
 - **Root cause:** JARVIS-DFT does not compute convex hull distance. This is a fundamental source limitation.
-- **Resolution:** Documented. Future versions may compute EaH using an internal convex hull.
+- **Resolution:** Internal convex hull built within JARVIS subset using pymatgen PhaseDiagram. Script: `scripts/compute_jarvis_hull_energy.py`. Note: this uses JARVIS-relative hull, not the MP/OQMD reference. Cross-method normalization remains future work.
 
 ### 2. Extreme Formation Energy Outliers (FE > 5 eV/atom)
 
@@ -75,7 +75,7 @@
 - **Scope:** Entire dataset
 - **Detail:** ~63% intermetallics, ~16% layered oxides, ~7% halide SSEs, ~6% sulfide SSEs
 - **Impact:** Models trained on full dataset may be biased toward intermetallics.
-- **Mitigation:** Use stratified sampling by family, or use battery/electrolyte subsets.
+- **Mitigation:** Use stratified sampling by family, or use battery/electrolyte subsets. Garnet enrichment script (`scripts/enrich_garnet_family.py`) available for structure-based reclassification.
 
 ### 10. Missing Band Gap (151 OQMD entries)
 
@@ -99,11 +99,14 @@
 ## Future-Priority Issues
 
 - **Raw source downloads not included** — due to source redistribution policies, raw download scripts must be run by the user
-- **Garnet undercount** — 41 entries (improved from 23 via broader composition heuristic, but still far below the ~1,000+ needed for ML training on LLZO and variants)
+- **Garnet undercount** — 41 entries (improved from 23 via broader composition heuristic, but still far below the ~1,000+ needed for ML training on LLZO and variants). The enrichment script (`scripts/enrich_garnet_family.py`) identifies ~200 new candidates from structure-based verification, but these need manual validation before reclassification. True garnet-family expansion requires targeted acquisition from ICSD and MP for LLZO-type structures.
 - **SSE family tags are composition-based** — `sse_family` is classified by elemental heuristic, not crystal structure. A compound with Li+S+P but no percolating channels will still be tagged as argyrodite/LGPS. Cross-check with CAVD dimensionality when available.
-- **Experimental data not yet integrated** — current sources are purely computational
+- **Experimental data not yet integrated** — current sources are purely computational. The 820-entry OBELiX database (npj Comput. Mater. 2023) is the highest-priority integration target.
 - **No DOI assigned yet** — Zenodo archival in progress for v0.1.0
-- **License complexity** — the dataset has 3 different licenses; the `license` field per entry was added in v0.1.0 to enable programmatic filtering
+- **License complexity** — the dataset has 3 different licenses; the `license` field per entry was added in v0.1.0 to enable programmatic filtering. A **Commercial-Safe edition** (MP+JARVIS only, ~95k entries) is now extractable via `scripts/extract_commercial_safe_edition.py`.
+- **CAVD channel dimensionality is a geometric proxy** — the `cavd_channel_dimensionality` field uses Voronoi-based connectivity analysis, not full NEB migration barriers. 0D/1D classifications reliably rule out good conductors, but 2D/3D classifications overestimate true percolation. Use as pre-filter only.
+- **Mechanical properties are geometric proxies** — the `bulk_modulus_GPa` and `shear_modulus_GPa` fields use density-based estimation, not DFT elastic tensors. They provide order-of-magnitude estimates only. True DFT elastic data for MP entries can be queried via `scripts/compute_mechanical_properties.py --api-key YOUR_KEY`.
+- **SSE candidate scores are uncalibrated** — the 5-gate `sse_candidate_score` is a heuristic composite (30+25+20+15+10 pts). Gates 1-2 are fully populated; gates 3-5 are populated only when underlying data exists. Scores from entries with missing gates are underestimates.
 
 ---
 

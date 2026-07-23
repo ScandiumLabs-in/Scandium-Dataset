@@ -12,10 +12,20 @@ __pycache__/
 .vscode/
 .idea/
 
+# Parquet store — distributed via HuggingFace, not GitHub
+dataset/entries_v3.parquet
+dataset/entries_v3.index.json
+
 # Large data — distributed via GitHub Releases, not stored in git
 dataset/entries_final_v3.json
+dataset/entries_final_v3.json.bak
+dataset/entries_final_v3.json.pre_obelix_bak
 dataset/battery_subset_v3.json
 dataset/electrolyte_subset_v3.json
+dataset/commercial_safe_subset_v3.json
+dataset/commercial_safe_battery_subset_v3.json
+dataset/gold_subset_v3.json
+dataset/obelix_unmatched_formulas.json
 *.bak
 
 # Generated benchmark results
@@ -23,3 +33,4 @@ benchmark/results/*.json
 
 # Internal docs
 docs/hf_dataset_card_fix.md
+internal/

@@ -1,13 +1,15 @@
-# Dataset Card — Scandium-Dataset v0.1.0-rc.1
+# Dataset Card — Scandium-Dataset v0.3.0
 
 ## Dataset Description
 
 - **Name:** Scandium-Dataset
-- **Version:** v0.1.0-rc.1
-- **Description:** Curated multi-source DFT dataset for thermodynamic screening and benchmarking of battery-relevant inorganic materials, aggregated from Materials Project, OQMD, and JARVIS-DFT.
-- **Total entries:** 266,732 (Gold: 96,242 | Validated: 140,382 | Raw: 30,108)
+- **Version:** v0.3.0
+- **Description:** Curated multi-source DFT + experimental dataset for thermodynamic screening and benchmarking of battery-relevant inorganic materials, aggregated from Materials Project, OQMD, and JARVIS-DFT.
+- **Total entries:** 267,230 (Gold: 96,242 | Validated: 140,382 | Raw: 30,108 | Experimental: 498)
 - **Battery subset:** 82,925 entries | **Electrolyte subset:** 41,665 entries (strict Gold)
-- **⚠️ Important limitation:** Contains formation energy, band gap, and hull distance only. Does NOT contain ionic conductivity, migration barriers, electrochemical stability windows, or elastic moduli — the properties most relevant to solid-state electrolyte screening. See [`docs/sse_readiness.md`](docs/sse_readiness.md) for details.
+- **Storage:** Parquet (`dataset/entries_v3.parquet`) with indexed lookup — 0.18 GB instead of 1.6 GB JSON.
+- **Experimental data:** 599 OBELiX entries integrated (Therrien et al. 2025, NRC-Mila), including 498 new `experimental_gold` tier entries with measured Li-ion conductivity.
+- **Transport proxies:** BVSE migration barrier proxy (bvlain engine, validated against 7 known SSEs, 5/7 pass within literature ranges). See `scripts/compute_bvse_barriers.py`.
 
 ## Sources
 
@@ -26,7 +28,21 @@
 
 Filter by the `license` field for programmatic usage. See [`LICENSE_BREAKDOWN.md`](LICENSE_BREAKDOWN.md).
 
+### Commercial-Safe Edition
+
+A **Commercial-Safe edition** (`commercial_safe_subset_v3.json`) containing only MP + JARVIS entries (~94,952 entries) is available for commercial use. All entries are CC BY 4.0 or CC0 1.0 licensed. Any model trained for commercial deployment should be trained on this edition.
+
+```python
+import json
+# Load commercial-safe edition
+with open("dataset/commercial_safe_subset_v3.json") as f:
+    entries = json.load(f)
+print(f"{len(entries):,} entries — all commercial-safe")
+```
+
 ## Fields
+
+### Primary fields
 
 | Field | Type | Description | Coverage |
 |-------|------|-------------|----------|
@@ -41,7 +57,7 @@ Filter by the `license` field for programmatic usage. See [`LICENSE_BREAKDOWN.md
 | `volume` | float | Cell volume (Å³) | 100% |
 | `density` | float | Density (g/cm³) | 100% |
 | `formation_energy_per_atom` | float | FE (eV/atom) | 100% |
-| `energy_above_hull` | float | EaH (eV/atom) | 90.4% |
+| `energy_above_hull` | float | EaH (eV/atom) | 90.4% → **100%** (JARVIS hull added) |
 | `band_gap` | float | Band gap (eV) | 99.94% |
 | `total_magnetization` | float | Total | 100% |
 | `magnetic_ordering` | str | Magnetic ordering | 100% |
@@ -62,6 +78,41 @@ Filter by the `license` field for programmatic usage. See [`LICENSE_BREAKDOWN.md
 | `provenance` | dict | Full provenance chain | 100% |
 | `source_weight` | float | Source priority weight | 100% |
 | `references` | list[str] | Source references | 100% |
+
+### SSE proxy fields (added in v0.1.0)
+
+| Field | Type | Description | Coverage |
+|-------|------|-------------|----------|
+| `carrier_fraction` | float | Fraction of mobile ion carriers | 100% |
+| `volume_per_carrier` | float | Volume per mobile carrier (Å³) | 100% |
+| `fe_per_carrier` | float | Formation energy per carrier (eV) | 100% |
+| `electronic_insulation` | bool | Band gap > 1.0 eV | 100% |
+| `sse_family` | str | SSE family classification | 100% |
+| `mobile_ion` | str | Primary mobile ion (Li/Na/Mg) | 61.1% |
+| `oxidation_states` | dict | Per-element oxidation states | 100% |
+| `predicted_oxidation_states_valid` | bool | BVA-validated prediction? | 100% |
+
+### ssb_screening block (v0.2.0)
+
+| Field | Type | Description | Coverage |
+|-------|------|-------------|----------|
+| `mobile_ion` | str | Mobile ion species | 61.1% |
+| `mobile_ion_fraction` | float | Fraction of mobile ions | 100% |
+| `sse_family` | str | SSE family tag | 100% |
+| `electronic_insulation` | bool | Band gap > 1.0 eV | 100% |
+| `thermo_stable` | bool | E_hull < 0.025 eV/atom | 100% |
+| `gates_passed` | list[str] | SSE screening gates passed | 100% |
+| `sse_candidate_score` | int | Composite SSE score (0–100) | 100% |
+| `cavd_channel_dimensionality` | str | 0D/1D/2D/3D percolation | ~61% |
+| `stability_window_low_V` | float | Lower stability limit vs Li/Na | ~2.2% |
+| `stability_window_high_V` | float | Upper stability limit vs Li/Na | ~2.2% |
+| `window_width_V` | float | Electrochemical window width | ~2.2% |
+| `passivating_interphase` | bool | Forms passivating interphase? | ~14.9% |
+| `interfacial_reaction_energy_vs_Li_eV_atom` | float | Decomposition energy vs Li | ~14.9% |
+| `bulk_modulus_GPa` | float | Bulk modulus (geometric proxy) | 100% |
+| `shear_modulus_GPa` | float | Shear modulus (geometric proxy) | 100% |
+| `dendrite_suppression_flag` | bool | Shear modulus > 6 GPa | 100% |
+| `elastic_source` | str | "MP_API" / "geometric_proxy" / null | 100% |
 
 ## Intended Use
 

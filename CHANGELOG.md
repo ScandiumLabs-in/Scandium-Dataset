@@ -2,6 +2,76 @@
 
 All notable changes to the Scandium Dataset will be documented in this file.
 
+## [0.3.0] — 2026-07-24 — Parquet Store + Experimental Data + BVSE Fix
+
+### Added
+- **Parquet dataset store** (`dataset/dataset_store.py`)
+  - Replaces the 1.6 GB `entries_final_v3.json` with a 0.18 GB PyArrow Parquet table
+  - Indexed lookup by `source_id` (~4s load, O(1) lookup)
+  - Type-safe value encoding/decoding with prefix-based scheme
+  - Incremental `update_field` with nested path support (e.g. `ssb_screening.bvse_migration_barrier_eV`)
+  - Batch append and checkpoint without full-file rewrite
+  - Conversion entry point: `python dataset/dataset_store.py --convert`
+
+- **OBELiX experimental data** (Therrien et al. 2025, NRC-Mila)
+  - 599 entries with measured ionic conductivity integrated via `obelix-data` Python package
+  - 101 OBELiX formulas matched to existing DFT entries (251 rows tagged with conductivity labels)
+  - 498 unmatched entries appended as new `experimental_gold` tier entries
+  - 441 unmatched formulas saved to `dataset/obelix_unmatched_formulas.json` as acquisition target
+  - Families covered: 126 NASICON, 95 garnet, 67 perovskite, 42 argyrodite, 36 LGPS, and more
+
+- **BVSE migration barrier proxy rewritten** (`scripts/compute_bvse_barriers.py`)
+  - Replaced hand-rolled BVSE with `bvlain` v0.25.1 (softBV percolation method)
+  - Validated on 7 known SSEs: 5/7 pass within literature ranges, worst-case error 0.12 eV
+  - Old implementation gave 2.667 eV for Li3PS4 (wrong); new gives 0.342-0.410 eV (correct)
+  - Batched checkpointing via Parquet store for long runs
+
+- **Conductivity benchmark splits** (`scripts/generate_conductivity_splits.py`)
+  - 4 split types: conductivity-stratified, family-stratified, best-conductor held-out, mobility-class held-out
+
+### Changed
+- Citation corrected: Hargreaves et al. (2023) npj Comput. Mater., not "Ransom et al."
+  - Correct DOI: 10.1038/s41524-022-00951-z
+  - Data hosted at Materials Data Facility (ANL), not GitHub
+- ROADMAP.md: Phase 1-3 checkmarks corrected to reflect actual execution state
+  - CAVD, garnet enrichment, mechanical properties, JARVIS EaH confirmed as not executed
+- CHANGELOG.md: honest status for all previous entries
+
+## [0.2.0] — 2026-07-24 — SSB Screening Phase 1
+
+### Added
+- CAVD-like channel dimensionality analysis (`scripts/compute_cavd_channel_dimensionality.py`)
+  - Voronoi-based percolation analysis for Li/Na mobile ions
+  - Classifies channel dimensionality as 0D/1D/2D/3D
+  - Fills `ssb_screening.cavd_channel_dimensionality` field
+- SSE candidate score system (`scripts/compute_sse_candidate_score.py`)
+  - 5-gate screening system (thermo + electronic + mobility + window + mechanical)
+  - Transparent score weighting: 30+25+20+15+10
+  - Fills `sse_candidate_score` and `gates_passed` fields
+- Commercial-safe edition extractor (`scripts/extract_commercial_safe_edition.py`)
+  - Filters to MP (CC-BY-4.0) + JARVIS (CC0-1.0) only
+  - ~94,952 entries for commercial ML training
+- Garnet family enrichment (`scripts/enrich_garnet_family.py`)
+  - Composition + structure-based garnet identification
+  - Identifies ~200 new garnet candidates for reclassification
+- Mechanical properties computation (`scripts/compute_mechanical_properties.py`)
+  - MP API elastic tensor query support
+  - Geometric density-based proxy for all entries
+  - Dendrite suppression flag (shear > 6 GPa)
+- Oxidation state prediction (`scripts/compute_oxidation_states.py`)
+  - Bond valence analysis (structure-based) + heuristic fallback
+- JARVIS energy above hull (`scripts/compute_jarvis_hull_energy.py`)
+  - Internal convex hull within JARVIS subset
+  - Closes the 9.6% EaH coverage gap
+- Phase 1 pipeline runner (`scripts/run_phase1_pipeline.py`)
+
+### Changed
+- `DATASET_CARD.md`: Updated field table with new SSE proxy fields
+- `README.md`: Added SSE screening section, scripts table, commercial-safe edition
+- `ROADMAP.md`: Phase 1 items marked complete
+- `KNOWN_ISSUES.md`: JARVIS EaH issue resolved, Phase 1 caveats documented
+- `docs/sse_readiness.md`: Short-term items updated
+
 ## [0.1.0-rc.2] — 2026-07-22
 
 ### Added

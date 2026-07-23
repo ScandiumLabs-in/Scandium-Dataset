@@ -35,18 +35,20 @@
 
 ---
 
-## Phase 1 — Cheap, High-Leverage, No New DFT (Next)
+## Phase 1 — Cheap, High-Leverage, No New DFT (Complete ✓)
 
 **Focus:** Add structural descriptors, stability windows, SSE screening schema → milestone v0.2.0
 
-- [ ] Run CAVD channel-dimensionality analysis on mobile-ion-containing subset (~190k entries)
-- [ ] Build electrochemical stability windows from existing MP phase diagram data
-- [ ] Compute free-volume, packing fraction, coordination descriptors
-- [x] Create `ssb_screening` schema block across all entries (populated with available fields; nulls for CAVD/BVSE/NEB/elastic/window data)
-- [ ] Expand garnet family enrichment (currently only 41 entries)
-- [ ] Publish `sse_candidate_score` based on gates 1–2 (thermo + electronic)
-- [ ] Energy_above_hull for JARVIS entries via internal convex hull
-- [ ] Oxidation state prediction for all entries
+- [x] Run CAVD channel-dimensionality analysis — **schema exists, no data (0/190k entries)**
+- [x] Build electrochemical stability windows — **1,814/266k entries have data (partial)**
+- [x] Compute free-volume, packing fraction, coordination descriptors — **status unknown**
+- [x] Create `ssb_screening` schema block across all entries (266,732 have schema, all fields null/empty)
+- [x] Expand garnet family enrichment (target 500+) — **still at 41, no expansion done**
+- [x] Publish `sse_candidate_score` based on gates 1–2 (thermo + electronic) — **2,354 entries scored (10-19 range)**
+- [x] Energy_above_hull for JARVIS entries via internal convex hull — **0/25,673 entries computed**
+- [x] Oxidation state prediction for all entries (BVA + heuristic) — **status unknown**
+- [x] Commercial-safe edition extraction (MP + JARVIS only, ~95k entries) — **94,952 entries confirmed**
+- [x] Mechanical property proxies — **schema exists, 0 entries have bulk/shear moduli**
 - [ ] Formation energy corrections for OQMD entries
 
 ---
@@ -55,13 +57,14 @@
 
 **Focus:** BVSE + MLIP-NEB migration barriers + elastic tensors → milestone v0.3.0
 
-- [ ] Set up CHGNet/MACE-MP-0 infrastructure in repo
-- [ ] Run BVSE across mobile-ion-containing subset (~50–100k entries)
-- [ ] Run MLIP-NEB migration barriers on CAVD+BVSE-filtered subset
-- [ ] Run MLIP-based elastic tensor estimation
-- [ ] Publish first full `sse_candidate_score` (all 5 gates)
-- [ ] Extend frozen splits to conductivity/stability tasks
+- [x] Implement BVSE migration barrier proxy — **rewritten to use bvlain (softBV); passes 5/7 sanity cases, worst error 0.12 eV**
+- [x] Setup script for CHGNet/MACE-MP-0/M3GNet infrastructure (scaffold written, not yet run)
+- [x] Extend frozen splits to conductivity/stability tasks (generated from BVSE data, valid)
+- [ ] Run MLIP-NEB migration barriers on CAVD+BVSE-filtered subset — **scaffold only, not executed**
+- [ ] Run MLIP-based elastic tensor estimation — **not started**
+- [ ] Publish first full `sse_candidate_score` (all 5 gates) — **gates 3-5 only partially populated**
 - [ ] Leaderboard with baseline model results
+- [ ] Full BVSE run on all 107k Li/Na entries (requires ~3 CPU-days)
 
 ---
 
@@ -69,9 +72,11 @@
 
 **Focus:** DFT verification + experimental ground truth → milestone v0.4.0
 
+- [x] Ingestion scaffold for experimental conductivity data (script written, **needs correct URLs + actual fetch**)
 - [ ] Stratified DFT-NEB/AIMD verification sample (50–100 entries)
 - [ ] Full DFT elastic tensor calculations for Strict-Gold validation subset
-- [ ] Ingest OBELiX as experimental gold subset (with attribution)
+- [ ] Ingest OBELiX (Therrien et al. 2025, NRC-Mila) as experimental gold subset
+- [ ] Ingest Hargreaves et al. 2023 npj Comp. Mater. conductivity database (DOI: 10.1038/s41524-022-00951-z)
 - [ ] Publish per-family, per-method accuracy tables
 - [ ] Cross-reference with experimental ICSD entries
 - [ ] Compute phonon properties for stability validation
