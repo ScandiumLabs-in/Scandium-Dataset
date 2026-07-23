@@ -41,6 +41,12 @@ SCALAR_COLUMNS = [
     "is_experimental", "is_stable", "is_metal",
     "space_group", "space_group_number", "crystal_system",
     "sse_family", "license",
+    # Newly added — were silently dropped in original conversion
+    "duplicate_group", "source_weight",
+    "total_magnetization", "fe_per_carrier",
+    "volume_per_carrier", "carrier_fraction",
+    "electronic_insulation", "space_group_symbol",
+    "magnetic_ordering",
 ]
 
 # Nested fields stored as JSON strings
@@ -48,6 +54,9 @@ JSON_STRING_FIELDS = [
     "structure_json", "ssb_screening", "provenance",
     "elements", "families", "carrier_elements",
     "quality_flags", "tags", "notes",
+    # Newly added — were silently dropped in original conversion
+    "anions", "strict_gold", "tier_detail", "tier_gates",
+    "quality_sub_scores", "references", "merged_sources",
 ]
 
 

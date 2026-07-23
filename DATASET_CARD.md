@@ -1,3 +1,30 @@
+---
+license: cc-by-4.0
+language:
+- en
+size_categories:
+- 100K<n<1M
+task_categories:
+- other
+tags:
+- dft
+- materials-project
+- oqmd
+- jarvis
+- solid-electrolyte
+- lithium-ion-conductivity
+- parquet
+- materials-science
+- battery-materials
+- solid-state-electrolytes
+pretty_name: Scandium-Dataset
+configs:
+- config_name: default
+  data_files:
+  - split: train
+    path: dataset/entries_v3.parquet
+---
+
 # Dataset Card — Scandium-Dataset v0.3.0
 
 ## Dataset Description
@@ -6,8 +33,9 @@
 - **Version:** v0.3.0
 - **Description:** Curated multi-source DFT + experimental dataset for thermodynamic screening and benchmarking of battery-relevant inorganic materials, aggregated from Materials Project, OQMD, and JARVIS-DFT.
 - **Total entries:** 267,230 (Gold: 96,242 | Validated: 140,382 | Raw: 30,108 | Experimental: 498)
+- **Strict Gold:** 56,966 entries (subset of Gold with all gates passed)
 - **Battery subset:** 82,925 entries | **Electrolyte subset:** 41,665 entries (strict Gold)
-- **Storage:** Parquet (`dataset/entries_v3.parquet`) with indexed lookup — 0.18 GB instead of 1.6 GB JSON.
+- **Storage:** Parquet (`dataset/entries_v3.parquet`, 47 columns) with indexed lookup — 184 MB instead of 1.6 GB JSON.
 - **Experimental data:** 599 OBELiX entries integrated (Therrien et al. 2025, NRC-Mila), including 498 new `experimental_gold` tier entries with measured Li-ion conductivity.
 - **Transport proxies:** BVSE migration barrier proxy (bvlain engine, validated against 7 known SSEs, 5/7 pass within literature ranges). See `scripts/compute_bvse_barriers.py`.
 
@@ -122,7 +150,7 @@ print(f"{len(entries):,} entries — all commercial-safe")
 
 ## Maintenance
 
-- Version: v0.1.0-rc.1
+- Version: v0.3.0
 - DOI: pending (Zenodo archival in progress)
 - Issue tracking: GitHub Issues
 - Contact: Scandium Labs
