@@ -197,7 +197,7 @@ def main():
 
             if not args.dry_run:
                 for field, value in updates.items():
-                    store.update_field(sid, field, value, nested_path="ssb_screening")
+                    store.update_field(sid, "ssb_screening", value, nested_path=field)
 
             reason = result.get("_skip_reason", "")
             if result["migration_barrier_eV"] is not None:
