@@ -101,9 +101,7 @@ def main():
     print(f"Loading Parquet...")
     import pyarrow.parquet as pq
     t0 = time.time()
-    table = pq.read_table(PARQUET_PATH, columns=[
-        "source_id", "formula", "nsites", "mobile_ion", "structure_json", "ssb_screening"
-    ])
+    table = pq.read_table(PARQUET_PATH)
     # Decode columns
     from dataset_store import _decode_value, _encode_value
     all_sids = []
