@@ -38,7 +38,7 @@ Scandium-Dataset provides a harmonized, quality-scored foundation of DFT-compute
 - **Strict Gold:** 56,966 entries (subset of Gold with all gates passed)
 - **Battery-relevant subset:** 82,925 entries | **Electrolyte candidate subset:** 41,665 entries (strict Gold)
 
-  > *File names on disk (`battery_subset_v3.json`, `electrolyte_subset_v3.json`) predate the v1.0.0 scope clarification. They will be renamed to `battery_candidate_subset_v1.json` / `solid_electrolyte_candidate_subset_v1.json` in a future release alongside a full reference update. Until then, treat the current filenames as legacy identifiers — "subset" in the name never implied conductivity was validated.*
+  > *File names on disk (`battery_candidate_subset_v1.json`, `solid_electrolyte_candidate_subset_v1.json`) — the v3 suffix was retired in v1.0.0-rc2 when the scope was clarified.*
 - **Storage:** Parquet (`dataset/entries_v3.parquet`, 47 columns) with indexed lookup — 184 MB instead of 1.6 GB JSON.
 - **Experimental data:** 498 OBELiX entries integrated (Therrien et al. 2025) as `experimental_gold` tier with measured Li-ion conductivity.
 - **Transport proxy draft:** 24,873 BVSE migration barriers computed (bvlain engine) at 23% Li/Na coverage — see "Roadmap" below for the gap this addresses.

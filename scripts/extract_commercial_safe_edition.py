@@ -149,7 +149,7 @@ def main():
          "perovskite", "anti_perovskite", "lisicon", "lGPS_type", "argyrodite",
          "borohydride", "battery", "oxide"]) or e.get("sse_family") not in ("none",)]
     
-    battery_output = OUTPUT_DIR / "commercial_safe_battery_subset_v3.json"
+    battery_output = OUTPUT_DIR / "commercial_safe_battery_candidate_subset_v1.json"
     print(f"\n  Writing commercial-safe battery edition ({len(battery_edition):,} entries)...")
     with open(battery_output, "w") as f:
         json.dump(battery_edition, f)

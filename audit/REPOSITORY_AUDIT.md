@@ -99,8 +99,8 @@
 📁 evaluate.py
   📁 results_mean_baseline_20260721_225304.json
   📁 results_median_baseline_20260721_225434.json
-📁 battery_subset_v3.json
-📁 electrolyte_subset_v3.json
+📁 battery_candidate_subset_v1.json
+📁 solid_electrolyte_candidate_subset_v1.json
 📁 entries_final_v3.json
   📁 chemistry_held_out.json
   📁 composition_held_out.json

@@ -22,7 +22,7 @@ configs:
 - config_name: default
   data_files:
   - split: train
-    path: dataset/entries_v3.parquet
+    path: dataset/entries_v4_typed.parquet
 ---
 
 # Dataset Card — Scandium-Dataset v1.0.0
@@ -38,8 +38,8 @@ Scandium-Dataset provides a harmonized, quality-scored foundation of DFT-compute
 - **Strict Gold:** 56,966 entries (subset of Gold with all gates passed)
 - **Battery-relevant subset:** 82,925 entries | **Electrolyte candidate subset:** 41,665 entries (strict Gold)
 
-  > *File names on disk (`battery_subset_v3.json`, `electrolyte_subset_v3.json`) predate the v1.0.0 scope clarification. They will be renamed to `battery_candidate_subset_v1.json` / `solid_electrolyte_candidate_subset_v1.json` in a future release alongside a full reference update. Until then, treat the current filenames as legacy identifiers — "subset" in the name never implied conductivity was validated.*
-- **Storage:** Parquet (`dataset/entries_v3.parquet`, 47 columns) with indexed lookup — 184 MB instead of 1.6 GB JSON.
+  > *File names on disk (`battery_candidate_subset_v1.json`, `solid_electrolyte_candidate_subset_v1.json`) — the v3 suffix was retired in v1.0.0-rc2 when the scope was clarified.*
+- **Storage:** Typed Parquet (`dataset/entries_v4_typed.parquet`, 47 columns) with indexed lookup — 178 MB with proper int/float/bool types for HF Dataset viewer compat.
 - **Experimental data:** 498 OBELiX entries integrated (Therrien et al. 2025) as `experimental_gold` tier with measured Li-ion conductivity.
 - **Transport proxy draft:** 24,873 BVSE migration barriers computed (bvlain engine) at 23% Li/Na coverage — see "Roadmap" below for the gap this addresses.
 
@@ -70,7 +70,7 @@ Scandium-Dataset provides a harmonized, quality-scored foundation of DFT-compute
 | Property | Coverage | Notes |
 |----------|----------|-------|
 | Formation energy | 267,230 (100%) | From MP, OQMD, JARVIS-DFT |
-| Energy above hull | 241,557 (90.4%) | **0% for JARVIS (25,673 entries)**; JARVIS EaH script has not been run against the Parquet store |
+| Energy above hull | 257,799 (96.5%) | **14,669 JARVIS entries newly computed** in v1.0.0-rc2 via internal convex hull; 8,933 JARVIS entries lack EaH due to sparse chemical systems |
 | Band gap | 267,079 (99.9%) | 151 OQMD entries with non-converged band gap |
 | Space group | 267,214 (100%) | spglib symmetry analysis |
 | Volume | 267,230 (100%) | From structure |

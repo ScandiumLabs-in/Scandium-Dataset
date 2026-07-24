@@ -26,11 +26,13 @@ warnings.filterwarnings("ignore")
 
 WIDTH = 60
 
+
 def parse_structure(structure_json_str):
     from pymatgen.core import Structure
     import json as _json
     d = _json.loads(structure_json_str)
     return Structure.from_dict(d)
+
 
 def compute_voronoi_connectivity(structure, mobile_element="Li", cutoff=10.0):
     """Analyze mobile ion connectivity via Voronoi tessellation.
@@ -54,25 +56,18 @@ def compute_voronoi_connectivity(structure, mobile_element="Li", cutoff=10.0):
         connectivity = {}
     
     # Analyze mobile ion sublattice geometry
-    # Get fractional coordinates of mobile ions
     frac_coords = np.array([s.frac_coords for s in mobile_sites])
     
-    # Compute distances (considering periodic boundary conditions)
     n_mobile = len(mobile_sites)
     if n_mobile < 2:
         return {"dimensionality": "none", "coordination": 0, "site_volume": 0.0, "percolation": False}
     
-    # Calculate coordination environment
     lattice = structure.lattice
     
-    # Count nearest neighbors and their direction distribution
     from scipy.spatial import KDTree
-    from pymatgen.core import PeriodicSite
     
-    # Build periodic neighbors
     all_coords = []
     for i, site in enumerate(mobile_sites):
-        # Include images
         for image in [(0,0,0), (1,0,0), (-1,0,0), (0,1,0), (0,-1,0), 
                        (0,0,1), (0,0,-1), (1,1,0), (1,-1,0), (-1,1,0), (-1,-1,0),
                        (1,0,1), (1,0,-1), (-1,0,1), (-1,0,-1), (0,1,1), (0,1,-1),
@@ -89,27 +84,17 @@ def compute_voronoi_connectivity(structure, mobile_element="Li", cutoff=10.0):
     
     tree = KDTree(coords)
     
-    # Find nearest neighbor distances
-    avg_dist = None
     coordination_counts = []
     
-    min_dist = 0.5
     for i in range(n_mobile):
         point = lattice.get_cartesian_coords(mobile_sites[i].frac_coords)
         nn = tree.query_ball_point(point, r=5.0)
         nn_indices = indices[nn]
-        # Count neighbors (excluding self)
         nn_self = sum(1 for j in nn_indices if j == i)
         nn_count = len(nn_indices) - nn_self
         coordination_counts.append(nn_count)
     
     mean_coordination = np.mean(coordination_counts) if coordination_counts else 0
-    
-    # Estimate channel dimensionality from coordination environment
-    # 3D: high coordination (>4) with isotropic distribution
-    # 2D: moderate coordination with planar distribution
-    # 1D: low coordination with linear distribution
-    # 0D: isolated sites with no connectivity
     
     if mean_coordination >= 4:
         dimensionality = "3D"
@@ -124,20 +109,16 @@ def compute_voronoi_connectivity(structure, mobile_element="Li", cutoff=10.0):
         dimensionality = "0D"
         percolation = False
     
-    # Compute average Voronoi volume of mobile sites
     try:
         site_volumes = []
         for site in mobile_sites:
             from scipy.spatial import Voronoi as ScipyVoronoi
-            from pymatgen.core.periodic_table import Element as PmgElement
             
-            # Get neighboring sites within cutoff
             neighbors = structure.get_neighbors(site, r=cutoff)
             if len(neighbors) < 4:
                 site_volumes.append(0.0)
                 continue
             
-            # Build points for Voronoi tessellation
             points = [site.coords]
             for n_site, dist, _, _ in neighbors:
                 points.append(n_site.coords)
@@ -148,7 +129,6 @@ def compute_voronoi_connectivity(structure, mobile_element="Li", cutoff=10.0):
             
             try:
                 vor = ScipyVoronoi(np.array(points))
-                # Get the Voronoi cell for the first point (our site)
                 region_idx = vor.point_region[0]
                 region = vor.regions[region_idx]
                 if -1 not in region and len(region) > 0:
@@ -193,19 +173,32 @@ def main():
     print("  Geometric pre-filter for Li/Na ion migration pathways")
     print("=" * WIDTH)
     
-    print("\nLoading entries...")
+    print("\nLoading entries from typed Parquet...")
     t0 = time.time()
-    with open(DATASET_PATH / "entries_final_v3.json") as f:
-        all_entries = json.load(f)
-    print(f"  {len(all_entries):,} total entries ({time.time()-t0:.1f}s)")
+    sys.path.insert(0, str(BASE_DIR))
+    from dataset.dataset_store import DatasetStore
+    store = DatasetStore.open()
+    print(f"  {store.num_entries:,} total entries ({time.time()-t0:.1f}s)")
     
-    # Select working subset: only entries with mobile ion (Li or Na) and structure_json
     mobile_elements = {"Li", "Na"}
-    entries = []
+    
+    # Load subset IDs if filtering
+    subset_ids = None
+    if args.subset == "battery":
+        with open(DATASET_PATH / "battery_candidate_subset_v1.json") as f:
+            battery = json.load(f)
+        subset_ids = {e.get("source_id", "") + e.get("source", "") for e in battery}
+    elif args.subset == "electrolyte":
+        with open(DATASET_PATH / "solid_electrolyte_candidate_subset_v1.json") as f:
+            electrolyte = json.load(f)
+        subset_ids = {e.get("source_id", "") + e.get("source", "") for e in electrolyte}
+    
+    # Collect target entries
     skipped_no_mobile = 0
     skipped_no_structure = 0
+    target_ids = []
     
-    for e in all_entries:
+    for e in store.scan(columns=["source_id", "source", "mobile_ion", "structure_json"]):
         mobile_ion = e.get("mobile_ion", "")
         if mobile_ion not in mobile_elements:
             skipped_no_mobile += 1
@@ -213,32 +206,30 @@ def main():
         if not e.get("structure_json"):
             skipped_no_structure += 1
             continue
-        entries.append(e)
+        key = e.get("source_id", "") + e.get("source", "")
+        if subset_ids is not None and key not in subset_ids:
+            continue
+        target_ids.append(e["source_id"])
     
-    print(f"  Li/Na mobile ion entries with structures: {len(entries):,}")
+    print(f"  Li/Na mobile ion entries with structures: {len(target_ids):,}")
     print(f"  Skipped (no mobile ion): {skipped_no_mobile:,}")
     print(f"  Skipped (no structure): {skipped_no_structure:,}")
     
-    if args.subset != "full":
-        if args.subset == "battery":
-            with open(DATASET_PATH / "battery_subset_v3.json") as f:
-                battery = json.load(f)
-            battery_ids = {e.get("source_id", "") + e.get("source", "") for e in battery}
-            entries = [e for e in entries if e.get("source_id", "") + e.get("source", "") in battery_ids]
-        elif args.subset == "electrolyte":
-            with open(DATASET_PATH / "electrolyte_subset_v3.json") as f:
-                electrolyte = json.load(f)
-            electrolyte_ids = {e.get("source_id", "") + e.get("source", "") for e in electrolyte}
-            entries = [e for e in entries if e.get("source_id", "") + e.get("source", "") in electrolyte_ids]
-        elif args.subset == "gold":
-            entries = [e for e in entries if e.get("tier") == "gold"]
-        print(f"  Subset ({args.subset}): {len(entries):,} entries")
+    if args.subset == "gold":
+        gold_ids = set()
+        for e in store.scan(columns=["source_id", "tier"]):
+            if e.get("tier") == "gold":
+                gold_ids.add(e["source_id"])
+        target_ids = [sid for sid in target_ids if sid in gold_ids]
+        print(f"  Subset (gold): {len(target_ids):,} entries")
+    elif args.subset != "full":
+        print(f"  Subset ({args.subset}): {len(target_ids):,} entries")
     
     if args.limit:
-        entries = entries[:args.limit]
+        target_ids = target_ids[:args.limit]
         print(f"  Limited to {args.limit} entries")
     
-    if not entries:
+    if not target_ids:
         print("No entries to process.")
         return
     
@@ -252,33 +243,39 @@ def main():
     dims = {"3D": 0, "2D": 0, "1D": 0, "0D": 0, "none": 0, "error": 0}
     t_start = time.time()
     
-    for idx, e in enumerate(entries):
-        mobile_ion = e.get("mobile_ion", "Li")
+    for idx, source_id in enumerate(target_ids):
+        entry = store.lookup(source_id)
+        if entry is None:
+            continue
+        
+        mobile_ion = entry.get("mobile_ion", "Li")
         
         try:
-            structure = parse_structure(e["structure_json"])
+            structure = parse_structure(entry["structure_json"])
             result = compute_voronoi_connectivity(structure, mobile_element=mobile_ion)
             
-            # Fill ssb_screening block
-            if "ssb_screening" not in e:
-                e["ssb_screening"] = {}
+            store.update_field(source_id, "ssb_screening",
+                result["dimensionality"], nested_path="cavd_channel_dimensionality")
+            store.update_field(source_id, "ssb_screening",
+                result["coordination"], nested_path="mobile_ion_connectivity")
+            store.update_field(source_id, "ssb_screening",
+                result["site_volume"], nested_path="mobile_ion_site_volume")
             
-            e["ssb_screening"]["cavd_channel_dimensionality"] = result["dimensionality"]
             dims[result["dimensionality"]] += 1
             processed += 1
             
         except Exception as exc:
             errors += 1
             if errors <= 5:
-                print(f"  Error [{e.get('source_id','?')}]: {str(exc)[:80]}")
-            if "ssb_screening" in e:
-                e["ssb_screening"]["cavd_channel_dimensionality"] = "error"
+                print(f"  Error [{source_id}]: {str(exc)[:80]}")
+            store.update_field(source_id, "ssb_screening",
+                "error", nested_path="cavd_channel_dimensionality")
         
         if (idx + 1) % 500 == 0:
             elapsed = time.time() - t_start
             rate = (idx + 1) / elapsed if elapsed > 0 else 0
-            pct = (idx + 1) / len(entries) * 100
-            print(f"  {idx+1}/{len(entries)} ({pct:.0f}%) | "
+            pct = (idx + 1) / len(target_ids) * 100
+            print(f"  {idx+1}/{len(target_ids)} ({pct:.0f}%) | "
                   f"3D:{dims['3D']} 2D:{dims['2D']} 1D:{dims['1D']} 0D:{dims['0D']} "
                   f"| {rate:.1f} ent/s")
     
@@ -291,40 +288,14 @@ def main():
         if count > 0:
             print(f"    {dim}: {count:,} ({count/max(processed,1)*100:.1f}%)")
     
-    # Determine output path
-    if args.subset == "battery":
-        with open(DATASET_PATH / "battery_subset_v3.json") as f:
-            save_data = json.load(f)
-        output_path = DATASET_PATH / "battery_subset_v3.json"
-        # Update entries in save_data
-        entry_map = {e.get("source_id", "") + e.get("source", ""): e for e in entries}
-        for s in save_data:
-            key = s.get("source_id", "") + s.get("source", "")
-            if key in entry_map:
-                s["ssb_screening"] = entry_map[key].get("ssb_screening", {})
-    elif args.subset == "electrolyte":
-        with open(DATASET_PATH / "electrolyte_subset_v3.json") as f:
-            save_data = json.load(f)
-        output_path = DATASET_PATH / "electrolyte_subset_v3.json"
-        entry_map = {e.get("source_id", "") + e.get("source", ""): e for e in entries}
-        for s in save_data:
-            key = s.get("source_id", "") + s.get("source", "")
-            if key in entry_map:
-                s["ssb_screening"] = entry_map[key].get("ssb_screening", {})
-    elif args.subset == "gold":
-        output_path = DATASET_PATH / "entries_final_v3.json"
-        save_data = all_entries
-    else:
-        output_path = DATASET_PATH / "entries_final_v3.json"
-        save_data = all_entries
-    
     if args.dry_run:
         print("\n  (dry-run — not saved)")
+        store._dirty = False
+        store.close()
     else:
-        print(f"\n  Writing to {output_path}...")
+        print(f"\n  Writing to Parquet...")
         t_write = time.time()
-        with open(output_path, "w") as f:
-            json.dump(save_data, f)
+        store.checkpoint()
         print(f"  Done ({time.time()-t_write:.1f}s)")
     
     print("=" * WIDTH)

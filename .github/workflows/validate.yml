@@ -16,7 +16,7 @@ jobs:
         run: |
           RELEASE_URL="https://github.com/ScandiumLabs-in/Scandium-Dataset/releases/download/v0.0.0"
           mkdir -p dataset
-          for f in entries_final_v3 battery_subset_v3 electrolyte_subset_v3; do
+          for f in entries_final_v3 battery_candidate_subset_v1 solid_electrolyte_candidate_subset_v1; do
             echo "Downloading ${f}.json..."
             curl -sL "$RELEASE_URL/${f}.json" -o "dataset/${f}.json"
           done

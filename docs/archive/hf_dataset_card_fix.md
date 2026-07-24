@@ -53,7 +53,7 @@ CHANGELOG.md                   ← UPDATED
 The dataset files on HF should also be updated with the per-entry `license` field:
 
 - `entries_final_v3.json` — each entry now has `"license": "CC-BY-4.0"|"CC0-1.0"|"OQMD-noncommercial"`
-- `battery_subset_v3.json` — same
-- `electrolyte_subset_v3.json` — same
+- `battery_candidate_subset_v1.json` — same
+- `solid_electrolyte_candidate_subset_v1.json` — same
 
 Re-upload these from the local copies.

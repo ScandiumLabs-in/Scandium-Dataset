@@ -13,13 +13,13 @@
 - **Impact:** The dataset supports thermodynamic and structural screening only. It cannot be used to rank materials by ionic conductivity or SSE performance without augmentation (see ROADMAP.md for planned transport-property layers).
 - **Mitigation:** Use for upstream screening (stability, band gap, structural family), then pair with AIMD/NEB or experimental conductivity data for downstream SSE evaluation. The BVSE migration barrier proxy covers 23% of Li/Na entries at draft quality — use with caution, and consult the 74.8% skip rate documentation before filtering.
 
-### 2. JARVIS Energy Above Hull (EaH) — Not Computed for Parquet Store
+### 2. JARVIS Energy Above Hull (EaH) — ✅ Resolved
 
-- **Status:** ❌ Not yet computed for the Parquet store (script exists)
+- **Status:** ✅ Computed via internal convex hull (v1.0.0-rc2)
 - **Scope:** 25,673 JARVIS entries (100%)
-- **Impact:** JARVIS entries are excluded from Gold tier (gate G7). They also lack EaH for stability filtering — users working with the full dataset cannot use EaH as a stability signal for JARVIS entries.
-- **Root cause:** JARVIS-DFT does not compute convex hull distance. This is a fundamental source limitation. The internal convex hull script (`scripts/compute_jarvis_hull_energy.py`) was developed for the JSON pipeline but has not been re-run against the Parquet store.
-- **Resolution:** Run `scripts/compute_jarvis_hull_energy.py` with `--format parquet` flag. Note: this uses JARVIS-relative hull, not the MP/OQMD reference. Cross-method normalization remains future work.
+- **Coverage:** 96.5% of all entries now have EaH; 14,669 JARVIS entries got new EaH values via internal hull
+- **Unresolved:** 8,933 JARVIS entries lack EaH because their chemical system has <3 entries (too few for a convex hull). This is a fundamental sparsity limitation that cannot be resolved without cross-method normalization.
+- **Note:** This uses JARVIS-relative hull, not the MP/OQMD reference. Cross-method normalization remains future work.
 
 ### 3. Extreme Formation Energy Outliers (FE > 5 eV/atom)
 

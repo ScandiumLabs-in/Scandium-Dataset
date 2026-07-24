@@ -29,7 +29,7 @@ import numpy as np
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 DATASET_DIR = BASE_DIR / "dataset"
-MASTER_PARQUET = DATASET_DIR / "entries_v3.parquet"
+MASTER_PARQUET = DATASET_DIR / "entries_v4_typed.parquet"
 MASTER_JSON = DATASET_DIR / "entries_final_v3.json"
 
 # Columns that are simple scalars — stored directly in Parquet
@@ -98,7 +98,28 @@ def _decode_value(encoded):
         return float(encoded[2:])
     if encoded.startswith("s:"):
         return encoded[2:]
+    # Typed Parquet stores JSON string columns without prefixes;
+    # detect raw JSON objects/arrays and parse them.
+    stripped = encoded.strip()
+    if stripped and stripped[0] in ("{", "["):
+        try:
+            return json.loads(stripped)
+        except (json.JSONDecodeError, ValueError):
+            pass
     return encoded
+
+
+def _pyarrow_type(val):
+    """Map a Python value to its best PyArrow type."""
+    if val is None:
+        return pa.null()
+    if isinstance(val, bool):
+        return pa.bool_()
+    if isinstance(val, int):
+        return pa.int64()
+    if isinstance(val, float):
+        return pa.float64()
+    return pa.string()
 
 
 def _first_pass_extract(entry, fields):
@@ -275,6 +296,14 @@ class DatasetStore:
             return self._table.num_rows
         return sum(1 for _ in self.scan(filter_fn=filter_fn))
 
+    @staticmethod
+    def _is_encoded_table(table: pa.Table) -> bool:
+        """Check if the table uses the old all-string encoded format."""
+        return all(
+            table.schema.field(i).type == pa.string()
+            for i in range(table.num_columns)
+        )
+
     def update_field(self, source_id: str, field: str, value, nested_path: Optional[str] = None):
         """Update a single field for an entry. In-memory only until checkpoint().
 
@@ -289,8 +318,9 @@ class DatasetStore:
         if row_idx is None:
             raise KeyError(f"Entry not found: {source_id}")
 
+        encoded_format = self._is_encoded_table(self._table)
+
         if nested_path:
-            # Read current nested dict, update, write back
             col_idx = self._table.schema.get_field_index(field)
             if col_idx < 0:
                 raise KeyError(f"Nested field column not found: {field}")
@@ -301,26 +331,35 @@ class DatasetStore:
             if not isinstance(cur_dict, dict):
                 cur_dict = {}
             cur_dict[nested_path] = value
-            cur_values[row_idx] = _encode_value(cur_dict)
+            # Write back as plain JSON (no prefix) for typed format;
+            # use encoded prefix for legacy format
+            if encoded_format:
+                cur_values[row_idx] = _encode_value(cur_dict)
+            else:
+                cur_values[row_idx] = json.dumps(cur_dict)
             new_col = pa.chunked_array([pa.array(cur_values, type=old_col.type)])
             self._table = self._table.set_column(col_idx, field, new_col)
         else:
             col_idx = self._table.schema.get_field_index(field)
-            encoded = _encode_value(value)
+            if encoded_format:
+                write_val = _encode_value(value)
+            else:
+                write_val = value
 
             if col_idx >= 0:
                 old_col = self._table.column(field)
                 new_values = old_col.to_pylist()
-                new_values[row_idx] = encoded
+                new_values[row_idx] = write_val
                 new_col = pa.chunked_array([pa.array(new_values, type=old_col.type)])
                 self._table = self._table.set_column(col_idx, field, new_col)
             else:
                 n = self._table.num_rows
                 new_values = [None] * n
-                new_values[row_idx] = encoded
-                new_col = pa.array(new_values, type=pa.string())
+                new_values[row_idx] = write_val
+                pa_type = pa.string() if encoded_format else _pyarrow_type(value)
+                new_col = pa.array(new_values, type=pa_type)
                 self._table = self._table.append_column(
-                    pa.field(field, pa.string()), pa.chunked_array([new_col])
+                    pa.field(field, pa_type), pa.chunked_array([new_col])
                 )
 
         self._dirty = True
@@ -337,13 +376,24 @@ class DatasetStore:
         if existing:
             raise ValueError(f"Duplicate source_ids: {existing[:5]}")
 
-        batch = pa.Table.from_pylist([
-            _first_pass_extract(e, SCALAR_COLUMNS + JSON_STRING_FIELDS)
-            for e in entries
-        ])
+        encoded_format = self._is_encoded_table(self._table)
+        if encoded_format:
+            batch = pa.Table.from_pylist([
+                _first_pass_extract(e, SCALAR_COLUMNS + JSON_STRING_FIELDS)
+                for e in entries
+            ])
+        else:
+            batch = pa.Table.from_pylist(entries)
+
+        # Ensure batch schema matches table schema — add missing columns as null
+        for col_name in self._table.column_names:
+            if col_name not in batch.column_names:
+                col_type = self._table.schema.field(col_name).type
+                null_arr = pa.nulls(len(entries), type=col_type)
+                batch = batch.append_column(col_name, null_arr)
+
         self._table = pa.concat_tables([self._table, batch])
 
-        # Update index
         start = len(self._index)
         for i, e in enumerate(entries):
             self._index[e["source_id"]] = start + i

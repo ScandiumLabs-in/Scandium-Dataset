@@ -590,14 +590,14 @@ def gen_battery_audit(entries):
         lines.append(f"| {c:7s} | {cnt:>7,} | {gold:>7,} |\n")
 
     lines.append(h2("Electrolyte Subset"))
-    elec_path = AUDIT_DIR / "dataset/electrolyte_subset_v3.json"
+    elec_path = AUDIT_DIR / "dataset/solid_electrolyte_candidate_subset_v1.json"
     if elec_path.exists():
         with open(elec_path) as f:
             elec = json.load(f)
         lines.append(p(f"**Electrolyte subset:** {len(elec):,} entries (strict Gold, no OQMD)"))
 
     lines.append(h2("Battery Subset"))
-    batt_path = AUDIT_DIR / "dataset/battery_subset_v3.json"
+    batt_path = AUDIT_DIR / "dataset/battery_candidate_subset_v1.json"
     if batt_path.exists():
         with open(batt_path) as f:
             batt = json.load(f)
@@ -781,8 +781,8 @@ def gen_release_audit(entries):
         ("SHA256 manifest", manifest.exists(), manifest),
         ("CHANGELOG", changelog.exists(), changelog),
         ("Final dataset", (AUDIT_DIR / "dataset/entries_final_v3.json").exists(), AUDIT_DIR / "dataset/entries_final_v3.json"),
-        ("Battery subset", (AUDIT_DIR / "dataset/battery_subset_v3.json").exists(), AUDIT_DIR / "dataset/battery_subset_v3.json"),
-        ("Electrolyte subset", (AUDIT_DIR / "dataset/electrolyte_subset_v3.json").exists(), AUDIT_DIR / "dataset/electrolyte_subset_v3.json"),
+        ("Battery subset", (AUDIT_DIR / "dataset/battery_candidate_subset_v1.json").exists(), AUDIT_DIR / "dataset/battery_candidate_subset_v1.json"),
+        ("Electrolyte subset", (AUDIT_DIR / "dataset/solid_electrolyte_candidate_subset_v1.json").exists(), AUDIT_DIR / "dataset/solid_electrolyte_candidate_subset_v1.json"),
         ("Benchmark splits", (AUDIT_DIR / "dataset/splits").is_dir(), AUDIT_DIR / "dataset/splits"),
     ]
     lines.append("| Artifact | Present |\n")

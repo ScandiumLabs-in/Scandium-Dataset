@@ -130,10 +130,10 @@ def main():
     
     # Select working subset
     if args.subset == "battery":
-        with open(DATASET_PATH / "battery_subset_v3.json") as f:
+        with open(DATASET_PATH / "battery_candidate_subset_v1.json") as f:
             entries = json.load(f)
     elif args.subset == "electrolyte":
-        with open(DATASET_PATH / "electrolyte_subset_v3.json") as f:
+        with open(DATASET_PATH / "solid_electrolyte_candidate_subset_v1.json") as f:
             entries = json.load(f)
     elif args.subset == "gold":
         entries = [e for e in all_entries if e.get("tier") == "gold"]
@@ -226,9 +226,9 @@ def main():
     
     # Save
     if args.subset == "battery":
-        output_path = DATASET_PATH / "battery_subset_v3.json"
+        output_path = DATASET_PATH / "battery_candidate_subset_v1.json"
     elif args.subset == "electrolyte":
-        output_path = DATASET_PATH / "electrolyte_subset_v3.json"
+        output_path = DATASET_PATH / "solid_electrolyte_candidate_subset_v1.json"
     elif args.subset == "gold":
         output_path = DATASET_PATH / "entries_final_v3.json"
     else:

@@ -78,11 +78,11 @@ print(f"Tier: {prov.get('tier_assignment', {}).get('tier')}")
 
 ```python
 # Battery subset
-with open("dataset/battery_subset_v3.json") as f:
+with open("dataset/battery_candidate_subset_v1.json") as f:
     battery = json.load(f)
 
 # Electrolyte subset (strict Gold only)
-with open("dataset/electrolyte_subset_v3.json") as f:
+with open("dataset/solid_electrolyte_candidate_subset_v1.json") as f:
     electrolyte = json.load(f)
 ```
 

@@ -25,8 +25,8 @@ def load_entries(path=None, edition="general"):
     if path is None:
         names = {
             "general": "entries_final_v3.json",
-            "battery": "battery_subset_v3.json",
-            "electrolyte": "electrolyte_subset_v3.json",
+            "battery": "battery_candidate_subset_v1.json",
+            "electrolyte": "solid_electrolyte_candidate_subset_v1.json",
         }
         path = DATASET_DIR / names[edition.lower()]
 
