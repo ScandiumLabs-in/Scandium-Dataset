@@ -1,4 +1,4 @@
-# Known Issues — Scandium-Dataset v0.0.0
+# Known Issues — Scandium-Dataset v1.0.0
 
 > **Transparency note:** Every known limitation of this dataset is documented below. We believe honest documentation is the foundation of trust. No issue has been hidden.
 
@@ -6,15 +6,22 @@
 
 ## Critical Issues (Affect Specific Tiers)
 
-### 1. JARVIS Energy Above Hull (EaH) Missing
+### 1. Dataset Does Not Include Ionic Transport Properties (By Design, v1.0.0 Scope)
 
-- **Status:** ✅ Resolved in v0.2.0 via internal convex hull
+- **Status:** By design, v1.0.0 scope — flagged prominently for all users
+- **Scope:** Entire dataset (100%)
+- **Impact:** The dataset supports thermodynamic and structural screening only. It cannot be used to rank materials by ionic conductivity or SSE performance without augmentation (see ROADMAP.md for planned transport-property layers).
+- **Mitigation:** Use for upstream screening (stability, band gap, structural family), then pair with AIMD/NEB or experimental conductivity data for downstream SSE evaluation. The BVSE migration barrier proxy covers 23% of Li/Na entries at draft quality — use with caution, and consult the 74.8% skip rate documentation before filtering.
+
+### 2. JARVIS Energy Above Hull (EaH) — Not Computed for Parquet Store
+
+- **Status:** ❌ Not yet computed for the Parquet store (script exists)
 - **Scope:** 25,673 JARVIS entries (100%)
-- **Impact:** No impact on Gold tier (gate G7 excludes entries missing EaH)
-- **Root cause:** JARVIS-DFT does not compute convex hull distance. This is a fundamental source limitation.
-- **Resolution:** Internal convex hull built within JARVIS subset using pymatgen PhaseDiagram. Script: `scripts/compute_jarvis_hull_energy.py`. Note: this uses JARVIS-relative hull, not the MP/OQMD reference. Cross-method normalization remains future work.
+- **Impact:** JARVIS entries are excluded from Gold tier (gate G7). They also lack EaH for stability filtering — users working with the full dataset cannot use EaH as a stability signal for JARVIS entries.
+- **Root cause:** JARVIS-DFT does not compute convex hull distance. This is a fundamental source limitation. The internal convex hull script (`scripts/compute_jarvis_hull_energy.py`) was developed for the JSON pipeline but has not been re-run against the Parquet store.
+- **Resolution:** Run `scripts/compute_jarvis_hull_energy.py` with `--format parquet` flag. Note: this uses JARVIS-relative hull, not the MP/OQMD reference. Cross-method normalization remains future work.
 
-### 2. Extreme Formation Energy Outliers (FE > 5 eV/atom)
+### 3. Extreme Formation Energy Outliers (FE > 5 eV/atom)
 
 - **Status:** By design, tier-isolated
 - **Scope:** 42 OQMD entries (max = 45.17 eV/atom)
@@ -22,7 +29,7 @@
 - **Root cause:** OQMD multi-element compounds with unphysical stoichiometries (e.g., Be₄H₁₆K₈O₃₈S₈, Ba₆Mg₁₂Pt₆). These are likely computational artifacts from high-throughput enumeration.
 - **Resolution:** Removed from Gold tier by gate G10 (quality score ≥ 80). Documented for raw/validated tiers.
 
-### 3. Extreme Energy Above Hull Outliers (EaH > 5 eV/atom)
+### 4. Extreme Energy Above Hull Outliers (EaH > 5 eV/atom)
 
 - **Status:** By design, tier-isolated
 - **Scope:** 87 entries (44 OQMD + 43 MP, max = 47.03 eV/atom)
@@ -34,7 +41,7 @@
 
 ## High-Impact Issues
 
-### 4. BVSE Coverage Gap (~75% of Li/Na Entries Skipped)
+### 5. BVSE Coverage Gap (~75% of Li/Na Entries Skipped)
 
 - **Status:** Documented, structural limitation
 - **Scope:** 73,900 of 98,773 attempted Li/Na entries (74.8%)
@@ -67,13 +74,13 @@
 - **Root cause:** MP uses finer computational parameters (ENCUT, KSPACING, semi-core pseudopotentials). This is a genuine quality difference, not a systematic bias.
 - **Mitigation:** Score calibration is monotonic and consistent per-source. Use tier-based filtering to isolate quality levels.
 
-### 8. Missing Structured Formula (Resolved)
+### 9. Missing Structured Formula (Resolved)
 
 - **Status:** ✅ Fixed in v0.0.0
 - **Scope:** Was 266,732 entries
 - **Resolution:** All entries now have `structured_formula` via formula reduction.
 
-### 9. Stale Quality Flags (Resolved)
+### 10. Stale Quality Flags (Resolved)
 
 - **Status:** ✅ Fixed in v0.0.0
 - **Scope:** Was 171,764 OQMD entries
@@ -83,32 +90,32 @@
 
 ## Medium-Impact Issues
 
-### 10. Conservative Quality Scoring
+### 11. Conservative Quality Scoring
 
 - **Scope:** Maximum score = 88 (no entry ≥ 90)
 - **Impact:** The scoring system is intentionally conservative. Any missing sub-score information caps the total.
 - **Recommendation:** Use scores for relative ranking, not absolute quality assessment.
 
-### 11. Family Imbalance
+### 12. Family Imbalance
 
 - **Scope:** Entire dataset
 - **Detail:** ~63% intermetallics, ~16% layered oxides, ~7% halide SSEs, ~6% sulfide SSEs
 - **Impact:** Models trained on full dataset may be biased toward intermetallics.
 - **Mitigation:** Use stratified sampling by family, or use battery/electrolyte subsets. Garnet enrichment script (`scripts/enrich_garnet_family.py`) available for structure-based reclassification.
 
-### 12. Missing Band Gap (151 OQMD entries)
+### 13. Missing Band Gap (151 OQMD entries)
 
 - **Scope:** 0.1% of OQMD entries
 - **Root cause:** OQMD band gap calculation did not converge for these entries.
 - **Impact:** Minimal; entries remain usable with `band_gap: null`.
 
-### 13. Space Group Determination Failures (16 OQMD entries)
+### 14. Space Group Determination Failures (16 OQMD entries)
 
 - **Scope:** 0.01% of OQMD entries
 - **Root cause:** Structures with too few atoms or disordered configurations where spglib cannot determine symmetry.
 - **Impact:** Minimal; entries remain usable with `space_group: null`.
 
-### 14. Cross-Source Formula Duplicates (195 formulas)
+### 15. Cross-Source Formula Duplicates (195 formulas)
 
 - **Scope:** 195 formulas appear in all three sources
 - **Impact:** Deduplication preserved best entry per group; all resolutions logged.
@@ -118,12 +125,12 @@
 ## Future-Priority Issues
 
 - **Raw source downloads not included** — due to source redistribution policies, raw download scripts must be run by the user
-- **Garnet undercount** — 41 entries (improved from 23 via broader composition heuristic, but still far below the ~1,000+ needed for ML training on LLZO and variants). The enrichment script (`scripts/enrich_garnet_family.py`) identifies ~200 new candidates from structure-based verification, but these need manual validation before reclassification. True garnet-family expansion requires targeted acquisition from ICSD and MP for LLZO-type structures.
+- **Garnet undercount** — 136 entries (improved from 23 via broader composition heuristic + 95 OBELiX experimental garnets, but still far below the ~1,000+ needed for ML training on LLZO and variants). Only 19 garnets are in Gold tier. The enrichment script (`scripts/enrich_garnet_family.py`) identifies ~200 new candidates from structure-based verification, but these need manual validation before reclassification. True garnet-family expansion requires targeted acquisition from ICSD and MP for LLZO-type structures.
 - **SSE family tags are composition-based** — `sse_family` is classified by elemental heuristic, not crystal structure. A compound with Li+S+P but no percolating channels will still be tagged as argyrodite/LGPS. Cross-check with CAVD dimensionality when available.
 - **Experimental data coverage is thin** — OBELiX integrated (498 experimental_gold entries with measured conductivity), but this is a pilot-level integration. Full experimental coverage requires ICSD, Inorganic Crystal Structure Database, and additional curated experimental conductivity data.
-- **No DOI assigned yet** — Zenodo archival in progress for v0.3.0
+- **No DOI assigned yet** — Zenodo archival in progress for v1.0.0
 - **License complexity** — the dataset has 3 different licenses; the `license` field per entry was added in v0.1.0 to enable programmatic filtering. A **Commercial-Safe edition** (MP+JARVIS only, ~95k entries) is now extractable via `scripts/extract_commercial_safe_edition.py`.
-- **CAVD channel dimensionality is a geometric proxy** — the `cavd_channel_dimensionality` field uses Voronoi-based connectivity analysis, not full NEB migration barriers. 0D/1D classifications reliably rule out good conductors, but 2D/3D classifications overestimate true percolation. Use as pre-filter only.
+- **CAVD channel dimensionality is 0% coverage** — the algorithm exists in `scripts/compute_cavd_channel_dimensionality.py` but was never re-run against the Parquet store. When computed, the field uses Voronoi-based connectivity analysis (a geometric proxy), not full NEB migration barriers. 0D/1D classifications reliably rule out good conductors, but 2D/3D classifications overestimate true percolation. Use as pre-filter only.
 - **Mechanical properties are geometric proxies** — the `bulk_modulus_GPa` and `shear_modulus_GPa` fields use density-based estimation, not DFT elastic tensors. They provide order-of-magnitude estimates only. True DFT elastic data for MP entries can be queried via `scripts/compute_mechanical_properties.py --api-key YOUR_KEY`.
 - **SSE candidate scores are uncalibrated** — the 5-gate `sse_candidate_score` is a heuristic composite (30+25+20+15+10 pts). Gates 1-2 are fully populated; gates 3-5 are populated only when underlying data exists. Scores from entries with missing gates are underestimates.
 

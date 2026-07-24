@@ -1,8 +1,8 @@
 # Scandium-Dataset Roadmap
 
-> **Vision:** The field's reference open dataset for AI-driven solid-state battery materials discovery — combining scale (266k+ entries) with purpose-built SSE screening properties that no existing open dataset provides.
+> **Vision:** Become the field's reference open dataset for battery-relevant materials **screening** — combining scale (267k+ entries) with harmonized quality scoring, cross-source provenance, and benchmark splits that no single-source dataset provides. Transport-property layers (ionic conductivity, migration barriers) are planned for future versions.
 
-> **Strategic plan:** See [docs/ssb_strategic_roadmap.md](docs/ssb_strategic_roadmap.md) for the full literature-backed strategy document with ~20 references.
+> **Strategic plan:** See [docs/ssb_strategic_roadmap.md](docs/ssb_strategic_roadmap.md).
 
 ---
 
@@ -10,88 +10,62 @@
 
 **Focus:** Clean, validated, audited general inorganic materials aggregation
 
-- [x] Aggregate MP, OQMD, JARVIS-DFT (266,732 entries)
+- [x] Aggregate MP, OQMD, JARVIS-DFT (267,230 entries)
 - [x] Coordinate repair (171,780 OQMD entries)
 - [x] Symmetry pass (171,764 space groups)
 - [x] Volume/density repair (73,480 entries)
 - [x] 11-gate validation pipeline
-- [x] Multi-source deduplication
+- [x] Multi-source deduplication (31,997 duplicates removed)
 - [x] Quality scoring with 5 sub-scores
 - [x] Three-tier system (Gold / Validated / Raw)
-- [x] Battery (82,925) and electrolyte (41,665) subsets
-- [x] Benchmark splits (4 types)
+- [x] Battery-relevant (82,925) and electrolyte candidate (41,665) subsets
+- [x] Benchmark splits (4 types: random, composition-held-out, family-held-out, chemistry-held-out)
 - [x] Complete 8-phase audit
-- [x] Reproducibility scripts
-- [x] Full documentation (12 audit reports, trust report, dataset card, known issues)
-- [x] Docker support
-- [x] Test infrastructure
-- [x] Licensing resolved (per-entry `license` field, `LICENSE_BREAKDOWN.md`)
-- [x] SSE proxy features (carrier_fraction, volume_per_carrier, fe_per_carrier, electronic_insulation)
-- [x] SSE family classification on all entries (garnet/NASICON/argyrodite/LGPS-type/etc.)
-- [x] Electrochemical window computation script
-- [x] Baseline benchmarks (RF+Ridge, 8 experiments)
-- [x] Related work analysis, paper outline, SSE readiness assessment
-- [x] v0.1.0-rc.2 release to GitHub + HuggingFace
+- [x] Full documentation (audit reports, trust report, dataset card, known issues)
+- [x] Licensing resolved (per-entry `license` field)
 
 ---
 
-## Phase 1 — Cheap, High-Leverage, No New DFT (Complete ✓)
+## v1.0.0 — Scope Clarification + Parquet Store (Current)
 
-**Focus:** Add structural descriptors, stability windows, SSE screening schema → milestone v0.2.0
+**Focus:** Corrected scope (thermodynamic screening, not SSE discovery), Parquet storage, experimental integration, BVSE draft
 
-- [x] Run CAVD channel-dimensionality analysis — **schema exists, no data (0/190k entries)**
-- [x] Build electrochemical stability windows — **1,814/266k entries have data (partial)**
-- [x] Compute free-volume, packing fraction, coordination descriptors — **status unknown**
-- [x] Create `ssb_screening` schema block across all entries (266,732 have schema, all fields null/empty)
-- [x] Expand garnet family enrichment (target 500+) — **still at 41, no expansion done**
-- [x] Publish `sse_candidate_score` based on gates 1–2 (thermo + electronic) — **2,354 entries scored (10-19 range)**
-- [x] Energy_above_hull for JARVIS entries via internal convex hull — **0/25,673 entries computed**
-- [x] Oxidation state prediction for all entries (BVA + heuristic) — **status unknown**
-- [x] Commercial-safe edition extraction (MP + JARVIS only, ~95k entries) — **94,952 entries confirmed**
-- [x] Mechanical property proxies — **schema exists, 0 entries have bulk/shear moduli**
-- [ ] Formation energy corrections for OQMD entries
+- [x] Parquet dataset store (47 columns, 184 MB, indexed lookup)
+- [x] OBELiX experimental data integration (498 entries with measured conductivity)
+- [x] BVSE migration barrier proxy (24,873 barriers, 1,501 superionic)
+- [x] KNOWN_ISSUES.md: scope clarified as thermodynamic screening
+- [x] Dataset card: Included/Not Included and Suitable/Not Suitable sections added
+- [x] Version bumped to v1.0.0, framing corrected from "SSB discovery" to "materials screening"
 
 ---
 
-## Phase 2 — MLIP-Driven Scale-Up
+## Phase 1 — Property Gaps to Close (Next)
 
-**Focus:** BVSE + MLIP-NEB migration barriers + elastic tensors → milestone v0.3.0
+**Focus:** Close documentation-vs-data gaps, expand SSE screening fields
 
-- [x] Implement BVSE migration barrier proxy — **rewritten to use bvlain (softBV); passes 5/7 sanity cases, worst error 0.12 eV**
-- [x] Setup script for CHGNet/MACE-MP-0/M3GNet infrastructure (scaffold written, not yet run)
-- [x] Extend frozen splits to conductivity/stability tasks (generated from BVSE data, valid)
-- [ ] Run MLIP-NEB migration barriers on CAVD+BVSE-filtered subset — **scaffold only, not executed**
-- [ ] Run MLIP-based elastic tensor estimation — **not started**
-- [ ] Publish first full `sse_candidate_score` (all 5 gates) — **gates 3-5 only partially populated**
-- [ ] Leaderboard with baseline model results
-- [ ] Full BVSE run on all 107k Li/Na entries (requires ~3 CPU-days)
+- [ ] Run CAVD channel-dimensionality analysis against Parquet store (currently 0% coverage; algorithm exists)
+- [ ] Compute JARVIS EaH against Parquet store (currently 0% for 25,673 entries; script exists)
+- [ ] Re-run garnet enrichment (target 500+) — currently 136 entries
+- [ ] Reduce BVSE skip rate by adjusting --max-sites threshold and parameter table
+- [ ] Expand electrochemical stability windows beyond 0.7% coverage
 
 ---
 
-## Phase 3 — Gold-Standard Validation Layer
+## Phase 2 — MLIP-Driven Transport Properties
 
-**Focus:** DFT verification + experimental ground truth → milestone v0.4.0
+**Focus:** Migration barriers + elastic tensors
 
-- [x] Ingestion scaffold for experimental conductivity data (script written, **needs correct URLs + actual fetch**)
-- [ ] Stratified DFT-NEB/AIMD verification sample (50–100 entries)
-- [ ] Full DFT elastic tensor calculations for Strict-Gold validation subset
-- [ ] Ingest OBELiX (Therrien et al. 2025, NRC-Mila) as experimental gold subset
-- [ ] Ingest Hargreaves et al. 2023 npj Comp. Mater. conductivity database (DOI: 10.1038/s41524-022-00951-z)
-- [ ] Publish per-family, per-method accuracy tables
-- [ ] Cross-reference with experimental ICSD entries
-- [ ] Compute phonon properties for stability validation
+- [ ] MLIP-NEB migration barriers on top SSE candidates
+- [ ] DFT NEB validation for halide/sulfide/garnet subset
+- [ ] Elastic tensor data from MP API (scaffold exists)
+- [ ] Full `sse_candidate_score` with all 5 gates populated
+- [ ] GNN baselines (CGCNN, MEGNet, ALIGNN) added to MODEL_LEADERBOARD
 
 ---
 
-## Phase 4 — Community & Publishing
+## Phase 3 — Production Transport Layer
 
-**Focus:** DOIs, challenge, community adoption → milestone v1.0.0
-
-- [ ] Dataset DOI with versioned releases (Zenodo)
-- [ ] Publish composite `sse_candidate_score` formula openly
-- [ ] Community submission workflow for new entries/properties
-- [ ] Web API for dataset querying
-- [ ] Automated monthly source update pipeline
-- [ ] Integration with materials discovery workflows
-- [ ] Community governance model
-- [ ] Target journal submission (Scientific Data or NeurIPS D&B)
+- [ ] Benchmark-quality ionic conductivity predictions
+- [ ] Experimental conductivity cross-references (beyond OBELiX pilot)
+- [ ] DOI registration via Zenodo
+- [ ] Third-party audit of data pipeline

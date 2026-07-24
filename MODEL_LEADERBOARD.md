@@ -1,4 +1,4 @@
-# Model Leaderboard — Scandium-Dataset v0.3.0
+# Model Leaderboard — Scandium-Dataset v1.0.0
 
 Results on the four frozen benchmark splits. All models use the same train/val/test indices.
 

@@ -190,7 +190,7 @@ materials, just not sufficient).
 
 See **[SSB Strategic Roadmap](../docs/ssb_strategic_roadmap.md)** for the comprehensive
 literature-backed plan to evolve this dataset from a general aggregation into a
-purpose-built SSB discovery resource. Key additions since v0.1.0-rc.2:
+purpose-built battery screening resource. Key additions since v1.0.0:
 
 - **SSE family classification** now present on all 266,732 entries (composition-based
   tagging as garnet/NASICON/argyrodite/LGPS-type/LISICON/anti-perovskite/perovskite/

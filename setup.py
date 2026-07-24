@@ -2,8 +2,8 @@ from setuptools import setup, find_packages
 
 setup(
     name="scandium-dataset",
-    version="0.0.0",
-    description="Curated computational materials dataset for solid-state battery discovery",
+    version="1.0.0",
+    description="Curated multi-source DFT dataset for battery-relevant materials screening",
     long_description=open("README.md").read(),
     long_description_content_type="text/markdown",
     url="https://github.com/ScandiumLabs-in/Scandium-Dataset",

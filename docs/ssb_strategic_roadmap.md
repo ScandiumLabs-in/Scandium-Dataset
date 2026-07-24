@@ -2,8 +2,8 @@
 
 ## A Research-Backed Strategic Roadmap
 
-> **Status:** Planning document for v0.2+ releases
-> **Current version:** v0.1.0-rc.2 (general inorganic materials aggregation)
+> **Status:** Planning document for v1.0+ releases
+> **Current version:** v1.0.0 (general inorganic materials aggregation with scope corrected to screening)
 
 ---
 

@@ -2,6 +2,22 @@
 
 All notable changes to the Scandium Dataset will be documented in this file.
 
+## [1.0.0] — 2026-07-24 — Scope Clarification + Honest Repositioning
+
+### Changed
+- **Dataset repositioned from "SSB discovery" to "materials screening":** The tagline, dataset card, ROADMAP, and all public-facing documentation now accurately describe this as a thermodynamic and structural screening dataset for battery-relevant materials, not a full SSE-discovery resource. See [the repositioning guide](https://github.com/ScandiumLabs-in/Scandium-Dataset/issues) for the rationale.
+- **Version bumped to 1.0.0** to mark the scope correction as a major milestone.
+- DATASET_CARD.md: added "Included vs. Not Included" table, "Suitable For / Not Suitable For" section, family imbalance disclosure, roadmap section.
+- README.md, KNOWN_ISSUES.md, ROADMAP.md, CITATION.cff, pyproject.toml, setup.py: version and framing updated to match v1.0.0.
+- GitHub repo description and topics updated from "solid-state battery" to "materials screening".
+- HF dataset tags updated (removed `solid-state-electrolyte`, `lithium-ion-conductivity`; added `materials-screening`, `dft-stability`, `inorganic-materials`).
+
+### Fixed
+- JARVIS EaH status in KNOWN_ISSUES.md corrected: previously marked as "Resolved" but the script was never re-run against the Parquet store. Actual coverage: 0% for 25,673 JARVIS entries.
+- CAVD coverage corrected to 0% (was ~61%).
+- Stability window coverage corrected to 0.7% (was ~2.2%).
+- Garnet count updated: 23 → 136 entries.
+
 ## [0.3.0] — 2026-07-24 — Parquet Store + Experimental Data + BVSE Fix
 
 ### Added

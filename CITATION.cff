@@ -2,10 +2,10 @@ cff-version: 1.2.0
 message: >-
   If you use the Scandium Dataset in your research, please cite it using
   these metadata.
-title: Scandium Dataset v0.1.0-rc.1
-version: 0.1.0-rc.1
+title: Scandium Dataset v1.0.0
+version: 1.0.0
 doi: pending
-date-released: 2026-07-22
+date-released: 2026-07-24
 authors:
   - name: Scandium Labs
     website: https://github.com/Scandium-Labs
@@ -17,7 +17,8 @@ license-explanation: >
   OQMD: non-commercial.
 keywords:
   - battery-materials
-  - solid-state-electrolytes
+  - materials-screening
   - dft-dataset
   - materials-science
   - machine-learning
+  - dft-stability
