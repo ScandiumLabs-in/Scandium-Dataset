@@ -19,6 +19,9 @@ warnings.filterwarnings("ignore")
 BASE_DIR = Path(__file__).resolve().parent.parent
 DATASET_PATH = BASE_DIR / "dataset"
 
+sys.path.insert(0, str(BASE_DIR))
+from dataset.dataset_store import _decode_value
+
 KNOWN_SSES = {
     "Li3PS4":       ((0.30, 0.45), "moderate-to-good"),
     "Li7P3S11":     ((0.18, 0.30), "superionic"),
@@ -34,19 +37,23 @@ def main():
     print("  BVSE SANITY VALIDATION  (bvlain engine)")
     print("=" * 60)
 
-    print("\nLoading dataset...")
-    with open(DATASET_PATH / "entries_final_v3.json") as f:
-        all_entries = json.load(f)
-    print(f"  {len(all_entries):,} entries")
+    print("\nLoading dataset from Parquet...")
+    import pyarrow.parquet as pq
+    table = pq.read_table(DATASET_PATH / "entries_v3.parquet", columns=["formula", "source_id", "structure_json", "mobile_ion"])
+    all_entries = []
+    for i in range(table.num_rows):
+        formula_raw = table.column("formula")[i].as_py()
+        formula = _decode_value(formula_raw) if formula_raw else ""
+        struct_raw = table.column("structure_json")[i].as_py()
+        if struct_raw and formula in KNOWN_SSES:
+            sid_raw = table.column("source_id")[i].as_py()
+            sid = _decode_value(sid_raw) if sid_raw else "?"
+            mobile_raw = table.column("mobile_ion")[i].as_py()
+            mobile = _decode_value(mobile_raw) if mobile_raw else "Li"
+            all_entries.append({"formula": formula, "source_id": sid, "structure_json": _decode_value(struct_raw), "mobile_ion": mobile})
+    print(f"  {len(all_entries):,} known SSE entries found")
 
-    known_entries = {}
-    for e in all_entries:
-        formula = e.get("formula", e.get("structured_formula", ""))
-        if formula in KNOWN_SSES:
-            if e.get("structure_json"):
-                known_entries.setdefault(formula, []).append(e)
-
-    if not known_entries:
+    if not all_entries:
         print("\n  No known SSE structures found in dataset!")
         print(f"  Expected: {list(KNOWN_SSES.keys())}")
         return 1
@@ -57,16 +64,15 @@ def main():
     all_pass = True
     for formula in sorted(KNOWN_SSES.keys()):
         (lit_lo, lit_hi), lit_cls = KNOWN_SSES[formula]
-        entries = known_entries.get(formula, [])
+        entries = [e for e in all_entries if e["formula"] == formula]
         if not entries:
             print(f"  {formula:20s} {'(no structures)':25s}")
             continue
 
         for e in entries:
             sid = e["source_id"]
-            s = __import__("pymatgen").core.Structure.from_dict(
-                __import__("json").loads(e["structure_json"])
-            )
+            from pymatgen.io.cif import Structure
+            s = Structure.from_dict(json.loads(e["structure_json"]))
             mob = e.get("mobile_ion", "Li")
             result = compute_bvse_barrier(s, mobile_element=mob)
             ea = result["migration_barrier_eV"]

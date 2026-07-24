@@ -37,7 +37,9 @@ configs:
 - **Battery subset:** 82,925 entries | **Electrolyte subset:** 41,665 entries (strict Gold)
 - **Storage:** Parquet (`dataset/entries_v3.parquet`, 47 columns) with indexed lookup — 184 MB instead of 1.6 GB JSON.
 - **Experimental data:** 599 OBELiX entries integrated (Therrien et al. 2025, NRC-Mila), including 498 new `experimental_gold` tier entries with measured Li-ion conductivity.
-- **Transport proxies:** BVSE migration barrier proxy (bvlain engine, validated against 7 known SSEs, 5/7 pass within literature ranges). See `scripts/compute_bvse_barriers.py`.
+- **Transport proxies:** BVSE migration barrier proxy (bvlain engine v0.25.1, softBV percolation method) computed for 98,773 Li/Na entries with ≤60 sites and crystal structures. Of these, 24,873 received a barrier (1,501 superionic ≤0.25 eV, 4,705 good 0.25–0.40 eV, 5,009 moderate 0.40–0.55 eV, 13,658 poor >0.55 eV); 73,900 were skipped because `bvlain`'s bond-valence parameter table has no entry for that composition. Validated against 7 known SSE structures pre-production (Li3PS4, Li7P3S11, Li6PS5Cl, Li7La3Zr2O12); 5/7 pass within literature ranges, 2 known-marginal outliers documented in KNOWN_ISSUES.md. See `scripts/compute_bvse_barriers.py` (sequential) and `scripts/compute_bvse_parallel.py` (parallel, 6 workers).
+
+- **Coverage note:** Of 108,015 Li/Na entries total, 8,744 were excluded by `--max-sites 60` (unit cells with >60 atoms) and 498 experimental OBELiX entries lack crystal structures, leaving 98,773 attempted. The 73,900 skipped entries (~75% of attempted) are a structural limitation of `bvlain`'s parameter coverage, not a sampling gap — entries with unparameterized compositions are flagged explicitly via `skip_reason: "no BV params for composition"`.
 
 ## Sources
 
@@ -67,6 +69,26 @@ with open("dataset/commercial_safe_subset_v3.json") as f:
     entries = json.load(f)
 print(f"{len(entries):,} entries — all commercial-safe")
 ```
+
+### BVSE migration barriers (production run completed 2026-07-24)
+
+| Metric | Value |
+|--------|-------|
+| Total Li/Na entries | 108,015 |
+| Excluded (>60 sites) | 8,744 |
+| No structure (experimental) | 498 |
+| **Attempted** | **98,773** |
+| Barriers computed | 24,873 |
+| Superionic (≤0.25 eV) | 1,501 |
+| Good (0.25–0.40 eV) | 4,705 |
+| Moderate (0.40–0.55 eV) | 5,009 |
+| Poor (>0.55 eV) | 13,658 |
+| Skipped (no BV params) | 73,900 |
+| Errors | 0 |
+| **Coverage of attempted** | **25.2%** |
+| **Coverage of all Li/Na** | **23.0%** |
+
+**Caveat:** The 73,900 skipped entries (~75% of attempted) are entries whose composition is not covered by `bvlain`'s bond-valence parameter table. This is a structural limitation of the method, not a random gap. Entries are explicitly flagged with `skip_reason: "no BV params for composition"` in the `bvse_migration_barrier_eV` field. If you filter entries by `has_bvse_barrier: true`, you can safely use only the 24,873 that have computed values.
 
 ## Fields
 
@@ -141,6 +163,18 @@ print(f"{len(entries):,} entries — all commercial-safe")
 | `shear_modulus_GPa` | float | Shear modulus (geometric proxy) | 100% |
 | `dendrite_suppression_flag` | bool | Shear modulus > 6 GPa | 100% |
 | `elastic_source` | str | "MP_API" / "geometric_proxy" / null | 100% |
+
+### bvse block (v0.3.0)
+
+| Field | Type | Description | Coverage |
+|-------|------|-------------|----------|
+| `bvse_migration_barrier_eV` | float | Migration barrier (eV) | 23.0% of Li/Na |
+| `bvse_mobility_class` | str | superionic/good/moderate/poor | 23.0% of Li/Na |
+| `bvse_site_hop_counts` | dict | Per-site hop statistics | 23.0% of Li/Na |
+| `bvse_percolation_type` | str | Percolation pathway type | 23.0% of Li/Na |
+| `bvse_site_energy_above_percolation` | float | Site energy above percolation (eV) | 23.0% of Li/Na |
+| `bvse_skip_reason` | str | Why barrier was not computed | 74.8% of attempted |
+| `bvse_engine_version` | str | "bvlain v0.25.1" | 100% of attempted |
 
 ## Intended Use
 
