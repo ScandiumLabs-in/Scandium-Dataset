@@ -29,6 +29,13 @@ All notable changes to the Scandium Dataset will be documented in this file.
 - **Conductivity benchmark splits** (`scripts/generate_conductivity_splits.py`)
   - 4 split types: conductivity-stratified, family-stratified, best-conductor held-out, mobility-class held-out
 
+### Fixed
+- Documentation discrepancy: CAVD coverage corrected from ~61% to 0.0% (CAVD was never re-computed against the Parquet store; needs re-run)
+- Documentation discrepancy: stability window coverage corrected from ~2.2% to 0.7%
+- DATASET_CARD.md, README.md: coverage numbers now match actual Parquet state
+- MODEL_LEADERBOARD.md: version updated from v0.1.0-rc.1 to v0.3.0
+- Dataset card now includes explicit family imbalance disclosure (62.5% intermetallics)
+
 ### Changed
 - Citation corrected: Hargreaves et al. (2023) npj Comput. Mater., not "Ransom et al."
   - Correct DOI: 10.1038/s41524-022-00951-z

@@ -40,6 +40,7 @@ configs:
 - **Transport proxies:** BVSE migration barrier proxy (bvlain engine v0.25.1, softBV percolation method) computed for 98,773 Li/Na entries with ≤60 sites and crystal structures. Of these, 24,873 received a barrier (1,501 superionic ≤0.25 eV, 4,705 good 0.25–0.40 eV, 5,009 moderate 0.40–0.55 eV, 13,658 poor >0.55 eV); 73,900 were skipped because `bvlain`'s bond-valence parameter table has no entry for that composition. Validated against 7 known SSE structures pre-production (Li3PS4, Li7P3S11, Li6PS5Cl, Li7La3Zr2O12); 5/7 pass within literature ranges, 2 known-marginal outliers documented in KNOWN_ISSUES.md. See `scripts/compute_bvse_barriers.py` (sequential) and `scripts/compute_bvse_parallel.py` (parallel, 6 workers).
 
 - **Coverage note:** Of 108,015 Li/Na entries total, 8,744 were excluded by `--max-sites 60` (unit cells with >60 atoms) and 498 experimental OBELiX entries lack crystal structures, leaving 98,773 attempted. The 73,900 skipped entries (~75% of attempted) are a structural limitation of `bvlain`'s parameter coverage, not a sampling gap — entries with unparameterized compositions are flagged explicitly via `skip_reason: "no BV params for composition"`.
+- **Family imbalance:** The dataset is heavily skewed toward intermetallics (62.5%) and layered oxides (15.7%). Solid-electrolyte-relevant families (sulfides, halides, garnets, NASICON, LISICON, argyrodites) together account for <8%. See [`KNOWN_ISSUES.md`](KNOWN_ISSUES.md) for stratified sampling recommendations.
 
 ## Sources
 
@@ -153,10 +154,10 @@ print(f"{len(entries):,} entries — all commercial-safe")
 | `thermo_stable` | bool | E_hull < 0.025 eV/atom | 100% |
 | `gates_passed` | list[str] | SSE screening gates passed | 100% |
 | `sse_candidate_score` | int | Composite SSE score (0–100) | 100% |
-| `cavd_channel_dimensionality` | str | 0D/1D/2D/3D percolation | ~61% |
-| `stability_window_low_V` | float | Lower stability limit vs Li/Na | ~2.2% |
-| `stability_window_high_V` | float | Upper stability limit vs Li/Na | ~2.2% |
-| `window_width_V` | float | Electrochemical window width | ~2.2% |
+| `cavd_channel_dimensionality` | str | 0D/1D/2D/3D percolation | 0.0% (needs re-computation against Parquet store) |
+| `stability_window_low_V` | float | Lower stability limit vs Li/Na | 0.7% |
+| `stability_window_high_V` | float | Upper stability limit vs Li/Na | 0.7% |
+| `window_width_V` | float | Electrochemical window width | 0.7% |
 | `passivating_interphase` | bool | Forms passivating interphase? | ~14.9% |
 | `interfacial_reaction_energy_vs_Li_eV_atom` | float | Decomposition energy vs Li | ~14.9% |
 | `bulk_modulus_GPa` | float | Bulk modulus (geometric proxy) | 100% |
