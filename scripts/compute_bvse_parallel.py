@@ -76,7 +76,7 @@ def _write_checkpoint(table, updated_rows, all_ssb, sid_to_idx, all_table_rows):
     """Write updated ssb_screening values back to the Parquet table."""
     import pyarrow as pa
     import pyarrow.parquet as pq
-    from dataset_store import _encode_value
+    from dataset_store import _encode_value, _decode_value
     ssb_col = table.column("ssb_screening").to_pylist()
     for table_row in updated_rows:
         # Find the corresponding index in all_* arrays
